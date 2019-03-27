@@ -5,7 +5,6 @@ public abstract class Users {
 	private String password;
 	String firstname;
 	String lastname;
-	String address;
 	String city;
 	String country;
 	String job;
