@@ -1,7 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
-	
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
-	<!-- TODO Add Nodes -->
-</BorderPane>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+  <tabs>
+    <Tab id="LoginTab" fx:id="LoginTab" text="Login">
+         <content>
+            <SplitPane dividerPositions="0.5">
+              <items>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <VBox BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="88.0" layoutY="14.0" text="Log in to Bus">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="LogUser" layoutX="67.0" layoutY="44.0" promptText="Username" />
+                              <PasswordField fx:id="LogPass" layoutX="69.0" layoutY="69.0" promptText="Password" />
+                              <Button fx:id="LoginMain" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" text="Login" />
+                           </children>
+                        </VBox>
+                     </top>
+                  </BorderPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+              </items>
+            </SplitPane>
+         </content>
+    </Tab>
+    <Tab fx:id="RegisterTab" text="Register">
+         <content>
+            <SplitPane dividerPositions="0.5">
+              <items>
+                  <VBox alignment="TOP_CENTER">
+                     <children>
+                        <Label text="Register to Bus" textAlignment="CENTER">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Enter your Username:" />
+                        <TextField fx:id="RegUser" promptText="Username" GridPane.columnIndex="1" />
+                        <Label text="Enter your Password:" GridPane.rowIndex="1" />
+                        <PasswordField fx:id="RegPass" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="SignUpMain" mnemonicParsing="false" text="Sign Up" GridPane.rowIndex="2" />
+                     </children>
+                  </VBox>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+              </items>
+            </SplitPane>
+         </content>
+    </Tab>
+      <Tab fx:id="RegisterTab1" text="Info">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextArea editable="false" layoutX="18.0" layoutY="60.0" prefHeight="166.0" prefWidth="534.0" text="Bus is a desktop application developed for booking bus tickets online. It also makes you able to book, change, or cancel trips. It supports most of the operating systems available." wrapText="true" AnchorPane.bottomAnchor="174.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="60.0" />
+                  <Label layoutX="18.0" layoutY="14.0" text="Information">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+  </tabs>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</TabPane>
