@@ -2,7 +2,7 @@ package application;
 import java.util.*;
 
 public class Manager extends Users {
-	public Manager(String fname, String lname, String uname, String pw, int ID, String country, String city) {
+	public Manager(String fname, String lname, String uname, String pw, int ID, String city, String country, String j) {
 		Manager.super.firstname = fname;
 		Manager.super.lastname = lname;
 		Manager.super.username = uname;
@@ -10,6 +10,10 @@ public class Manager extends Users {
 		Manager.super.ID = ID;
 		Manager.super.city = city;
 		Manager.super.country = country;
+		Manager.super.job = j;
+	}
+	public Manager() {
+		
 	}
 	public Trip addTrip(String s, String f, float t, String v, Date d) {
 		Trip trip = new Trip();
