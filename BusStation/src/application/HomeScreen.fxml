@@ -1,8 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Hello " />
+            <Button mnemonicParsing="false" text="Passenger Profile" />
+            <Button mnemonicParsing="false" text="Promo Codes" />
+            <Button mnemonicParsing="false" text="Settings" />
+            <Button mnemonicParsing="false" text="Customer Service" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Search for your trip" />
+            <MenuButton mnemonicParsing="false" text="Select trip type">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
+            <MenuButton mnemonicParsing="false" text="Select your start">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
+            <MenuButton mnemonicParsing="false" text="Select your destination">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
+            <DatePicker promptText="Select date" />
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="How it works" />
+            <Label text="Search" />
+            <Label text="Find" />
+            <Label text="Book!" />
+            <Label text="Booking a bus trip never been so easy!" />
+         </children>
+      </VBox>
+   </right>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Status Bar" />
+            <Label text="Label" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
