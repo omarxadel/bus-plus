@@ -4,9 +4,18 @@ import java.util.*;
 public class Trip {
 	String start;
 	String destination;
-	String vehicle;
+	String driverName;
+	String date;
 	float ticket;
-	Driver driver;
-	Date date;
-	Seat seat;	
+	Vehicle vehicle;
+	Seat seat;
+	
+	public Trip(String s, String d, Vehicle v, String dr, String da, String S) {
+		start = s;
+		destination = d;
+		vehicle = v;
+		driverName = dr;
+		date =  da;
+		seat = new Seat(S);
+	}
 }

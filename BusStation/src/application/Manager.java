@@ -12,9 +12,7 @@ public class Manager extends Users {
 		Manager.super.country = country;
 		Manager.super.job = j;
 	}
-	public Manager() {
-		
-	}
+	
 	public Trip addTrip(String s, String f, float t, String v, Date d) {
 		Trip trip = new Trip();
 		trip.start = s;

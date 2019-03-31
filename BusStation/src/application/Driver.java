@@ -15,19 +15,5 @@ public class Driver extends Users {
 		Driver.super.job = job;
 	}
 	
-	public void setAddress(String city, String country) {
-		Driver.super.city = city;
-		Driver.super.country = country;
-	}
-
-	public void setCity(String city) {
-		Driver.super.city = city;
-	}
-	
-	public void setCountry(String country) {
-		Driver.super.country = country;
-	}
-	
-	
 	
 }
