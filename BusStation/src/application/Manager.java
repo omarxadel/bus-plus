@@ -13,13 +13,9 @@ public class Manager extends Users {
 		Manager.super.job = j;
 	}
 	
-	public Trip addTrip(String s, String f, float t, String v, Date d) {
-		Trip trip = new Trip();
-		trip.start = s;
-		trip.destination = f;
-		trip.vehicle = v;
-		trip.ticket = t;
-		trip.date = d;
+	public Trip addTrip(String s, String d, Vehicle v, String dr, String da, String S) {
+		Trip trip = new Trip(s, d, v, dr, da, S);
 		return trip;
+		
 	}
 }
