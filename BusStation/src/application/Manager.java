@@ -13,7 +13,7 @@ public class Manager extends Users {
 		Manager.super.job = j;
 	}
 	
-	public Trip addTrip(String s, String d, Vehicle v, String dr, String da, String S) {
+	public Trip addTrip(String s, String d, String v, String dr, String da, Seat S) {
 		Trip trip = new Trip(s, d, v, dr, da, S);
 		return trip;
 		

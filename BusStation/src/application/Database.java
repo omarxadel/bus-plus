@@ -124,15 +124,17 @@ public class Database {
 		int[] J;
 		int m, k=0, l=0;
 		S = new  Seat [100];
-		m = i.nextInt();
-		System.out.println(m);
-		J = new int[m];
+		
 		
 		while(i.hasNext()) {
+			m = i.nextInt();
+			System.out.println(m);
+			J = new int[m];
 			for(int ind = 0 ; ind < m ; ind++) {
 				J[ind]=i.nextInt();
 			}
-			if(m == 46) {
+			if(m == 48) {
+				l=0;
 				S[k] = new Seat("Bus");
 				for(int row = 0 ; row < 4 ; row++) {
 					for(int col = 0 ; col  < 12 ; col++ )
@@ -141,23 +143,45 @@ public class Database {
 							l++;
 						}
 				}
+				continue;
 			}
 			else if(m == 36) {
+				l=0;
 				S[k] = new Seat("Midbus");
 				for(int row = 0 ; row < 4 ; row++) {
 					for(int col = 0 ; col < 9; col++) {
-						if(J[l++] == 1) S[k].bookSeat(row, col);
+						if(l<m) {
+						if(J[l] == 1) S[k].bookSeat(row, col);
+						l++;
+						}
 					}
 				}
+				continue;
 			}
 			else if(m == 12) {
+				l=0;
+				S[k] = new Seat("Minibus");
 				for(int row = 0 ; row < 3 ; row++) {
 					for(int col = 0 ; col < 4; col++) {
-						if(J[l++] == 1) S[k].bookSeat(row, col);
+						if(l<m) {
+							if(J[l++] == 1) S[k].bookSeat(row, col);
+						}
 					}
 				}	
+				continue;
 			}
-			else break;
+			else if (m == 3) {
+				S[k] = new Seat("Limo");
+				for(int row = 0 ; row < 1 ; row++) {
+				for(int col = 0 ; col < 3; col++) {
+					S[k].bookAllSeats();
+				}
+			}	continue;
+			}
+			else {
+				System.out.println("Error in files");
+				break;
+			}
 		}
 		k++;
 	}
