@@ -1,5 +1,4 @@
 package application;
-import java.util.*;
 
 public  class Vehicle {
 	String vtype;
