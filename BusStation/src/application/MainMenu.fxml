@@ -24,17 +24,20 @@
                                  </font>
                               </Label>
                               <TextField fx:id="LogUser" layoutX="67.0" layoutY="44.0" promptText="Username" />
-                              <PasswordField fx:id="LogPass" layoutX="69.0" layoutY="69.0" promptText="Password" />
-                              <Button fx:id="LoginMain" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" text="Login" />
+                              <PasswordField fx:id="LogPass" layoutX="69.0" layoutY="69.0" prefHeight="25.0" prefWidth="292.0" promptText="Password" />
+                              <Button fx:id="LoginMain" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="100.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="25.0" prefWidth="91.0" text="Login" />
                            </children>
                         </VBox>
                      </top>
                      <center>
                         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" BorderPane.alignment="CENTER">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="User" />
-                              <RadioButton mnemonicParsing="false" text="Driver" />
-                              <RadioButton mnemonicParsing="false" text="Admin" />
+                           <fx:define>
+                           	<ToggleGroup fx:id="toggleGroup"/>
+                           </fx:define>
+                              <RadioButton fx:id="UserRadio" toggleGroup="$toggleGroup" mnemonicParsing="false" text="User" />
+                              <RadioButton fx:id="DriverRadio" toggleGroup="$toggleGroup" mnemonicParsing="false" text="Driver" />
+                              <RadioButton fx:id="AdminRadio" toggleGroup="$toggleGroup" mnemonicParsing="false" text="Admin" />
                            </children>
                         </HBox>
                      </center>

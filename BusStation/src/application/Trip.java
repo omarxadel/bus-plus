@@ -1,21 +1,31 @@
 package application;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Trip {
 	String start;
 	String destination;
 	String driverName;
-	String date;
+	Date date;
 	float ticket;
 	Vehicle vehicle;
 	Seat seat;
 	
-	public Trip(String s, String d, Vehicle v, String dr, String da, String S) {
-		start = s;
-		destination = d;
-		vehicle = v;
-		driverName = dr;
-		date =  da;
-		seat = new Seat(S);
+	public Trip(String start, String dest, String vehicle, String driver, String date, Seat seat){
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+		
+		this.start = start;
+		destination = dest;
+		this.vehicle = new Vehicle(vehicle);
+		driverName = driver;
+		this.seat = seat;
+		try {
+			this.date =  ft.parse(date);
+			System.out.printf("%d",this.date);
+		} catch (ParseException e) {
+			System.out.println("Cannot parse" + ft);
+			e.printStackTrace();
+		}
 	}
 }

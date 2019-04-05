@@ -11,7 +11,7 @@ public class Seat {
 		}
 		else if(type.equals("Midbus")) {
 			seat = new boolean [4][9];
-			capacity = 34;
+			capacity = 36;
 		}
 		else if(type.equals("Minibus")) {
 			seat = new boolean [3][4];
@@ -31,4 +31,19 @@ public class Seat {
 		return capacity;
 	}
 	
+	public void bookSeat(int row, int col) {
+		seat[row][col] = true;
+	}
+	
+	public int getFreeSeats() {
+		int counter=0;
+		for(int i = 0 ; i < seat.length ; i++) {
+			for(int j = 0 ; j < seat[0].length ; j++) {
+				if(!seat[i][j]) {
+					counter++;
+				}
+			}
+		}
+		return counter;
+	}
 }
