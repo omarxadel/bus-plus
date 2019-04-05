@@ -31,10 +31,10 @@
       <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <children>
             <Label text="Hello " />
-            <Button fx:id="PassengerProfileButton" mnemonicParsing="false" text="Passenger Profile" />
-            <Button mnemonicParsing="false" text="Promo Codes" />
-            <Button mnemonicParsing="false" text="Settings" />
-            <Button mnemonicParsing="false" text="Customer Service" />
+            <Button fx:id="PassengerProfileButton" mnemonicParsing="false" text="Profile" />
+            <Button mnemonicParsing="false" text="Manage Trips" />
+            <Button mnemonicParsing="false" text="Manage Drivers" />
+            <Button mnemonicParsing="false" text="Manage System Admins" />
          </children>
       </VBox>
    </left>
@@ -64,17 +64,6 @@
          </children>
       </VBox>
    </center>
-   <right>
-      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="How it works" />
-            <Label text="Search" />
-            <Label text="Find" />
-            <Label text="Book!" />
-            <Label text="Booking a bus trip never been so easy!" />
-         </children>
-      </VBox>
-   </right>
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
