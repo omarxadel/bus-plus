@@ -12,14 +12,14 @@ public class Trip {
 	Vehicle vehicle;
 	Seat seat;
 	
-	public Trip(String start, String dest, String vehicle, String driver, String date, Seat seat){
+	public Trip(String start, String dest, String v, String driver, String date, Seat s){
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		
 		this.start = start;
 		destination = dest;
-		this.vehicle = new Vehicle(vehicle);
+		this.vehicle = new Vehicle(v);
 		driverName = driver;
-		this.seat = seat;
+		this.seat = s;
 		try {
 			this.date =  ft.parse(date);
 			System.out.printf("%d",this.date);
