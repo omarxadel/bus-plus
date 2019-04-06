@@ -4,22 +4,27 @@ public  class Vehicle {
 	String vtype;
 	String vmodel;
 	int num;
-	Seat capacity;
+	int capacity;
+	Seat s;
 	
 	public Vehicle(String vmodel) {
 		this.vmodel = vmodel;
 		vmodel.toLowerCase();
-		if(vmodel.equals("volvo b12") || vmodel.equals("kia granbird")) {
-			capacity = new Seat("Bus");
+		if(vmodel.equals("volvob12") || vmodel.equals("kiagranbird")) {
+			s = new Seat("Bus");
+			capacity = s.getCapacity();
 		}
-		else if(vmodel.equals("mercedes cito")) {
-			capacity = new Seat("MidBus");
+		else if(vmodel.equals("mercedescito")) {
+			s = new Seat("MidBus");
+			capacity = s.getCapacity();
 		}
-		else if(vmodel.equals("toyota hiace")) {
-			capacity = new Seat("MiniBus");
+		else if(vmodel.equals("toyotahiace")) {
+			s = new Seat("MiniBus");
+			capacity = s.getCapacity();
 		}
-		else if(vmodel.equals("hyundai equus")) {
-			capacity = new Seat("Limo");
+		else if(vmodel.equals("hyundaiequus")) {
+			s = new Seat("Limo");
+			capacity = s.getCapacity();
 		}
 		
 	}

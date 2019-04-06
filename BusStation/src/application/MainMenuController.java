@@ -21,6 +21,7 @@ public class MainMenuController {
 	public RadioButton UserRadio;
 	public TextField LogUser;
 	public PasswordField LogPass;
+	HomeScreenManagerController homeScreenM;
 	
 	
 	// ------------------------- LOGIN TAB COMMANDS --------------------- \\
@@ -45,19 +46,26 @@ public class MainMenuController {
 	}
 	
 	public void homeUserLoader(ActionEvent e) throws IOException {
-		Parent userHome = FXMLLoader.load(getClass().getResource("HomeScreen.fxml"));
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("HomeScreen.fxml"));
+		Parent userHome = loader.load();
 		Scene userHomeS = new Scene(userHome);
 		
+		HomeScreenController controller = loader.getController();
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(userHomeS);
 	}
 	
-	public void homeAdminLoader(ActionEvent e) throws IOException {
-		Parent adminHome = FXMLLoader.load(getClass().getResource("HomeScreenManager.fxml"));
-		Scene adminHomeS = new Scene(adminHome);
+	public void homeAdminLoader(ActionEvent e, Manager a) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("HomeScreenManager.fxml"));
+		Parent ManagerHome = loader.load();
+		Scene MHome = new Scene(ManagerHome);
 		
+		HomeScreenManagerController controller = loader.getController();
+		controller.getProfile(a);
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
-		window.setScene(adminHomeS);
+		window.setScene(MHome);
 	}
 	
 	public void homeDriverLoader(ActionEvent e) throws IOException {
@@ -68,15 +76,21 @@ public class MainMenuController {
 		window.setScene(adminHomeS);
 	}
 	
+	private void clearFields() {
+		LogUser.setText(null);
+		LogPass.setText(null);
+	}
+	
 	public void loginButton(ActionEvent e) throws IOException {
 		UserAuthentication();
+		clearFields();
 		if(currentUser == -1) {
 			System.out.println("CurrentUser = -1");
 			AlertBox.display("UNEXPECTED INPUTS!", "Please make sure you choose the user type\n and enter the correct username/passowrd!");
 		}
 		else if(AdminRadio.isSelected()) {
 			M = auth.getManager(currentUser);
-			homeAdminLoader(e);
+			homeAdminLoader(e, M);
 		}
 		else if(DriverRadio.isSelected()) {
 			D = auth.getDriver(currentUser);

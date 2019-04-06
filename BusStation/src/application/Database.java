@@ -204,11 +204,13 @@ public class Database {
 			String start = i.next();
 			String dest = i.next();
 			String vehicle = i.next();
+			int vnum = i.nextInt();
 			String driver = i.next();
 			String date = i.next();
+			float ticket = i.nextFloat();
 			Seat seat = S[J];
 			try {
-				T[J] = new Trip (start, dest, vehicle, driver, date, seat);
+				T[J] = new Trip (start, dest, vehicle, vnum, driver, date, ticket, seat);
 			} catch (Exception e) {
 				
 			}
@@ -228,6 +230,15 @@ public class Database {
 			e.printStackTrace();
 		}
 		x.format("%s %s %s %s %d %s %s", fname, lname , uname, pw , ID, city, country , "Driver");
+	}
+	
+	public void addManagerData(String fname, String lname, String uname, String pw, int ID, String city, String country) {
+		try {
+			x = new Formatter("ManagersData.txt");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		x.format("%s %s %s %s %d %s %s", fname, lname , uname, pw , ID, city, country , "Manager");
 	}
 	
 	public void addPassengerData(String fname, String lname, String uname, String pw, int ID, String city, String country) {
