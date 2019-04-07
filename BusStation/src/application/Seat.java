@@ -35,6 +35,26 @@ public class Seat {
 		seat[row][col] = true;
 	}
 	
+	public void bookAllSeats() {
+		for(int i = 0 ; i < seat.length ; i++) {
+			for(int j = 0 ; j < seat[0].length ; j++) {
+				bookSeat(i,j);
+			}
+		}
+	}
+	
+	public void freeSeat(int row, int col) {
+		seat[row][col] = false;
+	}
+	
+	public void resetSeats() {
+		for(int i = 0 ; i < seat.length ; i++) {
+			for(int j = 0 ; j < seat[0].length ; j++) {
+				freeSeat(i,j);
+			}
+		}
+	}
+	
 	public int getFreeSeats() {
 		int counter=0;
 		for(int i = 0 ; i < seat.length ; i++) {

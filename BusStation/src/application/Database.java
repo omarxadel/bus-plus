@@ -127,12 +127,17 @@ public class Database {
 		m = i.nextInt();
 		System.out.println(m);
 		J = new int[m];
+		S = new  Seat [100];
 		
 		while(i.hasNext()) {
+			m = i.nextInt();
+			System.out.println(m);
+			J = new int[m];
 			for(int ind = 0 ; ind < m ; ind++) {
 				J[ind]=i.nextInt();
 			}
-			if(m == 46) {
+			if(m == 48) {
+				l=0;
 				S[k] = new Seat("Bus");
 				for(int row = 0 ; row < 4 ; row++) {
 					for(int col = 0 ; col  < 12 ; col++ )
@@ -141,23 +146,45 @@ public class Database {
 							l++;
 						}
 				}
+				continue;
 			}
 			else if(m == 36) {
+				l=0;
 				S[k] = new Seat("Midbus");
 				for(int row = 0 ; row < 4 ; row++) {
 					for(int col = 0 ; col < 9; col++) {
-						if(J[l++] == 1) S[k].bookSeat(row, col);
+						if(l<m) {
+						if(J[l] == 1) S[k].bookSeat(row, col);
+						l++;
+						}
 					}
 				}
+				continue;
 			}
 			else if(m == 12) {
+				l=0;
+				S[k] = new Seat("Minibus");
 				for(int row = 0 ; row < 3 ; row++) {
 					for(int col = 0 ; col < 4; col++) {
-						if(J[l++] == 1) S[k].bookSeat(row, col);
+						if(l<m) {
+							if(J[l++] == 1) S[k].bookSeat(row, col);
+						}
 					}
 				}	
+				continue;
 			}
-			else break;
+			else if (m == 3) {
+				S[k] = new Seat("Limo");
+				for(int row = 0 ; row < 1 ; row++) {
+				for(int col = 0 ; col < 3; col++) {
+					S[k].bookAllSeats();
+				}
+			}	continue;
+			}
+			else {
+				System.out.println("Error in files");
+				break;
+			}
 		}
 		k++;
 	}
@@ -180,11 +207,13 @@ public class Database {
 			String start = i.next();
 			String dest = i.next();
 			String vehicle = i.next();
+			int vnum = i.nextInt();
 			String driver = i.next();
 			String date = i.next();
+			float ticket = i.nextFloat();
 			Seat seat = S[J];
 			try {
-				T[J] = new Trip (start, dest, vehicle, driver, date, seat);
+				T[J] = new Trip (start, dest, vehicle, vnum, driver, date, ticket, seat);
 			} catch (Exception e) {
 				
 			}
@@ -204,6 +233,15 @@ public class Database {
 			e.printStackTrace();
 		}
 		x.format("%s %s %s %s %d %s %s", fname, lname , uname, pw , ID, city, country , "Driver");
+	}
+	
+	public void addManagerData(String fname, String lname, String uname, String pw, int ID, String city, String country) {
+		try {
+			x = new Formatter("ManagersData.txt");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		x.format("%s %s %s %s %d %s %s", fname, lname , uname, pw , ID, city, country , "Manager");
 	}
 	
 	public void addPassengerData(String fname, String lname, String uname, String pw, int ID, String city, String country) {
