@@ -44,9 +44,10 @@ public class Database {
 			String city = i.next();
 			String country = i.next();
 			String job = i.next();
-			M[J] = new Manager (fname, lname, uname, pword, ID, city, country, job);
+			String gender = i.next();
+			M[J] = new Manager (fname, lname, uname, pword, ID, city, country, job, gender);
 			J++;
-			System.out.println(M[J-1].username);
+			//System.out.println(M[J-1].username);
 		}
 	}
 	
@@ -73,7 +74,8 @@ public class Database {
 			int ID = i.nextInt();
 			String city = i.next();
 			String country = i.next();
-			P[J] = new Passenger (fname, lname, uname, pword, ID, city, country);
+			String gender = i.next();
+			P[J] = new Passenger (fname, lname, uname, pword, ID, city, country, gender);
 			J++;
 		}
 

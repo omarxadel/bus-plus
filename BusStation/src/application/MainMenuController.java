@@ -1,3 +1,4 @@
+
 package application;
 import java.io.IOException;
 import java.net.URL;
@@ -107,7 +108,5 @@ public class MainMenuController {
 		}
 	}
 	
-	// ------------------------- REGISTER TAB COMMANDS --------------------- \\
-	
-	
+	// ------------------------- REGISTER TAB COMMANDS --------------------- \\		
 }

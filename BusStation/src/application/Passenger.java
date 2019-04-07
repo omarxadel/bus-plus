@@ -2,7 +2,7 @@ package application;
 
 public class Passenger extends Users {
 	
-		public Passenger(String fname, String lname, String uname, String pw, int ID, String city, String country) {
+		public Passenger(String fname, String lname, String uname, String pw, int ID, String city, String country, String gender) {
 			Passenger.super.firstname = fname;
 			Passenger.super.lastname = lname;
 			Passenger.super.username = uname;
@@ -10,5 +10,6 @@ public class Passenger extends Users {
 			Passenger.super.ID = ID;
 			Passenger.super.city = city;
 			Passenger.super.country = country;
+			Passenger.super.gender = gender;
 		}
 }
