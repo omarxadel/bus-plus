@@ -8,6 +8,7 @@ public abstract class Users {
 	String city;
 	String country;
 	String job;
+	String gender;
 	int ID;
 	
 	String getPassword() {

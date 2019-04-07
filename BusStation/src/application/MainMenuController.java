@@ -21,6 +21,9 @@ public class MainMenuController {
 	public RadioButton UserRadio;
 	public TextField LogUser;
 	public PasswordField LogPass;
+	public TextField RegUser;
+	public PasswordField RegPass;
+	public PasswordField RegPass1;
 	HomeScreenManagerController homeScreenM;
 	
 	
@@ -30,7 +33,8 @@ public class MainMenuController {
 		String username = LogUser.getText();
 		String password = LogPass.getText();
 		
-		if(username.isEmpty() || password.isEmpty()) {
+		if(username == null || password == null) currentUser = -1;
+		else if(username.isEmpty() || password.isEmpty()) {
 			currentUser = -1;
 		}
 		else if(AdminRadio.isSelected()) {
@@ -76,6 +80,8 @@ public class MainMenuController {
 		window.setScene(adminHomeS);
 	}
 	
+
+	
 	private void clearFields() {
 		LogUser.setText(null);
 		LogPass.setText(null);
@@ -104,5 +110,33 @@ public class MainMenuController {
 	
 	// ------------------------- REGISTER TAB COMMANDS --------------------- \\
 	
+	public boolean fieldsEmpty() {
+		boolean flag=false;
+		if(RegUser.getText() == null || RegPass.getText() == null || RegPass1.getText() == null) flag=true;
+		else if (RegUser.getText().isEmpty() || RegPass.getText().isEmpty() || RegPass1.getText().isEmpty()) flag=true; 
+		else flag= false;
+		return flag;
+	}
 	
-}
+	public void regLoader(ActionEvent e) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("Registeration.fxml"));
+		Parent Reg = loader.load();
+		Scene RegS = new Scene(Reg);
+		
+		HomeScreenManagerController controller = loader.getController();
+		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
+		window.setScene(RegS);
+	}
+	
+	public void signUpButtonClicked(ActionEvent e) throws IOException {		
+		if(fieldsEmpty())
+			AlertBox.display("UNEXPECTED INPUT!", "Please make sure you filled all the fields with your data before proceeding!");
+		else regLoader(e);
+	}
+		 
+			
+		
+	}
+	
+
