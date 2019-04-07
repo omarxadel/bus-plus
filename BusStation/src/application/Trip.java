@@ -12,7 +12,9 @@ public class Trip {
 	Vehicle vehicle;
 	Seat seat;
 	
+
 	public Trip(String start, String dest, String vehicle, int vnum , String driver, String date, float ticket, Seat seat){
+
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		
 		this.start = start;
@@ -22,6 +24,7 @@ public class Trip {
 		driverName = driver;
 		this.ticket = ticket;
 		this.seat = seat;
+
 		try {
 			this.date =  ft.parse(date);
 			System.out.printf("%d",this.date);
