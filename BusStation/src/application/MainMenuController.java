@@ -30,9 +30,14 @@ public class MainMenuController {
 		String username = LogUser.getText();
 		String password = LogPass.getText();
 		
-		if(username.isEmpty() || password.isEmpty()) {
+		if (username== null || password==null)
+		{
 			currentUser = -1;
 		}
+		else if(username.isEmpty() || password.isEmpty()) {
+			currentUser = -1;
+		}
+		
 		else if(AdminRadio.isSelected()) {
 			currentUser = auth.authenticateAdmin(username, password);
 		}

@@ -124,10 +124,6 @@ public class Database {
 		int[] J;
 		int m, k=0, l=0;
 		S = new Seat [100];
-		m = i.nextInt();
-		System.out.println(m);
-		J = new int[m];
-		S = new  Seat [100];
 		
 		while(i.hasNext()) {
 			m = i.nextInt();
