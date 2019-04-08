@@ -14,12 +14,9 @@ public class Manager extends Users {
 	}
 	
 
-	public Trip addTrip(String s, String d, String v, String dr, String da, Seat S) {
-		Trip trip = new Trip(s, d, v,   dr, da, S);
-	}
-	public Trip createTrip(String s, String d, String v, int vnum, String dr, String da, float ticket) {
-		Seat S = new Seat(v);
-		Trip trip = new Trip(s, d, v, vnum, dr, da, ticket, S);
+	public Trip createTrip(String start, String destination, String vehicle, int vnum, String dr, String da, float ticket) {
+		Seat S = new Seat(vehicle);
+		Trip trip = new Trip(start, destination, vehicle, vnum, dr, da, ticket, S);
 
 		return trip;
 		

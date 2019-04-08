@@ -1,3 +1,4 @@
+
 package application;
 import java.io.IOException;
 import java.net.URL;
@@ -21,10 +22,8 @@ public class MainMenuController {
 	public RadioButton UserRadio;
 	public TextField LogUser;
 	public PasswordField LogPass;
-	public TextField RegUser;
-	public PasswordField RegPass;
-	public PasswordField RegPass1;
 	HomeScreenManagerController homeScreenM;
+	HomeScreenDriverController homeScreenD;
 	
 	
 	// ------------------------- LOGIN TAB COMMANDS --------------------- \\
@@ -33,10 +32,14 @@ public class MainMenuController {
 		String username = LogUser.getText();
 		String password = LogPass.getText();
 		
-		if(username == null || password == null) currentUser = -1;
+		if (username== null || password==null)
+		{
+			currentUser = -1;
+		}
 		else if(username.isEmpty() || password.isEmpty()) {
 			currentUser = -1;
 		}
+		
 		else if(AdminRadio.isSelected()) {
 			currentUser = auth.authenticateAdmin(username, password);
 		}
@@ -72,15 +75,17 @@ public class MainMenuController {
 		window.setScene(MHome);
 	}
 	
-	public void homeDriverLoader(ActionEvent e) throws IOException {
-		Parent adminHome = FXMLLoader.load(getClass().getResource("HomeScreenDriver.fxml"));
-		Scene adminHomeS = new Scene(adminHome);
+	public void homeDriverLoader(ActionEvent e, Driver d) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("HomeScreenDriver.fxml"));
+		Parent DriverHome = loader.load();
+		Scene DHome = new Scene(DriverHome);
 		
+		HomeScreenDriverController controller = loader.getController();
+		controller.getProfile(d);
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
-		window.setScene(adminHomeS);
+		window.setScene(DHome);
 	}
-	
-
 	
 	private void clearFields() {
 		LogUser.setText(null);
@@ -100,7 +105,7 @@ public class MainMenuController {
 		}
 		else if(DriverRadio.isSelected()) {
 			D = auth.getDriver(currentUser);
-			homeDriverLoader(e);
+			homeDriverLoader(e,D);
 		}
 		else if(UserRadio.isSelected()) {
 			P = auth.getPassenger(currentUser);
@@ -108,36 +113,5 @@ public class MainMenuController {
 		}
 	}
 	
-	// ------------------------- REGISTER TAB COMMANDS --------------------- \\
-	
-	public boolean fieldsEmpty() {
-		boolean flag=false;
-		if(RegUser.getText() == null || RegPass.getText() == null || RegPass1.getText() == null) flag=true;
-		else if (RegUser.getText().isEmpty() || RegPass.getText().isEmpty() || RegPass1.getText().isEmpty()) flag=true; 
-		else flag= false;
-		return flag;
-	}
-	
-	public void regLoader(ActionEvent e) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("Registeration.fxml"));
-		Parent Reg = loader.load();
-		Scene RegS = new Scene(Reg);
-		
-		HomeScreenManagerController controller = loader.getController();
-		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
-		window.setScene(RegS);
-	}
-	
-	public void signUpButtonClicked(ActionEvent e) throws IOException {		
-		if(fieldsEmpty())
-			AlertBox.display("UNEXPECTED INPUT!", "Please make sure you filled all the fields with your data before proceeding!");
-		else regLoader(e);
-	}
-		 
-			
-		
-	}
-	
-
-
+	// ------------------------- REGISTER TAB COMMANDS --------------------- \\		
+}
