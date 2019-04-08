@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -28,18 +29,18 @@
       </MenuBar>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+      <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Hello " />
-            <Button fx:id="PassengerProfileButton" mnemonicParsing="false" text="Passenger Profile" />
-            <Button mnemonicParsing="false" text="Promo Codes" />
-            <Button mnemonicParsing="false" text="Settings" />
-            <Button mnemonicParsing="false" text="Customer Service" />
+            <Label fx:id="WelcomeLabel" text="Hello " />
+            <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Passenger Profile" />
+            <Button fx:id="PromoCodes" mnemonicParsing="false" text="Promo Codes" />
+            <Button fx:id="Settings" mnemonicParsing="false" text="Settings" />
+            <Button fx:id="Service" mnemonicParsing="false" text="Customer Service" />
          </children>
       </VBox>
    </left>
    <center>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="184.0" prefWidth="287.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Search for your trip" />
             <MenuButton mnemonicParsing="false" text="Select trip type">
@@ -60,7 +61,9 @@
                 <MenuItem mnemonicParsing="false" text="Action 2" />
               </items>
             </MenuButton>
+            <Button fx:id="SeatingOptions" mnemonicParsing="false" text="Seating options" />
             <DatePicker promptText="Select date" />
+            <Button mnemonicParsing="false" text="Confirm Booking" />
          </children>
       </VBox>
    </center>
@@ -72,6 +75,21 @@
             <Label text="Find" />
             <Label text="Book!" />
             <Label text="Booking a bus trip never been so easy!" />
+            <AnchorPane fx:id="ProfFull" prefHeight="369.0" prefWidth="205.0" visible="false">
+               <children>
+                  <Label fx:id="Account" layoutX="19.0" layoutY="14.0" text="Account Type" />
+                  <ImageView fitHeight="67.0" fitWidth="63.0" layoutX="24.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../user.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="Fname" layoutX="24.0" layoutY="103.0" text="FULL NAME" />
+                  <Label fx:id="Country" layoutX="37.0" layoutY="120.0" text="County" />
+                  <Label fx:id="ID" layoutX="50.0" layoutY="137.0" text="ID" />
+                  <Button fx:id="EditAccount" layoutX="120.0" layoutY="47.0" mnemonicParsing="false" text="Edit Account" />
+                  <Button fx:id="ReturnProf" layoutX="139.0" layoutY="72.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
+               </children>
+            </AnchorPane>
          </children>
       </VBox>
    </right>
