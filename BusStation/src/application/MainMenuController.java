@@ -23,6 +23,7 @@ public class MainMenuController {
 	public TextField LogUser;
 	public PasswordField LogPass;
 	HomeScreenManagerController homeScreenM;
+	HomeScreenDriverController homeScreenD;
 	
 	
 	// ------------------------- LOGIN TAB COMMANDS --------------------- \\
@@ -74,12 +75,16 @@ public class MainMenuController {
 		window.setScene(MHome);
 	}
 	
-	public void homeDriverLoader(ActionEvent e) throws IOException {
-		Parent adminHome = FXMLLoader.load(getClass().getResource("HomeScreenDriver.fxml"));
-		Scene adminHomeS = new Scene(adminHome);
+	public void homeDriverLoader(ActionEvent e, Driver d) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("HomeScreenDriver.fxml"));
+		Parent DriverHome = loader.load();
+		Scene DHome = new Scene(DriverHome);
 		
+		HomeScreenDriverController controller = loader.getController();
+		controller.getProfile(d);
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
-		window.setScene(adminHomeS);
+		window.setScene(DHome);
 	}
 	
 	private void clearFields() {
@@ -100,7 +105,7 @@ public class MainMenuController {
 		}
 		else if(DriverRadio.isSelected()) {
 			D = auth.getDriver(currentUser);
-			homeDriverLoader(e);
+			homeDriverLoader(e,D);
 		}
 		else if(UserRadio.isSelected()) {
 			P = auth.getPassenger(currentUser);

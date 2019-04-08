@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreenManagerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreenDriverController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -34,7 +34,7 @@
          <children>
             <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="364.0" prefWidth="150.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="labelHelloManager" text="Hello Mister" />
+                  <Label fx:id="WelcomeDriver" text="Hello Mister" />
                   <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
                   <Button fx:id="TripsSchedule" mnemonicParsing="false" onAction="#ManageTripButtonClicked" text="Trips schedule" />
                   <Button fx:id="Tripscomments" mnemonicParsing="false" text="Trips comments" />
