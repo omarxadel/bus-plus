@@ -16,33 +16,34 @@ import javafx.stage.Stage;
 
 public class HomeScreenDriverController {
 	Driver D;
-	private VBox MainTabManager;
-	private VBox ManageTripsTab;
-	private VBox ProfTitle;
-	private AnchorPane ProfFull;
-	private VBox addTripTitle;
-	private AnchorPane addTripFull;
-	private Label WelcomeDriver;
-	private Label Fname;
-	private Label Account;
-	private Label Country;
-	private Label Id;
-	private Button profReturn;
-	private Button AddReturn;
-	private Button TripsSchedule;
-	private Label NewTrip;
-	private Button newTrip;
-	private Button EditTrip;
-	private Button CancelTrip;
-	private Button Tripscomments;
-	private Button addNewTrip;
+	@FXML
+	public VBox MainTabManager;
+	public VBox ManageTripsTab;
+	public VBox ProfTitle;
+	public AnchorPane ProfFull;
+	public VBox addTripTitle;
+	public AnchorPane addTripFull;
+	public Label WelcomeDriver;
+	public Label Fname;
+	public Label Account;
+	public Label Country;
+	public Label Id;
+	public Button profReturn;
+	public Button AddReturn;
+	public Button TripsSchedule;
+	public Label NewTrip;
+	public Button newTrip;
+	public Button EditTrip;
+	public Button CancelTrip;
+	public Button Tripscomments;
+	public Button addNewTrip;
 	
 	
 	// --------------- Profile Controls ---------------\\
 	
-	public void getProfile(Driver D)
+	public void getProfile(Driver driver)
 	{
-		this.D=D;
+		this.D=driver;
 		WelcomeDriver.setText("Hello Mister  "+ D.firstname);
 		Fname.setText("" +D.firstname + " " + D.lastname);
 		Account.setText("" + D.job);

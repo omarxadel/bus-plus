@@ -7,7 +7,7 @@ public class Seat {
 	public Seat(String type) {
 		if(type.equals("Bus")) {
 			seat = new boolean [4][12];
-			capacity = 46;
+			capacity = 48;
 		}
 		else if(type.equals("Midbus")) {
 			seat = new boolean [4][9];

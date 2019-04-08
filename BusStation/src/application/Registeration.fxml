@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegisterationController">
   <items>
       <VBox alignment="TOP_CENTER" spacing="10.0">
          <children>
@@ -32,7 +32,12 @@
             <TextField fx:id="CountryReg" layoutX="15.0" layoutY="456.0" promptText="Country" />
             <Label layoutX="103.0" layoutY="305.0" text="Choose your Gender" />
             <ChoiceBox fx:id="GenderSelectReg" prefWidth="150.0" />
-                              <Button fx:id="SignUpMain" mnemonicParsing="false" text="Sign Up" />
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="125.0">
+               <children>
+                  <Button fx:id="Return" mnemonicParsing="false" text="Return" />
+                                    <Button fx:id="SignUpMain" mnemonicParsing="false" onAction="#SignUpMainClicked" text="Sign Up" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets left="5.0" right="5.0" top="10.0" />

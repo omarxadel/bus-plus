@@ -30,7 +30,7 @@
    <left>
       <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Hello " />
+            <Label fx:id="labelHelloUser" text="Hello " />
             <Button fx:id="PassengerProfileButton" mnemonicParsing="false" text="Passenger Profile" />
             <Button mnemonicParsing="false" text="Promo Codes" />
             <Button mnemonicParsing="false" text="Settings" />
