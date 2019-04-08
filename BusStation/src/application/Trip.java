@@ -1,22 +1,26 @@
 package application;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Trip {
+	int ID;
 	String start;
+	StringProperty start1 = new SimpleStringProperty();
 	String destination;
 	String driverName;
-	Date date;
+	String date;
+	String time;
 	float ticket;
 	Vehicle vehicle;
+	int vnum;
+	String vmodel;
 	Seat seat;
 	
 
-	public Trip(String start, String dest, String vehicle, int vnum , String driver, String date, float ticket, Seat seat){
-
-		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+	public Trip(int ID, String start, String dest, String vehicle, int vnum , String driver, String date, String time, float ticket, Seat seat){
 		
+		this.ID = ID;
 		this.start = start;
 		destination = dest;
 		this.vehicle = new Vehicle(vehicle);
@@ -24,13 +28,12 @@ public class Trip {
 		driverName = driver;
 		this.ticket = ticket;
 		this.seat = seat;
-
-		try {
-			this.date =  ft.parse(date);
-			System.out.printf("%d",this.date);
-		} catch (ParseException e) {
-			System.out.println("Cannot parse" + ft);
-			e.printStackTrace();
+		this.date = date;
+		this.time = time;
 		}
+	public Trip(String s) {
+		this.start1.set(s);
 	}
-}
+	
+	}
+

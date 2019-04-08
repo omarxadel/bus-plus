@@ -9,7 +9,7 @@ public  class Vehicle {
 	
 	public Vehicle(String vmodel) {
 		this.vmodel = vmodel;
-		vmodel.toLowerCase();
+		vmodel = vmodel.toLowerCase();
 		if(vmodel.equals("volvob12") || vmodel.equals("kiagranbird")) {
 			s = new Seat("Bus");
 			capacity = s.getCapacity();
@@ -27,5 +27,13 @@ public  class Vehicle {
 			capacity = s.getCapacity();
 		}
 		
+	}
+	
+	public Seat getSeats() {
+		return s;
+	}
+	
+	public int getCap() {
+		return capacity;
 	}
 }

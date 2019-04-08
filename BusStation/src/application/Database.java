@@ -6,12 +6,14 @@ import java.text.ParseException;
 
 public class Database {
 	private Formatter x;
+	private FileWriter f, fr;
 	Scanner i;
 	Manager[] M;
 	Driver [] D;
 	Passenger [] P;
 	Trip [] T;
 	Seat [] S;
+	Vehicle vehicle;
 	
 	public Database() {
 		getManagerData();
@@ -129,7 +131,7 @@ public class Database {
 		
 		while(i.hasNext()) {
 			m = i.nextInt();
-			System.out.println(m);
+			//System.out.println(m);
 			J = new int[m];
 			for(int ind = 0 ; ind < m ; ind++) {
 				J[ind]=i.nextInt();
@@ -202,20 +204,18 @@ public class Database {
 		int J = 0;
 		T = new  Trip [100];
 		while(i.hasNext()) {
+			int ID = i.nextInt();
 			String start = i.next();
 			String dest = i.next();
 			String vehicle = i.next();
 			int vnum = i.nextInt();
 			String driver = i.next();
 			String date = i.next();
+			String time = i.next();
 			float ticket = i.nextFloat();
 			Seat seat = S[J];
-			try {
-				T[J] = new Trip (start, dest, vehicle, vnum, driver, date, ticket, seat);
-			} catch (Exception e) {
-				
-			}
-			System.out.println(start);
+			T[J] = new Trip (ID, start, dest, vehicle, vnum, driver, date, time, ticket, seat);
+			
 			J++;
 		}
 
@@ -242,34 +242,107 @@ public class Database {
 		x.format("%s %s %s %s %d %s %s", fname, lname , uname, pw , ID, city, country , "Manager");
 	}
 	
-	public void addPassengerData(String fname, String lname, String uname, String pw, int ID, String city, String country) {
-		try {
-			x = new Formatter("PassengerData.txt");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+	public Passenger addPassengerData(String fname, String lname, String uname, String pw, String city, String country, String gender) throws IOException{
+			try {
+				f = new FileWriter("PassengerData.txt", true);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		int ID = 5544;
+		int i=0;
+		while(P[i]!=null) {
+			if(P[i].ID == ID){
+				ID++;
+				i++;
+				continue;
+			}
+			else { 
+				break;
+			}
 		}
-		x.format("%s %s %s %s %d %s %s", fname, lname , uname, pw , ID, city, country , "Driver");
+		f.write("\r\n" + fname + " " + lname + " " + uname + " " + pw + " " + ID + " " + city + " " + country + " " + gender);
+		Passenger p = new Passenger(fname, lname, uname, pw, ID, city, country, gender);
+		f.close();
+		return p;
 	}
 	
-	public void closeFiles() {
+	public Trip addTripData(String start, String dest, String vehicle, String vnum, String drivername, String date, String time, String ticketprice) throws IOException{
+		int ID=0;
+		switch(start) {
+			case "District1":
+				ID = 105000;
+				break;
+			case "District2":
+				ID = 115000;
+				break;
+			case "District3":
+				ID = 125000;
+				break;
+			case "District4":
+				ID = 135000;
+				break;
+			case "District5":
+				ID = 145000;
+				break;
+			case "District6":
+				ID = 155000;
+				break;
+			case "District7":
+				ID = 165000;
+				break;
+			case "District8":
+				ID = 175000;
+				break;
+			case "District9":
+				ID = 185000;
+				break;
+			case "District10":
+				ID = 195000;
+				break;
+		}
+		int j=0;
+		while(T[j]!= null) {
+			if(T[j].ID == ID) {
+				ID++;
+				j++;
+				continue;
+			}
+			else continue;
+		}
 		try {
-			x = new Formatter("ManagersData.txt");
-		} catch (FileNotFoundException e) {
+			f = new FileWriter("TripsData.txt", true);
+		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		x.close();
-		try {
-			x = new Formatter("DriversData.txt");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		x.close();
-		try {
-			x = new Formatter("PassengerData.txt");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace(); 
-		}
-		x.close();
+		}	
+	f.write("\r\n" + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + ticketprice);
+	float tp = Float.parseFloat(ticketprice);
+	int num = Integer.parseInt(vnum);
+	this.vehicle = new Vehicle(vehicle);
+	Trip t = new Trip(ID, start, dest, vehicle, num, drivername, date, time, tp, this.vehicle.getSeats());
+	f.close();
+	
+	try {
+		fr = new FileWriter("Seats.txt", true);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}	
+	
+	int cap = this.vehicle.getCap();
+	System.out.println(cap);
+	fr.write("\r\n" + cap);
+	while(cap!=0) {
+		fr.write(" 0");
+		cap--;
 	}
+	fr.close();
+	return t;
+}
+
+	public Trip[] getTrips() {
+		//System.out.println(T[0]);
+		return T;
+	}
+	
 }
   

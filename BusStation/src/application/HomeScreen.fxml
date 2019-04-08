@@ -31,11 +31,17 @@
    <left>
       <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <children>
+
             <Label fx:id="WelcomeLabel" text="Hello " />
             <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Passenger Profile" />
             <Button fx:id="PromoCodes" mnemonicParsing="false" text="Promo Codes" />
             <Button fx:id="Settings" mnemonicParsing="false" text="Settings" />
             <Button fx:id="Service" mnemonicParsing="false" text="Customer Service" />
+            <Label fx:id="labelHelloUser" text="Hello " />
+            <Button fx:id="PassengerProfileButton" mnemonicParsing="false" text="Passenger Profile" />
+            <Button mnemonicParsing="false" text="Promo Codes" />
+            <Button mnemonicParsing="false" text="Settings" />
+            <Button mnemonicParsing="false" text="Customer Service" />
          </children>
       </VBox>
    </left>
