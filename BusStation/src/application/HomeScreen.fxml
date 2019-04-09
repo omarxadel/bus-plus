@@ -37,11 +37,6 @@
             <Button fx:id="PromoCodes" mnemonicParsing="false" text="Promo Codes" />
             <Button fx:id="Settings" mnemonicParsing="false" text="Settings" />
             <Button fx:id="Service" mnemonicParsing="false" text="Customer Service" />
-            <Label fx:id="labelHelloUser" text="Hello " />
-            <Button fx:id="PassengerProfileButton" mnemonicParsing="false" text="Passenger Profile" />
-            <Button mnemonicParsing="false" text="Promo Codes" />
-            <Button mnemonicParsing="false" text="Settings" />
-            <Button mnemonicParsing="false" text="Customer Service" />
          </children>
       </VBox>
    </left>
@@ -67,7 +62,7 @@
                 <MenuItem mnemonicParsing="false" text="Action 2" />
               </items>
             </MenuButton>
-            <Button fx:id="SeatingOptions" mnemonicParsing="false" text="Seating options" />
+            <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" text="Seating options" />
             <DatePicker promptText="Select date" />
             <Button mnemonicParsing="false" text="Confirm Booking" />
          </children>
@@ -76,11 +71,11 @@
    <right>
       <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Label text="How it works" />
-            <Label text="Search" />
-            <Label text="Find" />
-            <Label text="Book!" />
-            <Label text="Booking a bus trip never been so easy!" />
+            <Label fx:id="how" text="How it works" />
+            <Label fx:id="search" text="Search" />
+            <Label fx:id="find" text="Find" />
+            <Label fx:id="book" text="Book!" />
+            <Label fx:id="booking" text="Booking a bus trip never been so easy!" />
             <AnchorPane fx:id="ProfFull" prefHeight="369.0" prefWidth="205.0" visible="false">
                <children>
                   <Label fx:id="Account" layoutX="19.0" layoutY="14.0" text="Account Type" />

@@ -12,10 +12,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SeatsDesign {
-	Seat s;
+	static Seat s;
+	HomeScreenController homescreen;
 	int SNum;
 	Stage NewWindow=new Stage ();
-	GridPane grid = new  GridPane ();
+	static GridPane grid = new  GridPane ();
 	Scene scene=new Scene(grid);
 	
 	
@@ -23,9 +24,9 @@ public class SeatsDesign {
 		SNum = sNum;
 	}
 
-	public void Design (int sNum)
+	public static GridPane Design (int sNum)
 	{
-		sNum=s.capacity;
+		//s.capacity=sNum;
 		
 		if (sNum == 12)
 		{
@@ -42,27 +43,26 @@ public class SeatsDesign {
 			Button ten = new Button("B4");
 			Button eleven = new Button("B5");
 			Button twelve= new Button("B6");
-			
-			Button Ok = new Button("Confirm");
-			
+			Button OK=new Button("Confrim");
 			
 			grid.setAlignment(Pos.CENTER);
 			
-			grid.add(driver,0,2);
+			grid.add(driver,1,1);
 			grid.add(one,1,2);
-			grid.add(two,1,3);
-			grid.add(three,2,2);
+			grid.add(two,2,2);
+			grid.add(three,1,3);
 			grid.add(four,2,3);
-			grid.add(five,3,2);
-			grid.add(six,3,3);
-			grid.add(seven,1,4);
-			grid.add(eight,1,5);
-			grid.add(nine,2,4);
-			grid.add(ten,2,5);
-			grid.add(eleven,3,4);
-			grid.add(twelve,3,5);
+			grid.add(five,1,4);
+			grid.add(six,2,4);
 			
-			grid.add(Ok,5,3);
+			grid.add(seven,5,2);
+			grid.add(eight,6,2);
+			grid.add(nine,5,3);
+			grid.add(ten,6,3);
+			grid.add(eleven,5,4);
+			grid.add(twelve,6,4);
+			
+			grid.add(OK, 7, 7);
 			
 			grid.setVgap(7); 
 		    grid.setHgap(7);
@@ -76,7 +76,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(0, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(0, 0);
@@ -91,7 +91,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(0, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(0, 1);
@@ -106,7 +106,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(1, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(1, 0);
@@ -121,7 +121,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(1, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(1, 1);
@@ -136,7 +136,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(2, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(2, 0);
@@ -151,7 +151,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(2, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(2, 1);
@@ -166,7 +166,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(3, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(3, 0);
@@ -181,7 +181,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(3, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(3, 1);
@@ -196,7 +196,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(0, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(0, 2);
@@ -211,7 +211,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(1, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(1, 2);
@@ -226,7 +226,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(2, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(2, 2);
@@ -241,7 +241,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(3, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(3, 2);
@@ -291,46 +291,48 @@ public class SeatsDesign {
 			Button thirtyfour = new Button("B16");
 			Button thirtyfive = new Button("B17");
 			Button thirtysix = new Button("B18");
-			Button Ok = new Button("Confirm");
+			Button Ok = new Button("Confrim");
 			
-			grid.add(driver,0,2);
+			grid.add(driver,1,1);
 			grid.add(one,1,2);
-			grid.add(two,1,3);
-			grid.add(three,2,2);
+			grid.add(two,2,2);
+			grid.add(three,1,3);
 			grid.add(four,2,3);
-			grid.add(five,3,2);
-			grid.add(six,3,3);
-			grid.add(seven,4,2);
-			grid.add(eight,4,3);
-			grid.add(nine,5,2);
-			grid.add(ten,5,3);
-			grid.add(eleven,6,2);
-			grid.add(twelve,6,3);
-			grid.add(thirteen,7,2);
-			grid.add(fourteen,7,3);
-			grid.add(fifteen,8,2);
-			grid.add(sixteen,8,3);
-			grid.add(seventeen,9,2);
-			grid.add(eighteen,9,3);
-			grid.add(nineteen,1,4);
-			grid.add(twenty,1,5);
-			grid.add(twentyone,2,4);
-			grid.add(twentytwo,2,5);
-			grid.add(twentythree,3,4);
-			grid.add(twentyfour,3,5);
-			grid.add(twentyfive,4,4);
-			grid.add(twentysix,4,5);
-			grid.add(twentyseven,5,4);
-			grid.add(twentyeight,5,5);
-			grid.add(twentynine,6,4);
-			grid.add(thirty,6,5);
-			grid.add(thirtyone,7,4);
-			grid.add(thirtytwo,7,5);
-			grid.add(thirtythree,8,4);
-			grid.add(thirtyfour,8,5);
-			grid.add(thirtyfive,9,4);
-			grid.add(thirtysix,9,5);
-			grid.add(Ok,11,3);
+			grid.add(five,1,4);
+			grid.add(six,2,4);
+			grid.add(seven,1,5);
+			grid.add(eight,2,5);
+			grid.add(nine,1,6);
+			grid.add(ten,2,6);
+			grid.add(eleven,1,7);
+			grid.add(twelve,2,7);
+			grid.add(thirteen,1,8);
+			grid.add(fourteen,2,8);
+			grid.add(fifteen,1,9);
+			grid.add(sixteen,2,9);
+			grid.add(seventeen,1,10);
+			grid.add(eighteen,2,10);
+			
+			grid.add(nineteen,5,2);
+			grid.add(twenty,6,2);
+			grid.add(twentyone,5,3);
+			grid.add(twentytwo,6,3);
+			grid.add(twentythree,5,4);
+			grid.add(twentyfour,6,4);
+			grid.add(twentyfive,5,5);
+			grid.add(twentysix,6,5);
+			grid.add(twentyseven,5,6);
+			grid.add(twentyeight,6,6);
+			grid.add(twentynine,5,7);
+			grid.add(thirty,6,7);
+			grid.add(thirtyone,5,8);
+			grid.add(thirtytwo,6,8);
+			grid.add(thirtythree,5,9);
+			grid.add(thirtyfour,6,9);
+			grid.add(thirtyfive,5,10);
+			grid.add(thirtysix,6,10);
+			
+			grid.add(Ok, 7, 12);
 			
 			grid.setVgap(7); 
 		    grid.setHgap(7);
@@ -345,7 +347,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(0, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(0, 0);
@@ -360,7 +362,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(0, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(0, 1);
@@ -375,7 +377,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(1, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(1, 0);
@@ -390,7 +392,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(1, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(1, 1);
@@ -405,7 +407,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(2, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(2, 0);
@@ -420,7 +422,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(2, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(2, 1);
@@ -435,7 +437,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(3, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(3, 0);
@@ -450,7 +452,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(3, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(3, 1);
@@ -465,7 +467,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(4, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(4, 0);
@@ -480,7 +482,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(4, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(4, 1);
@@ -495,7 +497,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(5, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(5, 0);
@@ -510,7 +512,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(5, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(5, 1);
@@ -525,7 +527,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(6, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(6, 0);
@@ -540,7 +542,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(6, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(6, 1);
@@ -555,7 +557,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(7, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(7, 0);
@@ -570,7 +572,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(7, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(7, 1);
@@ -585,7 +587,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(8, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(8, 0);
@@ -600,7 +602,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(8, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(8,1);
@@ -615,7 +617,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(0, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(0, 2);
@@ -630,7 +632,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(0, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(0, 3);
@@ -645,7 +647,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(1, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(1, 2);
@@ -660,7 +662,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(1, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(1, 3);
@@ -675,7 +677,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(2, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(2, 2);
@@ -690,7 +692,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(2, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(2, 3);
@@ -705,7 +707,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(3, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(3, 2);
@@ -720,7 +722,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(3, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(3, 3);
@@ -735,7 +737,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(4, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(4, 2);
@@ -750,7 +752,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(4, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(4, 3);
@@ -765,7 +767,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(5, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(5, 2);
@@ -780,7 +782,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(5, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(5, 3);
@@ -795,7 +797,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(6, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(6, 2);
@@ -810,7 +812,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(6, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(6, 3);
@@ -825,7 +827,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(7, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(7, 2);
@@ -840,7 +842,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(7, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(7, 3);
@@ -855,7 +857,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(8, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(8, 2);
@@ -870,7 +872,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(8, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(8, 3);
@@ -882,7 +884,7 @@ public class SeatsDesign {
 			
 		}
 		
-		if (sNum == 46)
+		if (sNum == 48)
 		{
 			Button driver = new Button ("D");
 			Button one = new Button("A1");
@@ -908,78 +910,85 @@ public class SeatsDesign {
 			Button twentyone = new Button("A21");
 			Button twentytwo = new Button("A22");
 			Button twentythree = new Button("A23");
-			Button twentyfour = new Button("B1");
-			Button twentyfive = new Button("B2");
-			Button twentysix = new Button("B3");
-			Button twentyseven = new Button("B4");
-			Button twentyeight = new Button("B5");
-			Button twentynine = new Button("B6");
-			Button thirty = new Button("B7");
-			Button thirtyone = new Button("B8");
-			Button thirtytwo = new Button("B9");
-			Button thirtythree = new Button("B10");
-			Button thirtyfour = new Button("B11");
-			Button thirtyfive = new Button("B12");
-			Button thirtysix = new Button("B13");
-			Button thirtyseven = new Button("B14");
-			Button thirtyeight = new Button("B15");
-			Button thirtynine = new Button("B16");
-			Button forty = new Button("B17");
-			Button fortyone = new Button("B18");
-			Button fortytwo = new Button("B19");
-			Button fortythree = new Button("B20");
-			Button fortyfour = new Button("B21");
-			Button fortyfive = new Button("B22");
-			Button fortysix = new Button("B23");
+			Button twentyfour = new Button("A24");
+			Button twentyfive = new Button("B1");
+			Button twentysix = new Button("B2");
+			Button twentyseven = new Button("B3");
+			Button twentyeight = new Button("B4");
+			Button twentynine = new Button("B5");
+			Button thirty = new Button("B6");
+			Button thirtyone = new Button("B7");
+			Button thirtytwo = new Button("B8");
+			Button thirtythree = new Button("B9");
+			Button thirtyfour = new Button("B10");
+			Button thirtyfive = new Button("B11");
+			Button thirtysix = new Button("B12");
+			Button thirtyseven = new Button("B13");
+			Button thirtyeight = new Button("B14");
+			Button thirtynine = new Button("B15");
+			Button forty = new Button("B16");
+			Button fortyone = new Button("B17");
+			Button fortytwo = new Button("B18");
+			Button fortythree = new Button("B19");
+			Button fortyfour = new Button("B20");
+			Button fortyfive = new Button("B21");
+			Button fortysix = new Button("B22");
+			Button fortyseven = new Button("B23");
+			Button fortyeight = new Button("B24");
+			
 			Button Ok = new Button("Confirm");
 				
-			grid.add(driver,0,2);
+			grid.add(driver,1,1);
 			grid.add(one,1,2);
-			grid.add(two,1,3);
-			grid.add(three,2,2);
+			grid.add(two,2,2);
+			grid.add(three,1,3);
 			grid.add(four,2,3);
-			grid.add(five,3,2);
-			grid.add(six,3,3);
-			grid.add(seven,4,2);
-			grid.add(eight,4,3);
-			grid.add(nine,5,2);
-			grid.add(ten,5,3);
-			grid.add(eleven,6,2);
-			grid.add(twelve,6,3);
-			grid.add(thirteen,7,2);
-			grid.add(fourteen,7,3);
-			grid.add(fifteen,8,2);
-			grid.add(sixteen,8,3);
-			grid.add(seventeen,9,2);
-			grid.add(eighteen,9,3);
-			grid.add(nineteen,10,2);
-			grid.add(twenty,10,3);
-			grid.add(twentyone,11,2);
-			grid.add(twentytwo,11,3);
-			grid.add(twentythree,12,2);
-			grid.add(twentyfour,1,4);
-			grid.add(twentyfive,1,5);
-			grid.add(twentysix,2,4);
-			grid.add(twentyseven,2,5);
-			grid.add(twentyeight,3,4);
-			grid.add(twentynine,3,5);
-			grid.add(thirty,4,4);
-			grid.add(thirtyone,4,5);
-			grid.add(thirtytwo,5,4);
-			grid.add(thirtythree,5,5);
-			grid.add(thirtyfour,6,4);
-			grid.add(thirtyfive,6,5);
-			grid.add(thirtysix,7,4);
-			grid.add(thirtyseven,7,5);
-			grid.add(thirtyeight,8,4);
-			grid.add(thirtynine,8,5);
-			grid.add(forty,9,4);
-			grid.add(fortyone,9,5);
-			grid.add(fortytwo,10,4);
-			grid.add(fortythree,10,5);
-			grid.add(fortyfour,11,4);
-			grid.add(fortyfive,11,5);
-			grid.add(fortysix,12,5);
+			grid.add(five,1,4);
+			grid.add(six,2,4);
+			grid.add(seven,1,5);
+			grid.add(eight,2,5);
+			grid.add(nine,1,6);
+			grid.add(ten,2,6);
+			grid.add(eleven,1,7);
+			grid.add(twelve,2,7);
+			grid.add(thirteen,1,8);
+			grid.add(fourteen,2,8);
+			grid.add(fifteen,1,9);
+			grid.add(sixteen,2,9);
+			grid.add(seventeen,1,10);
+			grid.add(eighteen,2,10);
+			grid.add(nineteen,1,11);
+			grid.add(twenty,2,11);
+			grid.add(twentyone,1,12);
+			grid.add(twentytwo,2,12);
+			grid.add(twentythree,1,13);
+			grid.add(twentyfour,2,13);
+			
+			grid.add(twentyfive,5,2);
+			grid.add(twentysix,6,2);
+			grid.add(twentyseven,5,3);
+			grid.add(twentyeight,5,4);
+			grid.add(twentynine,6,3);
+			grid.add(thirty,6,4);
+			grid.add(thirtyone,5,5);
+			grid.add(thirtytwo,6,5);
+			grid.add(thirtythree,5,6);
+			grid.add(thirtyfour,6,6);
+			grid.add(thirtyfive,5,7);
+			grid.add(thirtysix,6,7);
+			grid.add(thirtyseven,5,8);
+			grid.add(thirtyeight,6,8);
+			grid.add(thirtynine,5,9);
+			grid.add(forty,6,9);
+			grid.add(fortyone,5,10);
+			grid.add(fortytwo,6,10);
+			grid.add(fortythree,5,11);
+			grid.add(fortyfour,6,11);
+			grid.add(fortyfive,5,12);
+			grid.add(fortysix,6,12);
+			grid.add(fortyseven,5,13);
+			grid.add(fortyeight,6,13);
+			
 			grid.add(Ok,14,3);
 			
 			grid.setVgap(7); 
@@ -995,7 +1004,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(0, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(0, 0);
@@ -1010,7 +1019,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(0, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(0, 1);
@@ -1025,7 +1034,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(1, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(1, 0);
@@ -1040,7 +1049,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(1, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(1, 1);
@@ -1055,7 +1064,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(2, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(2, 0);
@@ -1070,7 +1079,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(2, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(2, 1);
@@ -1085,7 +1094,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(3, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(3, 0);
@@ -1100,7 +1109,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(3, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(3, 1);
@@ -1115,7 +1124,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(4, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(4, 0);
@@ -1130,7 +1139,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(4, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(4, 1);
@@ -1145,7 +1154,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(5, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(5, 0);
@@ -1160,7 +1169,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(5, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(5, 1);
@@ -1175,7 +1184,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(6, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(6, 0);
@@ -1190,7 +1199,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(6, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(6, 1);
@@ -1205,7 +1214,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(7, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(7, 0);
@@ -1220,7 +1229,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(7, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(7, 1);
@@ -1235,7 +1244,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(8, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(8, 0);
@@ -1250,7 +1259,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(8, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(8,1);
@@ -1265,7 +1274,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(9, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(9, 0);
@@ -1280,7 +1289,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(9, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(9, 1);
@@ -1295,7 +1304,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(10, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(10, 0);
@@ -1310,7 +1319,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(10, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(10, 1);
@@ -1325,7 +1334,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(11, 0))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(11, 0);
@@ -1340,7 +1349,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(11, 1))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(11, 1);
@@ -1355,7 +1364,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(0, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(0, 2);
@@ -1370,7 +1379,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(0, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(0, 3);
@@ -1385,7 +1394,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(1, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(1, 2);
@@ -1400,7 +1409,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(1, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(1, 3);
@@ -1415,7 +1424,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(2, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(2, 2);
@@ -1430,7 +1439,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(2, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(2, 3);
@@ -1445,7 +1454,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(3, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(3, 2);
@@ -1460,7 +1469,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(3, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(3, 3);
@@ -1475,7 +1484,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(4, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(4, 2);
@@ -1490,7 +1499,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(4, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(4, 3);
@@ -1505,7 +1514,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(5, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(5, 2);
@@ -1520,7 +1529,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(5, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(5, 3);
@@ -1535,7 +1544,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(6, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(6, 2);
@@ -1550,7 +1559,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(6, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(6, 3);
@@ -1565,7 +1574,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(7, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(7, 2);
@@ -1580,7 +1589,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(7, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(7, 3);
@@ -1595,7 +1604,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(8, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(8, 2);
@@ -1610,7 +1619,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(8, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(8, 3);
@@ -1625,7 +1634,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(9, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(9, 2);
@@ -1640,7 +1649,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(9, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(9, 3);
@@ -1655,7 +1664,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(10, 2))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(10, 2);
@@ -1670,7 +1679,7 @@ public class SeatsDesign {
 				public void handle(ActionEvent event) {
 					
 					if (s.isBooked(10, 3))
-						AlertBox.display("ERROR!", "This seat is already booked , choose another one !");
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
 					else 
 					{
 						s.bookSeat(10, 3);
@@ -1679,10 +1688,38 @@ public class SeatsDesign {
 				}
 				
 			});
-			
+			fortyseven.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent event) {
+					
+					if (s.isBooked(11, 2))
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
+					else 
+					{
+						s.bookSeat(11, 2);
+						fortyseven.setStyle("-fx-background-color: darkslateblue;");
+					}
+				}
+				
+			});
+			fortyeight.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent event) {
+					
+					if (s.isBooked(11, 3))
+						AlertBox.display2("ERROR!", "This seat is already booked , choose another one !");
+					else 
+					{
+						s.bookSeat(11, 3);
+						fortyeight.setStyle("-fx-background-color: darkslateblue;");
+					}
+				}
+				
+			});
 		}
-		NewWindow.setTitle("Reserve your place");
-		scene = new Scene(grid,600,400);
+		return grid;
 				
 	}
 
@@ -1692,5 +1729,16 @@ public class SeatsDesign {
 
 	public void setScene(Scene scene) {
 		this.scene = scene;
+	}
+	
+	public static void display(int capacity) {
+		Stage window = new Stage();
+		window.setTitle("Seating Chart");
+		window.setMinWidth(1200);
+		window.setMinHeight(500);
+		window.initModality(Modality.APPLICATION_MODAL);		
+		Scene scene = new Scene(Design(capacity));
+		window.setScene(scene);
+		window.showAndWait();
 	}
 }

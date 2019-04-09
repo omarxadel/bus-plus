@@ -44,7 +44,12 @@ public class HomeScreenDriverController {
 	public void getProfile(Driver driver)
 	{
 		this.D=driver;
-		WelcomeDriver.setText("Hello Mister  "+ D.firstname);
+		if(D.gender.equals("Male")) {
+			WelcomeDriver.setText("Hello Mister " + D.firstname);
+		}
+		else {
+			WelcomeDriver.setText("Hello Mrs. " + D.firstname);
+		}
 		Fname.setText("" +D.firstname + " " + D.lastname);
 		Account.setText("" + D.job);
 		Country.setText("" + D.city +", "+ D.country);

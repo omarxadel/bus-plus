@@ -20,7 +20,6 @@ import javafx.scene.control.*;
 public class HomeScreenController {
 	//Manager M;
 	Passenger P;
-	SeatsDesign SD;
 	Seat s;
 	Stage stage;
 	Scene scene;
@@ -31,40 +30,79 @@ public class HomeScreenController {
 	public Button SeatingOptions;
 	public Button Service;
 	public Button Settings;
+	public Button EditAccount;
+	public Button ReturnProf;
 	public MenuItem OnewayOption;
 	public VBox PassengerTabs;
 	public Label WelcomeLabel;
 	public AnchorPane ProfFull;
+	public Label Account;
+	public Label Fname;
+	public Label Country;
+	public Label ID;
+	public Label how;
+	public Label search;
+	public Label find;
+	public Label book;
+	public Label booking;
+	public VBox MyProfile;
 
 	// --------------- Profile Controls ---------------\\
 	 
 	public void getProfile (Passenger P)
 	{
 		this.P=P;
-		WelcomeLabel.setText("Hello Mister"+P.firstname);
+		if(P.gender.equals("Male")) {
+			WelcomeLabel.setText("Hello Mister " + P.firstname);
+		}
+		else {
+			WelcomeLabel.setText("Hello Mrs. " + P.firstname);
+		}
+		Fname.setText("" + P.firstname + " " + P.lastname);
+		Account.setText("" + P.job);
+		Country.setText("" + P.city +", "+ P.country);
+		ID.setText("" + P.ID);
+		
 	}
 	
 	public void profileButtonClicked (ActionEvent e)
 	{
 		ProfFull.setVisible(true);
+		//MyProfile.setVisible(true);
+		how.setVisible(false);
+		search.setVisible(false);
+		find.setVisible(false);
+		book.setVisible(false);
+		booking.setVisible(false);
+		
+		
 	}
 	
 	public void returnProfButtonClicked (ActionEvent e)
-	{
+	{   
+		how.setVisible(true);
+		search.setVisible(true);
+		find.setVisible(true);
+		book.setVisible(true);
+		booking.setVisible(true);
 		ProfFull.setVisible(false);
+		//MyProfile.setVisible(false);
+		
+		
 	}
 	// --------------- Choosing Seats ---------------\\
 	
 	public void SeatingOptions (ActionEvent e) throws IOException
 	{
-		stage.setScene(SD.getScene());
+		SeatsDesign.display(36);
 		
 	}
-	
-	public void setSD(SeatsDesign sD) {
-		SD = sD;
+
+	public Scene getScene() {
+		return scene;
 	}
-	Passenger P;
+}
+	/*Passenger P;
 	public Label labelHelloUser;
 	/*public Label Fname;
 	public Label Account;
@@ -72,8 +110,8 @@ public class HomeScreenController {
 	public Label Id;*/
 	// --------------- Profile Controls ---------------\\
 		
-		public void getProfile(Passenger P) {
-			this.P=P;
+		/*public void getProfile(Passenger P) {
+			this.P1=P;
 			
 			if(P.gender.equals("Male")) {
 				labelHelloUser.setText("Hello Mister " + P.firstname);
@@ -108,6 +146,6 @@ public class HomeScreenController {
 			window.setScene(MainScene);
 		}*/
 	
-		}
-}
+		
+
 
