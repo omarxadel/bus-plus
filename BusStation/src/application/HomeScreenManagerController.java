@@ -149,6 +149,15 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		ManageTripsTab.setVisible(false);
 	}
 
+	public boolean isTicketPrice(String ticketInput) {
+		try {
+			Float.parseFloat(ticketInput);
+			return true;
+		}
+		catch(NumberFormatException exception) {
+			return false;
+		}
+	}
 	// --------------- Add Trips Controls ------------\\
 	
 	public void choiceInit() {
@@ -195,6 +204,9 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		 Trip T = null;
 		 if(this.date.getValue() == null || startL.getValue() == null || DestL.getValue() == null || Driver.getValue() == null || car.getValue() == null || carNo.getValue() == null || ticket.getText() == null || Time1.getText() == (null) || Time2.getText() == (null) || ticket.getText().isEmpty() || Time1.getText().isEmpty() || Time2.getText().isEmpty()) {
 			 AlertBox.display("UNEXPECTED INPUTS", "Please make sure you filled all the fields!", "OK");
+		 }
+		 else if(!isTicketPrice(ticket.getText())) {
+			 AlertBox.display("UNEXPECTED INPUTS", "Please make sure you enter a vaid ticket price!", "OK");
 		 }
 		 else {
 		 String date = this.date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -392,6 +404,9 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	}
 	
 	public void updateButtonClicked(ActionEvent e) throws IOException {
+		do AlertBox.display("UNEXPECTED INPUT", "Please enter a valid ticket price!", "OK");
+		while(!isTicketPrice(ticket2.getText()));
+		
 			if(date2.getValue() != null) {
 				dateGet = this.date2.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			}

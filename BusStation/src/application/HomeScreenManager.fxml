@@ -33,7 +33,7 @@
    <left>
       <AnchorPane>
          <children>
-            <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="364.0" prefWidth="170.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="MainTabManager" alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="labelHelloManager" text="Hello Mister" />
                   <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
