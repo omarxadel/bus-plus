@@ -74,17 +74,17 @@
          <children>
             <AnchorPane fx:id="trip1" layoutY="7.0" prefHeight="361.0" prefWidth="449.0" visible="false">
                <children>
-                  <ListView prefHeight="365.0" prefWidth="449.0" />
+                  <ListView fx:id="list1" prefHeight="365.0" prefWidth="449.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="trip2" prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ListView prefHeight="368.0" prefWidth="451.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="list2" prefHeight="368.0" prefWidth="451.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="trip3" prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ListView prefHeight="368.0" prefWidth="451.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="list3" prefHeight="368.0" prefWidth="451.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <Button fx:id="Back" layoutX="14.0" layoutY="342.0" mnemonicParsing="false" onAction="#BackMainTab" text="Ok" visible="false" />
@@ -183,4 +183,3 @@
       </HBox>
    </bottom>
 </BorderPane>
-
