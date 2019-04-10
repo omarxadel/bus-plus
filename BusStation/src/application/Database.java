@@ -104,11 +104,10 @@ public class Database {
 			String uname = i.next();
 			String pword = i.next();
 			int ID = i.nextInt();
-			float c=i.nextFloat();
 			String city = i.next();
 			String country = i.next();
 			String job = i.next();
-			D[J] = new Driver (fname, lname, uname, pword, ID,c, city, country, job);
+			D[J] = new Driver (fname, lname, uname, pword, ID, city, country, job);
 			
 			J++;
 		}
@@ -233,14 +232,7 @@ public class Database {
 	}
 	
 	
-	public void addDriverData(String fname, String lname, String uname, String pw, int ID, String city, String country) {
-		try {
-			x = new Formatter("DriversData.txt");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		x.format("%s %s %s %s %d %s %s", fname, lname , uname, pw , ID, city, country , "Driver");
-	}
+
 	
 	public void addManagerData(String fname, String lname, String uname, String pw, int ID, String city, String country) {
 		try {
@@ -418,12 +410,11 @@ public class Database {
 			}
 			i++;
 		}
-	fr.close();
+		fr.close();
+		}
+		public Trip[] getTrips() {
+			return T;
 	}
-	public Trip[] getTrips() {
-		return T;
-	}
-	
 	public void cancelTrip(int index) throws IOException {
 		int i = index;
 		
@@ -434,6 +425,62 @@ public class Database {
 		}
 		T[i] = null;
 		saveTripData();
+	}
+		public void saveDriversData() throws IOException {
+			String ID;
+			int i=1;
+			try {	
+					fr = new FileWriter("DriversData.txt", false);
+					inp = new Scanner(new File("DriversData.txt"));
+			} 
+			catch (IOException e) {
+				e.printStackTrace();
+			}	
+			ID = Integer.toString(D[0].ID);
+			fr.write(""+ D[0].firstname + " " + D[0].lastname + " "+ D[0].username + " " + D[0].getPassword() + " " + ID + " " + D[0].city + " " + D[0].country + " " + D[0].job);
+			while(D[i] != null) {
+				ID = Integer.toString(D[i].ID);
+				fr.write("\r\n"+ D[i].firstname + " " + D[i].lastname + " " + D[i].getPassword() + " " + ID + " " + D[i].city + " " + D[i].country + " " + D[i].job);
+				i++;
+			}
+			fr.close();
+		}
+	
+		public Driver addDriver(String fname, String lname, String uname, String pw, String city, String country) throws IOException {
+		    int ID=5500;			
+			int j=0;
+			while(D[j]!= null) {
+				if(D[j].ID == ID) {
+					ID++;
+					j++;
+				}
+				else {
+					j++;
+					continue;
+				}
+			}
+			try {
+				f = new FileWriter("DriversData.txt", true);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
+		f.write("\r\n" + fname + " " + lname + " " + uname + " " + pw + " " + Integer.toString(ID) + " " + city + " " + country + " " + "Driver");
+		Driver new_D = new Driver(fname, lname, uname, pw, ID, city, country, "Driver");
+		f.close();
+		getDriverData();
+		return new_D;
+		}
+	
+	public void removeDriver(int index) throws IOException {
+		int i = index;
+		System.out.println(i);
+		while(D[i+1] != null) {
+			D[i] = D[i+1];
+			i++;
+		}
+		D[i] = null;
+		System.out.println(i);
+		saveDriversData();
 	}
 	
 }

@@ -1,3 +1,4 @@
+
 package application;
 
 import javafx.scene.Node;
@@ -425,5 +426,3 @@ public String[] getTrips(){
 			 String tripData = (ID + " " + uStart + " " + uDest + " " + uCar + " " + uCarnum + " " + dateGet + " " + time + " " + uTicket);
 			 Table.getItems().add(index, tripData);
 	}
-	
-}
