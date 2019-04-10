@@ -104,10 +104,11 @@ public class Database {
 			String uname = i.next();
 			String pword = i.next();
 			int ID = i.nextInt();
+			float c=i.nextFloat();
 			String city = i.next();
 			String country = i.next();
 			String job = i.next();
-			D[J] = new Driver (fname, lname, uname, pword, ID, city, country, job);
+			D[J] = new Driver (fname, lname, uname, pword, ID,c, city, country, job);
 			
 			J++;
 		}

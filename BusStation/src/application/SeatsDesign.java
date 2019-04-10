@@ -989,7 +989,7 @@ public class SeatsDesign {
 			grid.add(fortyseven,5,13);
 			grid.add(fortyeight,6,13);
 			
-			grid.add(Ok,14,3);
+			grid.add(Ok,7,15);
 			
 			grid.setVgap(7); 
 		    grid.setHgap(7);

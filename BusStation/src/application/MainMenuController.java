@@ -64,13 +64,14 @@ public class MainMenuController implements Initializable{
 		else currentUser = -1;
 	}
 	
-	public void homeUserLoader(ActionEvent e) throws IOException {
+	public void homeUserLoader(ActionEvent e,Passenger c) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("HomeScreen.fxml"));
 		Parent userHome = loader.load();
 		Scene userHomeS = new Scene(userHome);
 		
 		HomeScreenController controller = loader.getController();
+		controller.getProfile(c);
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(userHomeS);
 	}
@@ -89,14 +90,14 @@ public class MainMenuController implements Initializable{
 		window.setScene(MHome);
 	}
 	
-	public void homeDriverLoader(ActionEvent e, Driver d) throws IOException {
+	public void homeDriverLoader(ActionEvent e, Driver b) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("HomeScreenDriver.fxml"));
 		Parent DriverHome = loader.load();
 		Scene DHome = new Scene(DriverHome);
 		
 		HomeScreenDriverController controller = loader.getController();
-		controller.getProfile(d);
+		controller.getProfile(b);
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(DHome);
 	}
@@ -123,8 +124,9 @@ public class MainMenuController implements Initializable{
 		}
 		else if(UserRadio.isSelected()) {
 			P = auth.getPassenger(currentUser);
-			homeUserLoader(e);
+			homeUserLoader(e, P);
 		}
+		
 	}
 	
 	// ------------------------- REGISTER TAB COMMANDS --------------------- \\	
