@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -66,6 +67,83 @@
          </top>
          <center>
             <AnchorPane prefHeight="355.0" prefWidth="235.0" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreenController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" prefHeight="358.0" prefWidth="124.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+
+            <Label fx:id="WelcomeLabel" text="Hello " />
+            <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Passenger Profile" />
+            <Button fx:id="PromoCodes" mnemonicParsing="false" text="Promo Codes" />
+            <Button fx:id="Settings" mnemonicParsing="false" text="Settings" />
+            <Button fx:id="Service" mnemonicParsing="false" text="Customer Service" />
+         </children>
+         <padding>
+            <Insets left="5.0" top="5.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="184.0" prefWidth="287.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Search for your trip" />
+            <MenuButton mnemonicParsing="false" text="Select trip type">
+              <items>
+                <MenuItem fx:id="OnewayOption" mnemonicParsing="false" text="One-Way" />
+                <MenuItem mnemonicParsing="false" text="Round-Trip" />
+              </items>
+            </MenuButton>
+            <MenuButton mnemonicParsing="false" text="Select your start">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
+            <MenuButton mnemonicParsing="false" text="Select your destination">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
+            <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" text="Seating options" />
+            <DatePicker promptText="Select date" />
+            <Button mnemonicParsing="false" text="Search" />
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </VBox>
+   </center>
+   <right>
+      <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="how" text="How it works" />
+            <Label fx:id="search" text="Search" />
+            <Label fx:id="find" text="Find" />
+            <Label fx:id="book" text="Book!" />
+            <Label fx:id="booking" text="Booking a bus trip never been so easy!" />
+            <AnchorPane fx:id="ProfFull" prefHeight="369.0" prefWidth="205.0" visible="false">
                <children>
                   <AnchorPane fx:id="Trip1" prefHeight="355.0" prefWidth="213.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -151,3 +229,21 @@
       </BorderPane>
    </children>
 </AnchorPane>
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets right="5.0" />
+         </BorderPane.margin>
+      </VBox>
+   </right>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Status Bar" />
+            <Label text="Label" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

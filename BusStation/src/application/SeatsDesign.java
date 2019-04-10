@@ -26,7 +26,7 @@ public class SeatsDesign {
 
 	public static GridPane Design (int sNum)
 	{
-		//s.capacity=sNum;
+		s.capacity=sNum;
 		
 		if (sNum == 12)
 		{

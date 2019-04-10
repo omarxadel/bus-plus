@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -32,7 +33,7 @@
    <left>
       <AnchorPane>
          <children>
-            <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="364.0" prefWidth="150.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="364.0" prefWidth="170.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="labelHelloManager" text="Hello Mister" />
                   <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
@@ -42,6 +43,9 @@
                   <Button fx:id="LogOutButton" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
 
                </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </VBox>
             <VBox fx:id="ProfTitle" alignment="TOP_RIGHT" prefHeight="364.0" prefWidth="150.0" spacing="10.0" visible="false" AnchorPane.topAnchor="20.0">
                <children>
@@ -161,22 +165,97 @@
          <TextField fx:id="ticket" promptText="Ticket price" />
       </children>
    </VBox> </children> </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" visible="false">
+               <children>
+                  <HBox>
+                     <children>
+                        <VBox alignment="BASELINE_LEFT" layoutX="94.0" layoutY="14.0" prefHeight="299.0" prefWidth="139.0" spacing="19.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="34.0" text="Select the start location" textAlignment="CENTER" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="197.0" layoutY="142.0" text="Select the destination" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="142.0" text="Select driver" textAlignment="CENTER" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="88.0" text="Select car model" textAlignment="CENTER" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="115.0" text="Select car number" textAlignment="CENTER" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="161.0" text="Select date" textAlignment="CENTER" GridPane.rowIndex="5" />
+                              <Label text="Select time" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="179.0" text="Type in the ticket price" textAlignment="CENTER" GridPane.rowIndex="6" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="254.0" layoutY="14.0" spacing="10.0">
+                           <children>
+                              <ChoiceBox fx:id="startL1" prefWidth="150.0" />
+                              <ChoiceBox fx:id="DestL1" layoutX="22.0" layoutY="10.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="Driver1" layoutX="22.0" layoutY="42.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="car1" layoutX="22.0" layoutY="74.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="carNo1" layoutX="22.0" layoutY="10.0" prefWidth="150.0" />
+                              <DatePicker fx:id="date1" />
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <TextField fx:id="Time11" prefHeight="25.0" prefWidth="27.0" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="Time21" prefHeight="25.0" prefWidth="28.0" />
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="ticket1" promptText="Ticket price" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="editFull" prefHeight="364.0" prefWidth="449.0" visible="false">
                <children>
-                  <Button fx:id="PassengerProfileButton11" layoutX="383.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnEditTripClicked" text="Return" />
-                  <TableView fx:id="Table" layoutX="14.0" layoutY="11.0" prefHeight="351.0" prefWidth="441.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="11.0">
-                    <columns>
-                        <TableColumn fx:id="TripIDc" prefWidth="75.0" text="Trip ID" />
-                        <TableColumn fx:id="TripStart" prefWidth="75.0" text="Start" />
-                        <TableColumn fx:id="TripDest" prefWidth="75.0" text="Destination" />
-                        <TableColumn fx:id="Vehicle" prefWidth="75.0" text="Vehicle Model" />
-                        <TableColumn fx:id="Vnumc" prefWidth="75.0" text="Vehicle Number" />
-                        <TableColumn fx:id="DNamec" prefWidth="75.0" text="DriverName" />
-                        <TableColumn fx:id="Datec" prefWidth="75.0" text="Date" />
-                        <TableColumn fx:id="Timec" prefWidth="75.0" text="Time" />
-                        <TableColumn fx:id="Ticketc" prefWidth="75.0" text="Ticket Price" />
-                    </columns>
-                  </TableView>
+                  <Button fx:id="PassengerProfileButton111" layoutX="338.0" layoutY="325.0" mnemonicParsing="false" onAction="#cancelTripButtonClicked" text="Cancel Trip" />
+                  <Button fx:id="PassengerProfileButton11" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnEditTripClicked" text="Return" />
+                  <ListView fx:id="Table" layoutX="25.0" layoutY="23.0" prefHeight="293.0" prefWidth="387.0" />
+                  <Button fx:id="PassengerProfileButton1111" layoutX="184.0" layoutY="325.0" mnemonicParsing="false" onAction="#updateTripsButtonClicked" text="Update Trip" />
+                  <Separator layoutX="11.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="UpdateTrips" layoutY="5.0" prefHeight="363.0" prefWidth="451.0" visible="false">
+               <children>
+                  <Button fx:id="AddReturn1" layoutX="30.0" layoutY="324.0" mnemonicParsing="false" onAction="#closeClicked" text="Return" />
+                  <VBox alignment="CENTER" layoutX="244.0" spacing="7.0" />
+                  <Separator layoutX="14.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
+                  <VBox alignment="BASELINE_LEFT" layoutX="71.0" layoutY="29.0" spacing="19.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="34.0" text="Select the start location" textAlignment="CENTER" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="197.0" layoutY="142.0" text="Select the destination" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="142.0" text="Select driver" textAlignment="CENTER" GridPane.rowIndex="4" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="88.0" text="Select car model" textAlignment="CENTER" GridPane.rowIndex="2" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="115.0" text="Select car number" textAlignment="CENTER" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="161.0" text="Select date" textAlignment="CENTER" GridPane.rowIndex="5" />
+                        <Label text="Select time" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="179.0" text="Type in the ticket price" textAlignment="CENTER" GridPane.rowIndex="6" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="225.0" layoutY="35.0" spacing="10.0">
+                     <children>
+                        <ChoiceBox fx:id="startL2" prefWidth="150.0" />
+                        <ChoiceBox fx:id="DestL2" layoutX="22.0" layoutY="10.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="Driver2" layoutX="22.0" layoutY="42.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="car2" layoutX="22.0" layoutY="74.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="carNo2" layoutX="22.0" layoutY="10.0" prefWidth="150.0" />
+                        <DatePicker fx:id="date2" />
+                        <HBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <TextField fx:id="Time12" prefHeight="25.0" prefWidth="27.0" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="Time22" prefHeight="25.0" prefWidth="28.0" />
+                           </children>
+                        </HBox>
+                        <TextField fx:id="ticket2" promptText="Ticket price" />
+                     </children>
+                  </VBox>
+                  <Button layoutX="355.0" layoutY="324.0" mnemonicParsing="false" onAction="#updateButtonClicked" text="UpdateTrip" />
                </children>
             </AnchorPane> </children>
       </AnchorPane>
