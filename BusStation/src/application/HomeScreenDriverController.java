@@ -1,15 +1,18 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
@@ -20,6 +23,7 @@ public class HomeScreenDriverController {
 	Driver D;
 	Manager M[];
 	Database d = new Database();
+	public Trip[] trip;
 	
 	public VBox MainTabManager;
 	public VBox ProfTitle;
@@ -44,6 +48,9 @@ public class HomeScreenDriverController {
 	public Button Back;
 	public Button Tripscomments;
 	public Label credit;
+	public ListView <String> list1;
+	public ListView <String> list2;
+	public ListView <String> list3;
 	
 	// --------------- Profile Controls ---------------\\
 	
@@ -110,6 +117,5 @@ public class HomeScreenDriverController {
 		Back.setVisible(false);
 	}
 	
-		
 }
 

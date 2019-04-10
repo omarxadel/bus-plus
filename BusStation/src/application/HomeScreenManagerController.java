@@ -110,19 +110,16 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		Country.setText("" + M.city +", "+ M.country);
 		Id.setText("" + M.ID);
 	}
-	
 	public void profileButtonClicked(ActionEvent e) {
 		ProfTitle.setVisible(true);
 		ProfFull.setVisible(true);
 		MainTabManager.setVisible(false);
 	}
-
 	public void returnProfButtonClicked(ActionEvent e) {
 		MainTabManager.setVisible(true);
 		ProfTitle.setVisible(false);
 		ProfFull.setVisible(false);
 	}
-	
 	public void logOut(ActionEvent e) throws IOException {
 		Parent Main = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		Scene MainScene = new Scene(Main);
@@ -130,9 +127,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(MainScene);
 	}
-
 // --------------- Manage Trips Button ------------\\
-	
 	public void ManageTripButtonClicked(ActionEvent e) {
 		ManageTripsTab.setVisible(true);
 		MainTabManager.setVisible(false);
@@ -141,7 +136,6 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		MainTabManager.setVisible(true);
 		ManageTripsTab.setVisible(false);
 	}
-
 	// --------------- Add Trips Controls ------------\\
 	
 	public void choiceInit() {

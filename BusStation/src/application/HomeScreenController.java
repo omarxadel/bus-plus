@@ -29,7 +29,7 @@ public class HomeScreenController {
 	public AnchorPane Trip1;
 	public AnchorPane Trip2;
 	public AnchorPane Trip3;
-	public Button Editacc;
+	public AnchorPane Editacc;
 	public Button PromoCodes;
 	public Button PassengerProfileButton;
 	public Button SeatingOptions;
@@ -49,11 +49,6 @@ public class HomeScreenController {
 	public Label Fname;
 	public Label Country;
 	public Label ID;
-	public Label how;
-	public Label search;
-	public Label find;
-	public Label book;
-	public Label booking;
 	public VBox ProfTitle;
 	public VBox SearchTabs;
 	public VBox instr;
@@ -87,8 +82,9 @@ public class HomeScreenController {
 		instr.setVisible(false);
 		PassengerTabs.setVisible(false);
 		
+		
 	}
-	
+
 	public void returnProfButtonClicked (ActionEvent e)
 	{   
 		SearchTabs.setVisible(true);
@@ -98,6 +94,14 @@ public class HomeScreenController {
 		ProfTitle.setVisible(false);
 		Editacc.setVisible(false);
 
+	}
+	
+	public void logOut(ActionEvent e) throws IOException {
+		Parent Main = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+		Scene MainScene = new Scene(Main);
+		
+		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
+		window.setScene(MainScene);
 	}
 	// --------------- Choosing Seats ---------------\\
 	

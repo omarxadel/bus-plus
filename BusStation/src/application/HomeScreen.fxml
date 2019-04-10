@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -14,11 +13,11 @@
          <left>
             <AnchorPane prefHeight="355.0" prefWidth="124.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox fx:id="ProfTitle" alignment="TOP_CENTER" layoutY="10.0" prefHeight="190.0" prefWidth="127.0" visible="false">
+                  <VBox fx:id="LabelChoose" alignment="TOP_CENTER" layoutY="31.0" prefHeight="135.0" prefWidth="132.0" visible="false">
                      <children>
-                        <Label prefHeight="87.0" prefWidth="112.0" text="My Profile">
+                        <Label text="Choose your trip">
                            <font>
-                              <Font size="25.0" />
+                              <Font size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -30,13 +29,14 @@
                         <Button fx:id="PromoCodes" mnemonicParsing="false" text="Promo Codes" />
                         <Button fx:id="Settings" mnemonicParsing="false" text="Settings" />
                         <Button fx:id="Service" mnemonicParsing="false" text="Customer Service" />
+                        <Button fx:id="logout" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
                      </children>
                   </VBox>
-                  <VBox fx:id="LabelChoose" alignment="TOP_CENTER" layoutX="1.0" layoutY="30.0" prefHeight="200.0" prefWidth="132.0" visible="false">
+                  <VBox fx:id="ProfTitle" alignment="TOP_CENTER" layoutY="24.0" prefHeight="176.0" prefWidth="122.0" visible="false">
                      <children>
-                        <Label text="Choose your trip">
+                        <Label text="My Profile">
                            <font>
-                              <Font size="16.0" />
+                              <Font size="25.0" />
                            </font>
                         </Label>
                      </children>
@@ -67,105 +67,27 @@
          </top>
          <center>
             <AnchorPane prefHeight="355.0" prefWidth="235.0" BorderPane.alignment="CENTER">
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreenController">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-   <left>
-      <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" prefHeight="358.0" prefWidth="124.0" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-
-            <Label fx:id="WelcomeLabel" text="Hello " />
-            <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Passenger Profile" />
-            <Button fx:id="PromoCodes" mnemonicParsing="false" text="Promo Codes" />
-            <Button fx:id="Settings" mnemonicParsing="false" text="Settings" />
-            <Button fx:id="Service" mnemonicParsing="false" text="Customer Service" />
-         </children>
-         <padding>
-            <Insets left="5.0" top="5.0" />
-         </padding>
-      </VBox>
-   </left>
-   <center>
-      <VBox alignment="TOP_CENTER" prefHeight="184.0" prefWidth="287.0" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Search for your trip" />
-            <MenuButton mnemonicParsing="false" text="Select trip type">
-              <items>
-                <MenuItem fx:id="OnewayOption" mnemonicParsing="false" text="One-Way" />
-                <MenuItem mnemonicParsing="false" text="Round-Trip" />
-              </items>
-            </MenuButton>
-            <MenuButton mnemonicParsing="false" text="Select your start">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </MenuButton>
-            <MenuButton mnemonicParsing="false" text="Select your destination">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </MenuButton>
-            <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" text="Seating options" />
-            <DatePicker promptText="Select date" />
-            <Button mnemonicParsing="false" text="Search" />
-         </children>
-         <padding>
-            <Insets top="5.0" />
-         </padding>
-      </VBox>
-   </center>
-   <right>
-      <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="how" text="How it works" />
-            <Label fx:id="search" text="Search" />
-            <Label fx:id="find" text="Find" />
-            <Label fx:id="book" text="Book!" />
-            <Label fx:id="booking" text="Booking a bus trip never been so easy!" />
-            <AnchorPane fx:id="ProfFull" prefHeight="369.0" prefWidth="205.0" visible="false">
                <children>
-                  <AnchorPane fx:id="Trip1" prefHeight="355.0" prefWidth="213.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="Trip1" prefHeight="355.0" prefWidth="222.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ListView prefHeight="355.0" prefWidth="291.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-78.0" AnchorPane.topAnchor="0.0" />
+                        <ListView layoutY="15.0" prefHeight="325.0" prefWidth="334.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-112.0" AnchorPane.topAnchor="15.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="Trip2" prefHeight="355.0" prefWidth="213.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="Trip2" prefHeight="355.0" prefWidth="222.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ListView prefHeight="355.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-79.0" AnchorPane.topAnchor="0.0" />
+                        <ListView layoutY="16.0" prefHeight="322.0" prefWidth="335.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-113.0" AnchorPane.topAnchor="16.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="Trip3" prefHeight="355.0" prefWidth="213.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="Trip3" prefHeight="355.0" prefWidth="222.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ListView prefHeight="355.0" prefWidth="293.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-80.0" AnchorPane.topAnchor="0.0" />
+                        <ListView layoutY="18.0" prefHeight="321.0" prefWidth="333.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-111.0" AnchorPane.topAnchor="18.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="ProfFull" prefHeight="355.0" prefWidth="219.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="ProfFull" prefHeight="355.0" prefWidth="222.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button fx:id="ReturnProf" layoutY="329.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
-                        <VBox alignment="TOP_CENTER" layoutX="68.0" layoutY="27.0" prefHeight="218.0" prefWidth="139.0">
+                        <VBox alignment="TOP_CENTER" layoutX="82.0" prefHeight="211.0" prefWidth="140.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="150.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../user.png" />
                                  </image>
@@ -175,6 +97,7 @@
                               <Label fx:id="ID" text="ID" />
                            </children>
                         </VBox>
+                        <Button fx:id="ReturnProf" layoutX="-9.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
                      </children>
                   </AnchorPane>
                   <VBox fx:id="SearchTabs" alignment="TOP_CENTER" layoutX="73.0" prefHeight="355.0" prefWidth="203.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="73.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -204,8 +127,12 @@
          <right>
             <AnchorPane prefHeight="355.0" prefWidth="254.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="back" layoutX="169.0" layoutY="317.0" mnemonicParsing="false" onAction="#BackMainTab" text="Confirm" visible="false" />
-                  <Button fx:id="Editacc" layoutX="14.0" layoutY="329.0" mnemonicParsing="false" text="Edit Account Info." visible="false" />
+                  <Button fx:id="back" layoutX="188.0" layoutY="316.0" mnemonicParsing="false" onAction="#BackMainTab" text="Confirm" visible="false" />
+                  <AnchorPane fx:id="Editacc" prefHeight="355.0" prefWidth="254.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="EditAccount" layoutX="45.0" layoutY="329.0" mnemonicParsing="false" text="Edit Account  Info." />
+                     </children>
+                  </AnchorPane>
                   <VBox fx:id="instr" alignment="TOP_CENTER" layoutX="14.0" prefHeight="355.0" prefWidth="254.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label text="How it works" />
@@ -229,21 +156,3 @@
       </BorderPane>
    </children>
 </AnchorPane>
-         </children>
-         <padding>
-            <Insets top="5.0" />
-         </padding>
-         <BorderPane.margin>
-            <Insets right="5.0" />
-         </BorderPane.margin>
-      </VBox>
-   </right>
-   <bottom>
-      <HBox BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Status Bar" />
-            <Label text="Label" />
-         </children>
-      </HBox>
-   </bottom>
-</BorderPane>
