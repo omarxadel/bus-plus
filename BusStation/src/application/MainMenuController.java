@@ -82,8 +82,6 @@ public class MainMenuController implements Initializable{
 		Scene MHome = new Scene(ManagerHome);
 		
 		HomeScreenManagerController controller = loader.getController();
-		controller.trip = auth.d.getTrips();
-		System.out.println(controller.trip[0]);
 		controller.getProfile(a);
 		controller.D = auth.getDrivers();
 		controller.choiceInit();

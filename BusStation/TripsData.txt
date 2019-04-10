@@ -1,3 +1,2 @@
-155002 District1 District10 KiaGranbird 4628 samyprog 2019-04-06 11:50 10.5
-155001 District1 District10 KiaGranbird 12345 samyprog 2019-04-18 12:00 15
-155000 District1 District10 KiaGranbird 12345 samyprog 2019-04-10 05:30 12.4
+155000 District7 District9 ToyotaHiAce 5468 samyprog 2019-05-01 12:00 15.5
+155000 District4 District8 MercedesCito 5468 samyprog 2019-05-01 12:00 15.5

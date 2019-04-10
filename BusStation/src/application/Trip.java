@@ -6,7 +6,6 @@ import javafx.beans.property.StringProperty;
 public class Trip {
 	int ID;
 	String start;
-	StringProperty start1 = new SimpleStringProperty();
 	String destination;
 	String driverName;
 	String date;
@@ -24,6 +23,8 @@ public class Trip {
 		this.start = start;
 		destination = dest;
 		this.vehicle = new Vehicle(vehicle);
+		vmodel = vehicle;
+		this.vnum = vnum;
 		this.vehicle.num = vnum;
 		driverName = driver;
 		this.ticket = ticket;
@@ -31,9 +32,5 @@ public class Trip {
 		this.date = date;
 		this.time = time;
 		}
-	public Trip(String s) {
-		this.start1.set(s);
-	}
-	
 	}
 
