@@ -1,2 +1,1 @@
-155000 District7 District9 ToyotaHiAce 5468 samyprog 2019-05-01 12:00 15.5
-155000 District4 District8 MercedesCito 5468 samyprog 2019-05-01 12:00 15.5
+145000 District5 District9 MercedesCito 12345 samyprog 2019-04-19 02:50 12.0

@@ -90,7 +90,8 @@ public class HomeScreenManagerController implements Initializable {
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) {
 	trip = d.T;
-	initTable();	
+	initTable();
+	updateDataInit();
 }
 	
 // --------------- Profile Controls ---------------\\
@@ -159,6 +160,15 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		carNo.getItems().add("12345");
 	}
 	
+	public void choiceReset() {
+		startL.setValue("District1");
+		DestL.setValue("District10");
+		car.setValue("KiaGranbird");
+		carNo.setValue("12345");
+		Time1.setText(null);
+		Time2.setText(null);
+		ticket.setText(null);
+	}
 	public void addTripButtonClicked(ActionEvent e) {
 		addTripTitle.setVisible(true);
 		addTripFull.setVisible(true);
@@ -171,10 +181,48 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		addTripFull.setVisible(false);
 	}
 	 public void addTripButtonClickedin(ActionEvent e) throws IOException {
+		 boolean flag = false, flag2 = false;
+		 Trip T = null;
+		 if(this.date.getValue() == null || startL.getValue() == null || DestL.getValue() == null || Driver.getValue() == null || car.getValue() == null || carNo.getValue() == null || ticket.getText() == null || Time1.getText() == (null) || Time2.getText() == (null) || ticket.getText().isEmpty() || Time1.getText().isEmpty() || Time2.getText().isEmpty()) {
+			 AlertBox.display("UNEXPECTED INPUTS", "Please make sure you filled all the fields!", "OK");
+		 }
+		 else {
 		 String date = this.date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		 String time;
-		 time = ("" + Time1.getText() + ":" + Time2.getText());
-		 d.addTripData(startL.getValue(), DestL.getValue(), car.getValue(), carNo.getValue(), Driver.getValue(), date, time, ticket.getText());
+		 int timevalid1 = 0, timevalid2 = 0;
+		 try {
+			 timevalid1 = Integer.parseInt(Time1.getText());
+			 timevalid2 = Integer.parseInt(Time2.getText());
+			if(timevalid1 > 13 || timevalid2 > 60) flag2=true;
+			else flag = true;
+		 }
+		 catch(NumberFormatException exception) {
+			 AlertBox.display("UNEXPECTED INPUT!", "You have to insert a valid time input!", "OK");
+			 Time1.setText(null);
+			 Time2.setText(null);
+		 }
+		 String txttime = null, txttime2=null;
+		 if(flag) {
+			 if(timevalid1 < 10) {
+					txttime = ("0" + Integer.toString(timevalid1));
+				}
+			 else txttime = Integer.toString(timevalid1);
+			 if(timevalid2 < 10) {
+					txttime2 = ("0" + Integer.toString(timevalid2));
+				}
+			 else txttime2 = Integer.toString(timevalid2);
+			time = ("" + txttime + ":" + txttime2);
+			T = d.addTripData(startL.getValue(), DestL.getValue(), car.getValue(), carNo.getValue(), Driver.getValue(), date, time, ticket.getText());
+			AlertBox.display("SUCCESS", "A new trip was added susccessfully!", "OK");
+		 }
+		 else if(flag2) {
+			 AlertBox.display("UNEXPECTED INPUT!", "You have to insert a valid time input!", "OK");
+			 Time1.setText(null);
+			 Time2.setText(null);
+		 }
+		 }
+		 choiceReset();
+		 Table.getItems().add(Integer.toString(T.ID) + " " + T.start + " " + T.destination + " " + (T.vmodel) + " " + Integer.toString(T.vnum) + " " + T.date + " " + T.time + " " + Float.toString(T.ticket));
 	 }
 
 // --------------- Edit Trips Controls ------------\\
@@ -220,8 +268,7 @@ public String[] getTrips(){
 
 	public void cancelTripButtonClicked(ActionEvent e) throws IOException {
 		displayDialogueBox("MESSAGE ALERT", "Are you sure you want to cancel the selected trip?", "Yes", "Abort", Table.getSelectionModel().getSelectedIndex());
-		Table.getItems().clear();
-		initTable();
+		Table.getItems().remove(Table.getSelectionModel().getSelectedIndex());
 	}
 	
 	public static void displayDialogueBox(String title, String message, String buttonTxt, String buttonTxt2, int index) {
@@ -235,10 +282,11 @@ public String[] getTrips(){
 		internalLayout.getChildren().addAll(Button1, Button2);
 		internalLayout.setAlignment(Pos.CENTER);
 		Label error = new Label(message);
-		Button1.setOnAction(e-> window.close());
-		Button2.setOnAction(e-> {
+		Button2.setOnAction(e-> window.close());
+		Button1.setOnAction(e-> {
 			try {
 				d.cancelTrip(index);
+				window.close();
 				
 			} catch (IOException e1) {
 				System.out.println("Error in cancelTrip");
@@ -306,8 +354,25 @@ public String[] getTrips(){
 		}
 	}
 	
+	
+	public void updateDataInit() {
+		startL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
+	DestL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
+	int i = 0;
+		while(d.D[i] != null) {
+			Driver2.getItems().add(d.D[i].username);
+			i++;
+		}
+		car2.getItems().addAll("KiaGranbird","MercedesCito","VolvoB12","ToyotaHiAce","HyundaiEquus");
+		i = 0;
+		while(d.T[i] != null) {
+			carNo2.getItems().add(Integer.toString(d.T[i].vnum));
+			i++;
+		}
+	}
+	
+	
 	public void updateInit(int ID, String start, String dest, String v, String vnum, String date, String time1, String time2, String tick, String select, int ind) {
-		
 		uStart = start;
 		uDest = dest;
 		uCar = v;
@@ -315,21 +380,13 @@ public String[] getTrips(){
 		time = (time1 + ":" + time2);
 		uTicket = tick;
 		uDriver = select;
-		startL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
 		startL2.setValue(start);
-		DestL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
 		DestL2.setValue(dest);
-		int i = 0;
-		while(D[i] != null) {
-			Driver2.getItems().add(D[i].username);
-			i++;
-		}
 		Driver2.setValue(select);
-		car2.getItems().addAll("KiaGranbird","MercedesCito","VolvoB12","ToyotaHiAce","HyundaiEquus");
 		car2.setValue("KiaGranbird");
-		carNo2.getItems().add(vnum);
 		Time12.setText(time1);
 		Time22.setText(time2);
+		ticket2.setText(uTicket);
 	}
 
 	public void closeClicked(ActionEvent e) {
@@ -350,27 +407,29 @@ public String[] getTrips(){
 			 if(startL2.getValue() != null) {
 				  uStart = startL2.getValue();
 			 }
-			 if(DestL2.getValue() != null) {
+			 if(DestL2.getValue() != (null)) {
 				 uDest = DestL2.getValue();
 			 }
-			 if(car2.getValue() != null) {
+			 if(car2.getValue() != (null)) {
 				 uCar = car2.getValue();
 			 }
-			 if(carNo2.getValue() != null) {
+			 if(carNo2.getValue() != (null)) {
 				 uCarnum = carNo2.getValue();
 			 }
-			 if(Driver2.getValue() != null) {
+			 if(Driver2.getValue() != (null)) {
 				 uDriver = Driver2.getValue();
 			 }
+			 if(ticket2.getText() != (null)) {
+				 uTicket = ticket2.getText();
+			 }
 			 Seat s;
-			 Vehicle v = new Vehicle(uCar);
-			 s = v.s;
-			 System.out.println(ID + uStart + uDest + uCar + Integer.parseInt(uCarnum) + uDriver + dateGet + time + Float.parseFloat(uTicket));
-			 System.out.println(s.capacity);
+			 s = new Vehicle(uCar).s;
 			 Trip T = new Trip(ID, uStart, uDest, uCar, Integer.parseInt(uCarnum), uDriver, dateGet, time, Float.parseFloat(uTicket), s);
 			 d.T[index] = T;
-			 System.out.println(index);
 			 d.saveTripData();
+			 Table.getItems().remove(index);
+			 String tripData = (ID + " " + uStart + " " + uDest + " " + uCar + " " + uCarnum + " " + dateGet + " " + time + " " + uTicket);
+			 Table.getItems().add(index, tripData);
 	}
 	
 }

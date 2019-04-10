@@ -144,8 +144,11 @@ public class Database {
 						if(l<m) {
 							if(J[l] == 1) S[k].bookSeat(row, col);
 							l++;
+				
 						}
+					
 				}
+				k++;
 				continue;
 			}
 			else if(m == 36) {
@@ -159,6 +162,7 @@ public class Database {
 						}
 					}
 				}
+				k++;
 				continue;
 			}
 			else if(m == 12) {
@@ -170,7 +174,8 @@ public class Database {
 							if(J[l++] == 1) S[k].bookSeat(row, col);
 						}
 					}
-				}	
+				}
+				k++;
 				continue;
 			}
 			else if (m == 3) {
@@ -179,14 +184,17 @@ public class Database {
 				for(int col = 0 ; col < 3; col++) {
 					S[k].bookAllSeats();
 				}
-			}	continue;
+				
+			}
+				k++;
+				continue;
 			}
 			else {
 				System.out.println("Error in files");
 				break;
 			}
 		}
-		k++;
+		
 	}
 	
 	public void getTripData() {
@@ -269,6 +277,7 @@ public class Database {
 	
 	public Trip addTripData(String start, String dest, String vehicle, String vnum, String drivername, String date, String time, String ticketprice) throws IOException{
 		int ID=0;
+		System.out.println(start + dest + vehicle + vnum + drivername + date + time + ticketprice);
 		switch(start) {
 			case "District1":
 				ID = 105000;
@@ -306,6 +315,9 @@ public class Database {
 			if(T[j].ID == ID) {
 				ID++;
 				j++;
+			}
+			else {
+				j++;
 				continue;
 			}
 		}
@@ -314,7 +326,7 @@ public class Database {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
-	f.write("\r\n" + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + ticketprice);
+	f.write("\r\n" + ID + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " " + ticketprice);
 	float tp = Float.parseFloat(ticketprice);
 	int num = Integer.parseInt(vnum);
 	this.vehicle = new Vehicle(vehicle);
@@ -335,21 +347,30 @@ public class Database {
 		cap--;
 	}
 	fr.close();
+	getTripData();
 	return t;
 }
 
 	public void saveTripData() throws IOException {
 		String ID, start, dest, vehicle, vnum, drivername, date, time, ticketprice;
-		int i=0;
+		int i=1;
 		try {	
-				
-				x = new Formatter("TripsData.txt");
-				fr = new FileWriter("TripsData.txt", true);
+				fr = new FileWriter("TripsData.txt", false);
 				inp = new Scanner(new File("TripsData.txt"));
 		} 
 		catch (IOException e) {
 			e.printStackTrace();
 		}	
+		ID = Integer.toString(T[0].ID);
+		start = T[0].start;
+		dest = T[0].destination;
+		vehicle = T[0].vmodel;
+		vnum = Integer.toString(T[0].vnum);
+		drivername = T[0].driverName;
+		date = T[0].date;
+		time = T[0].time;
+		ticketprice = Float.toString(T[0].ticket);
+		fr.write(ID + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " "+ ticketprice);
 		while(T[i] != null) {
 			ID = Integer.toString(T[i].ID);
 			start = T[i].start;
@@ -360,26 +381,32 @@ public class Database {
 			date = T[i].date;
 			time = T[i].time;
 			ticketprice = Float.toString(T[i].ticket);
-			if(!inp.hasNext()) {
-				x.format(ID + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " "+ ticketprice);
-			}
-			else fr.write("\r\n" + ID + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " "+ ticketprice);
+			fr.write("\r\n" + ID + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " "+ ticketprice);
 			i++;
 		}
 		fr.close();
 	
 	try {
-		x = new Formatter("Seats.txt");
-		fr = new FileWriter("Seats.txt", true);
+		fr = new FileWriter("Seats.txt", false);
 		inp = new Scanner(new File("Seats.txt"));
 	} catch (IOException e) {
 		e.printStackTrace();
 	}	
-	
 	int row, col;
-	i = 0;
+	i=1;
+	fr.write("" + T[0].seat.capacity);
+	//System.out.println(T[0].seat.capacity);
+	row = T[0].seat.seat.length;
+	col = T[0].seat.seat[0].length;
+	for(int iterator = 0; iterator < row ; iterator++) {
+		for(int iterator2 = 0; iterator2 < col ; iterator2 ++) {
+				if(T[0].seat.seat[iterator][iterator2]) fr.write(" 1");
+				else fr.write(" 0");					
+		}
+	}
 		while(T[i] != null) {
-			if(inp.hasNext())fr.write("\r\n" + T[i].vehicle.s.capacity);
+			fr.write("\r\n" + T[i].vehicle.s.capacity);
+			System.out.println(T[i].seat.capacity);
 			row = T[i].seat.seat.length;
 			col = T[i].seat.seat[i].length;
 			for(int iterator = 0; iterator < row ; iterator++) {
@@ -398,9 +425,11 @@ public class Database {
 	
 	public void cancelTrip(int index) throws IOException {
 		int i = index;
+		
 		while(T[i+1] != null) {
 			T[i] = T[i+1];
 			i++;
+			System.out.println(i);
 		}
 		T[i] = null;
 		saveTripData();

@@ -15,11 +15,11 @@ public  class Vehicle {
 			capacity = s.getCapacity();
 		}
 		else if(vmodel.equals("mercedescito")) {
-			s = new Seat("MidBus");
+			s = new Seat("Midbus");
 			capacity = s.getCapacity();
 		}
 		else if(vmodel.equals("toyotahiace")) {
-			s = new Seat("MiniBus");
+			s = new Seat("Minibus");
 			capacity = s.getCapacity();
 		}
 		else if(vmodel.equals("hyundaiequus")) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -29,7 +30,7 @@
       </MenuBar>
    </top>
    <left>
-      <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+      <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" prefHeight="358.0" prefWidth="124.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
 
             <Label fx:id="WelcomeLabel" text="Hello " />
@@ -38,10 +39,13 @@
             <Button fx:id="Settings" mnemonicParsing="false" text="Settings" />
             <Button fx:id="Service" mnemonicParsing="false" text="Customer Service" />
          </children>
+         <padding>
+            <Insets left="5.0" top="5.0" />
+         </padding>
       </VBox>
    </left>
    <center>
-      <VBox alignment="TOP_CENTER" prefHeight="184.0" prefWidth="287.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="184.0" prefWidth="287.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Search for your trip" />
             <MenuButton mnemonicParsing="false" text="Select trip type">
@@ -64,12 +68,15 @@
             </MenuButton>
             <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" text="Seating options" />
             <DatePicker promptText="Select date" />
-            <Button mnemonicParsing="false" text="Confirm Booking" />
+            <Button mnemonicParsing="false" text="Search" />
          </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
       </VBox>
    </center>
    <right>
-      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="how" text="How it works" />
             <Label fx:id="search" text="Search" />
@@ -92,6 +99,12 @@
                </children>
             </AnchorPane>
          </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets right="5.0" />
+         </BorderPane.margin>
       </VBox>
    </right>
    <bottom>

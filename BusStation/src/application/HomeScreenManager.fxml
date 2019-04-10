@@ -33,7 +33,7 @@
    <left>
       <AnchorPane>
          <children>
-            <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="364.0" prefWidth="170.0" spacing="10.0" visible="false" BorderPane.alignment="CENTER">
+            <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="364.0" prefWidth="170.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="labelHelloManager" text="Hello Mister" />
                   <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
@@ -74,7 +74,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="editTitle" alignment="TOP_RIGHT" layoutY="20.0" prefHeight="354.0" prefWidth="150.0">
+            <VBox fx:id="editTitle" alignment="TOP_RIGHT" layoutY="20.0" prefHeight="354.0" prefWidth="150.0" visible="false">
                <children>
                   <Label alignment="CENTER" text="Edit Trips">
                      <font>
@@ -207,7 +207,7 @@
                   </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="editFull" prefHeight="364.0" prefWidth="449.0">
+            <AnchorPane fx:id="editFull" prefHeight="364.0" prefWidth="449.0" visible="false">
                <children>
                   <Button fx:id="PassengerProfileButton111" layoutX="338.0" layoutY="325.0" mnemonicParsing="false" onAction="#cancelTripButtonClicked" text="Cancel Trip" />
                   <Button fx:id="PassengerProfileButton11" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnEditTripClicked" text="Return" />
