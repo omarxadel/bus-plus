@@ -1,5 +1,5 @@
-
 package application;
+
 
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -426,4 +426,3 @@ public String[] getTrips(){
 			 String tripData = (ID + " " + uStart + " " + uDest + " " + uCar + " " + uCarnum + " " + dateGet + " " + time + " " + uTicket);
 			 Table.getItems().add(index, tripData);
 	}
-}

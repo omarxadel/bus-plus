@@ -213,6 +213,7 @@ public class Database {
 		T = new  Trip [100];
 		while(i.hasNext()) {
 			int ID = i.nextInt();
+			String type = i.next();
 			String start = i.next();
 			String dest = i.next();
 			String vehicle = i.next();
@@ -222,7 +223,7 @@ public class Database {
 			String time = i.next();
 			float ticket = i.nextFloat();
 			Seat seat = S[J];
-			T[J] = new Trip (ID, start, dest, vehicle, vnum, driver, date, time, ticket, seat);
+			T[J] = new Trip (ID, type, start, dest, vehicle, vnum, driver, date, time, ticket, seat);
 			//System.out.println(T[J].ID);
 			J++;
 		}
@@ -268,7 +269,7 @@ public class Database {
 		return p;
 	}
 	
-	public Trip addTripData(String start, String dest, String vehicle, String vnum, String drivername, String date, String time, String ticketprice) throws IOException{
+	public Trip addTripData(String type, String start, String dest, String vehicle, String vnum, String drivername, String date, String time, String ticketprice) throws IOException{
 		int ID=0;
 		System.out.println(start + dest + vehicle + vnum + drivername + date + time + ticketprice);
 		switch(start) {
@@ -319,11 +320,11 @@ public class Database {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
-	f.write("\r\n" + ID + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " " + ticketprice);
+	f.write("\r\n" + ID + " " + type + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " " + ticketprice);
 	float tp = Float.parseFloat(ticketprice);
 	int num = Integer.parseInt(vnum);
 	this.vehicle = new Vehicle(vehicle);
-	Trip t = new Trip(ID, start, dest, vehicle, num, drivername, date, time, tp, this.vehicle.getSeats());
+	Trip t = new Trip(ID, type, start, dest, vehicle, num, drivername, date, time, tp, this.vehicle.getSeats());
 	f.close();
 	
 	try {
@@ -345,7 +346,7 @@ public class Database {
 }
 
 	public void saveTripData() throws IOException {
-		String ID, start, dest, vehicle, vnum, drivername, date, time, ticketprice;
+		String ID, type, start, dest, vehicle, vnum, drivername, date, time, ticketprice;
 		int i=1;
 		try {	
 				fr = new FileWriter("TripsData.txt", false);
@@ -355,6 +356,7 @@ public class Database {
 			e.printStackTrace();
 		}	
 		ID = Integer.toString(T[0].ID);
+		type = T[0].type;
 		start = T[0].start;
 		dest = T[0].destination;
 		vehicle = T[0].vmodel;
@@ -363,9 +365,10 @@ public class Database {
 		date = T[0].date;
 		time = T[0].time;
 		ticketprice = Float.toString(T[0].ticket);
-		fr.write(ID + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " "+ ticketprice);
+		fr.write(ID + " " + type + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " "+ ticketprice);
 		while(T[i] != null) {
 			ID = Integer.toString(T[i].ID);
+			type = T[i].type;
 			start = T[i].start;
 			dest = T[i].destination;
 			vehicle = T[i].vmodel;
@@ -374,7 +377,7 @@ public class Database {
 			date = T[i].date;
 			time = T[i].time;
 			ticketprice = Float.toString(T[i].ticket);
-			fr.write("\r\n" + ID + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " "+ ticketprice);
+			fr.write("\r\n" + ID + " " + type + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " "+ ticketprice);
 			i++;
 		}
 		fr.close();
