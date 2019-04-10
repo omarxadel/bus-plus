@@ -216,7 +216,7 @@ public class Database {
 			String start = i.next();
 			String dest = i.next();
 			String vehicle = i.next();
-			int vnum = i.nextInt();
+		    int vnum=i.nextInt();
 			String driver = i.next();
 			String date = i.next();
 			String time = i.next();

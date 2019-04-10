@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
-public class HomeScreenController implements PaymentMethod{
+public class HomeScreenController {
 	//Manager M;
 	Passenger P;
 	Seat s;
@@ -54,12 +54,6 @@ public class HomeScreenController implements PaymentMethod{
 	public VBox instr;
 	public VBox LabelChoose;
 	
-	@Override
-	public void pay() {
-		cash ();
-		Visa ();
-	}
-
 	// --------------- Profile Controls ---------------\\
 	 
 	public void getProfile (Passenger P)
@@ -156,14 +150,5 @@ public class HomeScreenController implements PaymentMethod{
 		back.setVisible(false);
 	}
 
-	//-------------------------------------------------\\
-	public void cash ()
-	{
-		
-	}
-	public void Visa()
-	{
-		
-	}
 }
 	
