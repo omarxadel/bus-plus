@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 
 public class Trip {
 	int ID;
+	String type;
 	String start;
 	String destination;
 	String driverName;
@@ -17,9 +18,10 @@ public class Trip {
 	Seat seat;
 	
 
-	public Trip(int ID, String start, String dest, String vehicle, int vnum , String driver, String date, String time, float ticket, Seat seat){
+	public Trip(int ID, String type, String start, String dest, String vehicle, int vnum , String driver, String date, String time, float ticket, Seat seat){
 		
 		this.ID = ID;
+		this.type = type;
 		this.start = start;
 		destination = dest;
 		this.vehicle = new Vehicle(vehicle);

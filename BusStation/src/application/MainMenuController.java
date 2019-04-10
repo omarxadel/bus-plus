@@ -95,9 +95,9 @@ public class MainMenuController implements Initializable{
 		loader.setLocation(getClass().getResource("HomeScreenDriver.fxml"));
 		Parent DriverHome = loader.load();
 		Scene DHome = new Scene(DriverHome);
-		
 		HomeScreenDriverController controller = loader.getController();
 		controller.getProfile(b);
+		controller.myTripsInit();
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(DHome);
 	}

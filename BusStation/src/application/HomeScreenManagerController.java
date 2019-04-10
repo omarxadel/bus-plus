@@ -68,6 +68,7 @@ public class HomeScreenManagerController implements Initializable {
 	public ChoiceBox<String> car;
 	public ChoiceBox<String> carNo;
 	public ChoiceBox<String> carNo2;
+	public ChoiceBox<String> ttype, ttype1;
 	public DatePicker date;
 	public TextField ticket, ticket2;
 	public TextField Time1, Time2, Time12, Time22;
@@ -89,6 +90,7 @@ public class HomeScreenManagerController implements Initializable {
 	private String dateGet;
 	private String time;
 	public TextField FirstnameAdd, LastnameAdd, UsernameAdd , PasswordAdd, RepassAdd, CityAdd, CountryAdd;
+	private String uType;
 
 
 @Override
@@ -150,6 +152,8 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	// --------------- Add Trips Controls ------------\\
 	
 	public void choiceInit() {
+		ttype.getItems().addAll("One-Way", "Round-Trip");
+		ttype.setValue("One-Way");
 		startL.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
 		startL.setValue("District1");
 		DestL.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
@@ -166,6 +170,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	}
 	
 	public void choiceReset() {
+		ttype.setValue("One-Way");
 		startL.setValue("District1");
 		DestL.setValue("District10");
 		car.setValue("KiaGranbird");
@@ -218,8 +223,8 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 			 else txttime2 = Integer.toString(timevalid2);
 			time = ("" + txttime + ":" + txttime2);
 			
-			T = d.addTripData(startL.getValue(), DestL.getValue(), car.getValue(), carNo.getValue(), Driver.getValue(), date, time, ticket.getText());
-			Table.getItems().add(Integer.toString(T.ID) + " " + T.start + " " + T.destination + " " + (T.vmodel) + " " + Integer.toString(T.vnum)+ " " + T.driverName + " " + T.date + " " + T.time + " " + Float.toString(T.ticket));
+			T = d.addTripData(ttype.getValue(), startL.getValue(), DestL.getValue(), car.getValue(), carNo.getValue(), Driver.getValue(), date, time, ticket.getText());
+			Table.getItems().add(Integer.toString(T.ID) + " " + T.type + " " + T.start + " " + T.destination + " " + (T.vmodel) + " " + Integer.toString(T.vnum)+ " " + T.driverName + " " + T.date + " " + T.time + " " + Float.toString(T.ticket));
 			AlertBox.display("SUCCESS", "A new trip was added susccessfully!", "OK");
 			choiceReset();
 			}
@@ -252,7 +257,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 				ID = Integer.toString(d.T[i].ID);
 				vnumb = Integer.toString(d.T[i].vnum);
 				ticketData = Float.toString(d.T[i].ticket);
-				tripData = (ID + " " + d.T[i].start + " " + d.T[i].destination + " " + d.T[i].vmodel + " " + vnumb + " " + d.T[i].driverName + " " + d.T[i].date + " " + d.T[i].time + " " + ticketData);
+				tripData = (ID + " " + d.T[i].type + " " + d.T[i].start + " " + d.T[i].destination + " " + d.T[i].vmodel + " " + vnumb + " " + d.T[i].driverName + " " + d.T[i].date + " " + d.T[i].time + " " + ticketData);
 				tripsView[i] = tripData;
 				i++;
 			}
@@ -336,15 +341,16 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 			editFull.setVisible(false);
 			Table.setVisible(false);
 			dateGet = d.T[index].date;
-			updateInit(ID, d.T[index].start, d.T[index].destination, d.T[index].vmodel, Integer.toString(d.T[index].vnum) ,dateGet, time1[0], time1[1], Float.toString(d.T[index].ticket), d.T[index].driverName, index);
+			updateInit(ID, d.T[index].type , d.T[index].start, d.T[index].destination, d.T[index].vmodel, Integer.toString(d.T[index].vnum) ,dateGet, time1[0], time1[1], Float.toString(d.T[index].ticket), d.T[index].driverName, index);
 		}
 	}
 	
 	
 	public void updateDataInit() {
+		ttype1.getItems().addAll("One-Way", "Round-Trip");
 		startL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
-	DestL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
-	int i = 0;
+		DestL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
+		int i = 0;
 		while(d.D[i] != null) {
 			Driver2.getItems().add(d.D[i].username);
 			i++;
@@ -358,7 +364,8 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	}
 	
 	
-	public void updateInit(int ID, String start, String dest, String v, String vnum, String date, String time1, String time2, String tick, String select, int ind) {
+	public void updateInit(int ID, String type, String start, String dest, String v, String vnum, String date, String time1, String time2, String tick, String select, int ind) {
+		uType = type;
 		uStart = start;
 		uDest = dest;
 		uCar = v;
@@ -366,6 +373,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		time = (time1 + ":" + time2);
 		uTicket = tick;
 		uDriver = select;
+		ttype1.setValue(type);
 		startL2.setValue(start);
 		DestL2.setValue(dest);
 		Driver2.setValue(select);
@@ -408,19 +416,21 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 			 if(ticket2.getText() != (null)) {
 				 uTicket = ticket2.getText();
 			 }
+			 uType = ttype1.getValue();
 			 Seat s;
 			 s = new Vehicle(uCar).s;
-			 Trip T = new Trip(ID, uStart, uDest, uCar, Integer.parseInt(uCarnum), uDriver, dateGet, time, Float.parseFloat(uTicket), s);
+			 Trip T = new Trip(ID, uType, uStart, uDest, uCar, Integer.parseInt(uCarnum), uDriver, dateGet, time, Float.parseFloat(uTicket), s);
 			 d.T[index] = T;
 			 d.saveTripData();
 			 Table.getItems().remove(index);
-			 String tripData = (ID + " " + uStart + " " + uDest + " " + uCar + " " + uCarnum + " " + uDriver + " " + dateGet + " " + time + " " + uTicket);
+			 String tripData = (ID + " " + uType + " " + uStart + " " + uDest + " " + uCar + " " + uCarnum + " " + uDriver + " " + dateGet + " " + time + " " + uTicket);
 			 Table.getItems().add(index, tripData);
 			 AlertBox.display("SUCCESS", "Trips were updated successfully!", "Return");
-			 ManageTripsTab.setVisible(true);
-			 editTitle.setVisible(false);
-			 Table.setVisible(false);
-			 editFull.setVisible(false);
+			 editTitle.setVisible(true);
+			 Table.setVisible(true);
+			 editFull.setVisible(true);
+			 UpdateTrips.setVisible(false);
+			 
 	}
 	
 	// --------------- Manage Driver Controls ------------\\
