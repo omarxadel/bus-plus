@@ -1,105 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.image.*?>
-<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreenController">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-   <left>
-      <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
-         <children>
-
-            <Label fx:id="WelcomeLabel" text="Hello " />
-            <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Passenger Profile" />
-            <Button fx:id="PromoCodes" mnemonicParsing="false" text="Promo Codes" />
-            <Button fx:id="Settings" mnemonicParsing="false" text="Settings" />
-            <Button fx:id="Service" mnemonicParsing="false" text="Customer Service" />
-         </children>
-      </VBox>
-   </left>
-   <center>
-      <VBox alignment="TOP_CENTER" prefHeight="184.0" prefWidth="287.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Search for your trip" />
-            <MenuButton mnemonicParsing="false" text="Select trip type">
-              <items>
-                <MenuItem fx:id="OnewayOption" mnemonicParsing="false" text="One-Way" />
-                <MenuItem mnemonicParsing="false" text="Round-Trip" />
-              </items>
-            </MenuButton>
-            <MenuButton mnemonicParsing="false" text="Select your start">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </MenuButton>
-            <MenuButton mnemonicParsing="false" text="Select your destination">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </MenuButton>
-            <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" text="Seating options" />
-            <DatePicker promptText="Select date" />
-            <Button mnemonicParsing="false" text="Confirm Booking" />
-         </children>
-      </VBox>
-   </center>
-   <right>
-      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="how" text="How it works" />
-            <Label fx:id="search" text="Search" />
-            <Label fx:id="find" text="Find" />
-            <Label fx:id="book" text="Book!" />
-            <Label fx:id="booking" text="Booking a bus trip never been so easy!" />
-            <AnchorPane fx:id="ProfFull" prefHeight="369.0" prefWidth="205.0" visible="false">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreenController">
+   <children>
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <AnchorPane prefHeight="355.0" prefWidth="124.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="Account" layoutX="19.0" layoutY="14.0" text="Account Type" />
-                  <ImageView fitHeight="67.0" fitWidth="63.0" layoutX="24.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../user.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="Fname" layoutX="24.0" layoutY="103.0" text="FULL NAME" />
-                  <Label fx:id="Country" layoutX="37.0" layoutY="120.0" text="County" />
-                  <Label fx:id="ID" layoutX="50.0" layoutY="137.0" text="ID" />
-                  <Button fx:id="EditAccount" layoutX="120.0" layoutY="47.0" mnemonicParsing="false" text="Edit Account" />
-                  <Button fx:id="ReturnProf" layoutX="139.0" layoutY="72.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
+                  <VBox fx:id="ProfTitle" alignment="TOP_CENTER" layoutY="10.0" prefHeight="190.0" prefWidth="127.0" visible="false">
+                     <children>
+                        <Label prefHeight="87.0" prefWidth="112.0" text="My Profile">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" prefHeight="355.0" prefWidth="124.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="WelcomeLabel" text="Hello Mr." />
+                        <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="MyProfile" />
+                        <Button fx:id="PromoCodes" mnemonicParsing="false" text="Promo Codes" />
+                        <Button fx:id="Settings" mnemonicParsing="false" text="Settings" />
+                        <Button fx:id="Service" mnemonicParsing="false" text="Customer Service" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="LabelChoose" alignment="TOP_CENTER" layoutX="1.0" layoutY="30.0" prefHeight="200.0" prefWidth="132.0" visible="false">
+                     <children>
+                        <Label text="Choose your trip">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
-         </children>
-      </VBox>
-   </right>
-   <bottom>
-      <HBox BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Status Bar" />
-            <Label text="Label" />
-         </children>
-      </HBox>
-   </bottom>
-</BorderPane>
+         </left>
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <center>
+            <AnchorPane prefHeight="355.0" prefWidth="235.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="Trip1" prefHeight="355.0" prefWidth="213.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ListView prefHeight="355.0" prefWidth="291.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-78.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="Trip2" prefHeight="355.0" prefWidth="213.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ListView prefHeight="355.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-79.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="Trip3" prefHeight="355.0" prefWidth="213.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ListView prefHeight="355.0" prefWidth="293.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-80.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="ProfFull" prefHeight="355.0" prefWidth="219.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button fx:id="ReturnProf" layoutY="329.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
+                        <VBox alignment="TOP_CENTER" layoutX="68.0" layoutY="27.0" prefHeight="218.0" prefWidth="139.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../user.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="Fname" text="FULL NAME" />
+                              <Label fx:id="Country" text="Country" />
+                              <Label fx:id="ID" text="ID" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <VBox fx:id="SearchTabs" alignment="TOP_CENTER" layoutX="73.0" prefHeight="355.0" prefWidth="203.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="73.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label text="Search for your trip" />
+                        <MenuButton fx:id="TripType" mnemonicParsing="false" text="Select trip type">
+                          <items>
+                            <MenuItem fx:id="oneway" mnemonicParsing="false" text="One-Way" />
+                            <MenuItem fx:id="roundway" mnemonicParsing="false" text="Round-Trip" />
+                          </items>
+                        </MenuButton>
+                        <MenuButton fx:id="TripLine" mnemonicParsing="false" onAction="#SelectTrip" text="Select trip line">
+                          <items>
+                            <MenuItem fx:id="line1" mnemonicParsing="false" onAction="#SelectTrip" text="Line 1" />
+                            <MenuItem fx:id="line2" mnemonicParsing="false" onAction="#SelectTrip" text="Line 2" />
+                              <MenuItem fx:id="line3" mnemonicParsing="false" onAction="#SelectTrip" text="Line 3" />
+                          </items>
+                        </MenuButton>
+                        <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" text="Seating options" />
+                        <DatePicker fx:id="date" promptText="Select date" />
+                        <Button fx:id="confirm" mnemonicParsing="false" text="Confrim Booking" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </center>
+         <right>
+            <AnchorPane prefHeight="355.0" prefWidth="254.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="back" layoutX="169.0" layoutY="317.0" mnemonicParsing="false" onAction="#BackMainTab" text="Confirm" visible="false" />
+                  <Button fx:id="Editacc" layoutX="14.0" layoutY="329.0" mnemonicParsing="false" text="Edit Account Info." visible="false" />
+                  <VBox fx:id="instr" alignment="TOP_CENTER" layoutX="14.0" prefHeight="355.0" prefWidth="254.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label text="How it works" />
+                        <Label text="Search" />
+                        <Label text="Find" />
+                        <Label text="book!" />
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="234.0" text="Booking a bus trip never been so easy!" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </right>
+         <bottom>
+            <HBox prefHeight="20.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Status Bar" />
+                  <Label text="Label" />
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

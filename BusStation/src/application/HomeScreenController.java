@@ -23,20 +23,29 @@ public class HomeScreenController {
 	Seat s;
 	Stage stage;
 	Scene scene;
+	public Trip[] trip;
 	//Driver D;
 	
+	public AnchorPane Trip1;
+	public AnchorPane Trip2;
+	public AnchorPane Trip3;
+	public Button Editacc;
 	public Button PromoCodes;
 	public Button PassengerProfileButton;
 	public Button SeatingOptions;
 	public Button Service;
 	public Button Settings;
-	public Button EditAccount;
+	public Button back;
+	//public Button EditAccount;
 	public Button ReturnProf;
 	public MenuItem OnewayOption;
+	public MenuItem Round;
+	public MenuItem line1;
+	public MenuItem line2;
+	public MenuItem line3;
 	public VBox PassengerTabs;
 	public Label WelcomeLabel;
 	public AnchorPane ProfFull;
-	public Label Account;
 	public Label Fname;
 	public Label Country;
 	public Label ID;
@@ -45,7 +54,12 @@ public class HomeScreenController {
 	public Label find;
 	public Label book;
 	public Label booking;
-	public VBox MyProfile;
+	public VBox ProfTitle;
+	public VBox SearchTabs;
+	public VBox instr;
+	public VBox LabelChoose;
+	
+	
 
 	// --------------- Profile Controls ---------------\\
 	 
@@ -53,13 +67,12 @@ public class HomeScreenController {
 	{
 		this.P=P;
 		if(P.gender.equals("Male")) {
-			WelcomeLabel.setText("Hello Mister " + P.firstname);
+			WelcomeLabel.setText("Hello Mr. " + P.firstname);
 		}
 		else {
 			WelcomeLabel.setText("Hello Mrs. " + P.firstname);
 		}
 		Fname.setText("" + P.firstname + " " + P.lastname);
-		Account.setText("" + P.job);
 		Country.setText("" + P.city +", "+ P.country);
 		ID.setText("" + P.ID);
 		
@@ -68,38 +81,71 @@ public class HomeScreenController {
 	public void profileButtonClicked (ActionEvent e)
 	{
 		ProfFull.setVisible(true);
-		//MyProfile.setVisible(true);
-		how.setVisible(false);
-		search.setVisible(false);
-		find.setVisible(false);
-		book.setVisible(false);
-		booking.setVisible(false);
-		
+		ProfTitle.setVisible(true);
+		Editacc.setVisible(true);
+		SearchTabs.setVisible(false);
+		instr.setVisible(false);
+		PassengerTabs.setVisible(false);
 		
 	}
 	
 	public void returnProfButtonClicked (ActionEvent e)
 	{   
-		how.setVisible(true);
-		search.setVisible(true);
-		find.setVisible(true);
-		book.setVisible(true);
-		booking.setVisible(true);
+		SearchTabs.setVisible(true);
+		instr.setVisible(true);
+		PassengerTabs.setVisible(true);
 		ProfFull.setVisible(false);
-		//MyProfile.setVisible(false);
-		
-		
+		ProfTitle.setVisible(false);
+		Editacc.setVisible(false);
+
 	}
 	// --------------- Choosing Seats ---------------\\
 	
 	public void SeatingOptions (ActionEvent e) throws IOException
 	{
-		SeatsDesign.display(36);
+		SeatsDesign.display(48);
 		
 	}
 
 	public Scene getScene() {
 		return scene;
+	}
+
+
+//--------------- Trips Schedule Tab ---------------\\
+
+	public void SelectTrip (ActionEvent e) throws IOException
+	{
+		LabelChoose.setVisible(true);
+		back.setVisible(true);
+		if(line1.getTypeSelector() != null)
+		{
+			Trip1.setVisible(true);
+		}
+		if(line2.getTypeSelector() != null)
+		{
+			Trip2.setVisible(true);
+		}
+		if(line3.getTypeSelector() != null)
+		{
+			Trip3.setVisible(true);
+		}
+		SearchTabs.setVisible(false);
+		instr.setVisible(false);
+		PassengerTabs.setVisible(false);
+		
+	}
+	public void BackMainTab (ActionEvent e) throws IOException
+	{
+		
+		SearchTabs.setVisible(true);
+		instr.setVisible(true);
+		PassengerTabs.setVisible(true);
+		Trip1.setVisible(false);
+		Trip2.setVisible(false);
+		Trip3.setVisible(false);
+		LabelChoose.setVisible(false);
+		back.setVisible(false);
 	}
 }
 	/*Passenger P;
