@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -25,6 +24,7 @@ public class HomeScreenDriverController implements Initializable{
 	Driver D;
 	Manager M[];
 	static Database d = new Database();
+	public Trip[] trip;
 	public VBox MainTabManager;
 	public VBox ProfTitle;
 	public VBox Schedule;
@@ -112,6 +112,7 @@ public class HomeScreenDriverController implements Initializable{
 		Back.setVisible(false);
 	}
 	
+
 	
 	public void myTripsClicked() {
 	}

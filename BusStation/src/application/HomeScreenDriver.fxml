@@ -71,14 +71,18 @@
    <center>
       <AnchorPane prefHeight="363.0" prefWidth="190.0" BorderPane.alignment="CENTER">
          <children>
+
             <AnchorPane fx:id="trip2" prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <ListView prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
                </children>
             </AnchorPane>
             <AnchorPane fx:id="trip3" prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
+
                   <ListView prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
                </children>
             </AnchorPane>
             <Button fx:id="Back" layoutX="14.0" layoutY="342.0" mnemonicParsing="false" onAction="#BackMainTab" text="Ok" visible="false" />
