@@ -76,7 +76,7 @@ public class MainMenuController implements Initializable{
 		window.setScene(userHomeS);
 	}
 	
-	public void homeAdminLoader(ActionEvent e, Manager a) throws IOException {
+	public void homeAdminLoader(ActionEvent e, Manager a, int index) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("HomeScreenManager.fxml"));
 		Parent ManagerHome = loader.load();
@@ -116,7 +116,7 @@ public class MainMenuController implements Initializable{
 		}
 		else if(AdminRadio.isSelected()) {
 			M = auth.getManager(currentUser);
-			homeAdminLoader(e, M);
+			homeAdminLoader(e, M, currentUser);
 		}
 		else if(DriverRadio.isSelected()) {
 			D = auth.getDriver(currentUser);

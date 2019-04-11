@@ -3,6 +3,7 @@ package application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,12 +14,15 @@ import javafx.stage.Stage;
 
 public class SeatsDesign {
 	static String [] bookedSeats;
+	static Stage window;
+	static String [] bookedSeats = new String[50];
 	static Trip T;
 	HomeScreenController homescreen;
 	int SNum;
 	Stage NewWindow=new Stage ();
 	static GridPane grid = new  GridPane ();
 	Scene scene=new Scene(grid);
+	static Scene scene=new Scene(grid);
 	static int i = 0;
 	
 	
@@ -366,7 +370,15 @@ public class SeatsDesign {
 	grid.setAlignment(Pos.CENTER);
 	
 	//-------------------------------------------------------------------//
-	
+	OK.setOnAction(new EventHandler<ActionEvent>() {
+
+		@Override
+		public void handle(ActionEvent event) {
+		
+			window.close();
+		}
+		
+		});
 	one.setOnAction(new EventHandler<ActionEvent>() {
 
 	@Override
@@ -1914,13 +1926,11 @@ public class SeatsDesign {
 	});
 	}
 	return grid;
+	}
+	}
 	
-	}
-
-	public Scene getScene() {
-	return scene;
-	}
-
+	});
+	
 	public void setScene(Scene scene) {
 	this.scene = scene;
 	}
@@ -1935,5 +1945,9 @@ public class SeatsDesign {
 	Scene scene = new Scene(Design(capacity));
 	window.setScene(scene);
 	window.showAndWait();
+	}
+	
+	public static String[] getSeatsChosen() {
+		return bookedSeats;
 	}
 }
