@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.*;
 
 public class HomeScreenController implements Initializable {
+
 	//Manager M;
 	Passenger P;
 	Seat s;
@@ -251,9 +252,9 @@ public class HomeScreenController implements Initializable {
 		back.setVisible(false);
 	}
 
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		choiceInit();
 	}
-
 }

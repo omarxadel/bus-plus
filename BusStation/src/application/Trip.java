@@ -1,8 +1,5 @@
 package application;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 public class Trip {
 	int ID;
 	String type;

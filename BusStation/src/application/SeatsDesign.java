@@ -1734,7 +1734,7 @@ public class SeatsDesign {
 	public static void display(int capacity) {
 		Stage window = new Stage();
 		window.setTitle("Seating Chart");
-		window.setMinWidth(1200);
+		window.setMinWidth(1000);
 		window.setMinHeight(500);
 		window.initModality(Modality.APPLICATION_MODAL);		
 		Scene scene = new Scene(Design(capacity));
