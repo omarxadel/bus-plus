@@ -105,7 +105,7 @@ public class HomeScreenController {
 	
 	public void SeatingOptions (ActionEvent e) throws IOException
 	{
-		SeatsDesign.display(48);
+		SeatsDesign.Design(48);
 		
 	}
 
