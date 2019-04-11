@@ -3,21 +3,26 @@ package application;
 public class Seat {
 	boolean [][] seat;
 	int capacity;
+	String vtype;
 	
 	public Seat(String type) {
 		if(type.equals("Bus")) {
+			vtype = type;
 			seat = new boolean [4][12];
 			capacity = 48;
 		}
 		else if(type.equals("Midbus")) {
+			vtype = type;
 			seat = new boolean [4][9];
 			capacity = 36;
 		}
 		else if(type.equals("Minibus")) {
+			vtype = type;
 			seat = new boolean [3][4];
 			capacity = 12;
 		}
 		else if(type.equals("Limo")) {
+			vtype=type;
 			seat = new boolean [1][3];
 			capacity = 3;
 		}

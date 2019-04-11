@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreenController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -100,27 +100,24 @@
                         <Button fx:id="ReturnProf" layoutX="-9.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
                      </children>
                   </AnchorPane>
-                  <VBox fx:id="SearchTabs" alignment="TOP_CENTER" layoutX="73.0" prefHeight="355.0" prefWidth="203.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="73.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox fx:id="SearchTabs" alignment="TOP_CENTER" layoutX="-2.0" prefHeight="369.0" prefWidth="322.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label text="Search for your trip" />
-                        <MenuButton fx:id="TripType" mnemonicParsing="false" text="Select trip type">
-                          <items>
-                            <MenuItem fx:id="oneway" mnemonicParsing="false" text="One-Way" />
-                            <MenuItem fx:id="roundway" mnemonicParsing="false" text="Round-Trip" />
-                          </items>
-                        </MenuButton>
-                        <MenuButton fx:id="TripLine" mnemonicParsing="false" onAction="#SelectTrip" text="Select trip line">
-                          <items>
-                            <MenuItem fx:id="line1" mnemonicParsing="false" onAction="#SelectTrip" text="Line 1" />
-                            <MenuItem fx:id="line2" mnemonicParsing="false" onAction="#SelectTrip" text="Line 2" />
-                              <MenuItem fx:id="line3" mnemonicParsing="false" onAction="#SelectTrip" text="Line 3" />
-                          </items>
-                        </MenuButton>
-                        <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" text="Seating options" />
+                        <ChoiceBox fx:id="type" prefWidth="150.0" />
+                        <ChoiceBox fx:id="start" prefWidth="150.0" />
+                        <ChoiceBox fx:id="destination" prefWidth="150.0" />
                         <DatePicker fx:id="date" promptText="Select date" />
-                        <Button fx:id="confirm" mnemonicParsing="false" text="Confrim Booking" />
+                        <Button fx:id="confirm" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="25.0" prefWidth="103.0" text="Search" />
+                        <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" text="Seating options" visible="false" />
                      </children>
                   </VBox>
+                  <AnchorPane fx:id="searchResultPane" prefHeight="369.0" prefWidth="320.0">
+                     <children>
+                        <ListView fx:id="searchView" layoutX="13.0" layoutY="14.0" prefHeight="229.0" prefWidth="295.0" />
+                        <Button layoutX="13.0" layoutY="256.0" mnemonicParsing="false" onAction="#returnSearchTab" text="Return" />
+                        <Button layoutX="240.0" layoutY="256.0" mnemonicParsing="false" text="Book Trip" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </center>

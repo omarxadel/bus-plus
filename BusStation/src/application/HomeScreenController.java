@@ -1,11 +1,15 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
+import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,7 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
-public class HomeScreenController implements PaymentMethod{
+public class HomeScreenController implements Initializable {
 	//Manager M;
 	Passenger P;
 	Seat s;
@@ -25,11 +29,12 @@ public class HomeScreenController implements PaymentMethod{
 	Scene scene;
 	public Trip[] trip;
 	//Driver D;
-	
+	static Database d = new Database();
 	public AnchorPane Trip1;
 	public AnchorPane Trip2;
 	public AnchorPane Trip3;
 	public AnchorPane Editacc;
+	public AnchorPane searchResultPane;
 	public Button PromoCodes;
 	public Button PassengerProfileButton;
 	public Button SeatingOptions;
@@ -53,13 +58,14 @@ public class HomeScreenController implements PaymentMethod{
 	public VBox SearchTabs;
 	public VBox instr;
 	public VBox LabelChoose;
+	public ChoiceBox<String> type;
+	public ChoiceBox<String> start;
+	public ChoiceBox<String> destination;
+	public DatePicker date;
+	public ListView<String> searchView;
+	private Trip [] resultTrips;
+	private String [] results;
 	
-	@Override
-	public void pay() {
-		cash ();
-		Visa ();
-	}
-
 	// --------------- Profile Controls ---------------\\
 	 
 	public void getProfile (Passenger P)
@@ -120,6 +126,95 @@ public class HomeScreenController implements PaymentMethod{
 	}
 
 
+//--------------- Search Trip Controls ---------------\\
+
+	public void choiceInit() {
+		type.getItems().addAll("One-Way", "Round-Trip");
+		start.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
+		destination.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
+	}
+	
+	public String[] getSelection() {
+		String [] searchData = new String [4];
+		if(type.getValue() == null || start.getValue() == null || destination.getValue() == null || date.getValue() == null) {
+			AlertBox.display("UNEXPECTED INPUTS", "Make sure you enter all the search fields!", "OK");
+		}
+		else {
+			searchData[0] = type.getValue();
+			searchData[1] = start.getValue();
+			searchData[2] = destination.getValue();
+			searchData[3] = date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		}
+		return searchData;
+	}
+	
+	public Trip[] queryTrips() {
+		int i = 0, k =0;
+		resultTrips = new Trip[100];
+		String [] searchData;
+		searchData = getSelection();
+		while(d.T[i] != null) {
+			if(d.T[i].type.equals(searchData[0]) && d.T[i].start.equals(searchData[1]) && d.T[i].destination.equals(searchData[2]) && d.T[i].date.equals(searchData[3])) {
+				resultTrips[k] = d.T[i];
+				k++;
+			}
+			i++;
+		}
+		return resultTrips;
+	}
+	
+	public String [] showResults() {
+		
+		Trip [] T = queryTrips();
+		results = new String[50];
+		int i = 0;
+		while(T[i] != null) {
+			results[i] = ("Trip type: " + T[0].type + "		Start: " + T[0].start + "		Destination: " + T[0].destination + "		Vehicle Type:" + T[i].seat.vtype + "		Free Seats:" + Integer.toString(T[0].seat.getFreeSeats())+ "		Date:" + T[0].date + "		Time:" + T[0].time +		" 	Price for one ticket:" + Float.toString(T[0].ticket));
+			i++;
+		}
+		return results;
+	}
+	
+	public void searchTableInit() {
+		String [] results = showResults();
+		int i = 0;
+		while(results[i] != null) {
+			searchView.getItems().add(results[i]);
+			i++;
+		}
+	}
+
+	
+	public void searchButtonClicked(ActionEvent e) {
+		searchTableInit();
+		searchResultPane.setVisible(true);
+		SearchTabs.setVisible(false);
+		PassengerTabs.setVisible(false);
+		instr.setVisible(false);
+		
+	}
+	
+	public void choiceReset() {
+		type.setValue(null);
+		start.setValue(null);
+		destination.setValue(null);
+		date.setValue(null);		
+	}
+	
+	public void returnSearchTab(ActionEvent e) {
+		choiceReset();
+		SearchTabs.setVisible(true);
+		PassengerTabs.setVisible(true);
+		instr.setVisible(true);
+		searchResultPane.setVisible(false);
+	}
+
+//--------------- Booking a Trip ---------------\\
+
+
+	
+	
+	
 //--------------- Trips Schedule Tab ---------------\\
 
 	public void SelectTrip (ActionEvent e) throws IOException
@@ -156,14 +251,9 @@ public class HomeScreenController implements PaymentMethod{
 		back.setVisible(false);
 	}
 
-	//-------------------------------------------------\\
-	public void cash ()
-	{
-		
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		choiceInit();
 	}
-	public void Visa()
-	{
-		
-	}
+
 }
-	
