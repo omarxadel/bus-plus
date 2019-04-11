@@ -25,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -42,7 +43,9 @@ public class HomeScreenManagerController implements Initializable {
 	Manager M;
 	Driver D[];
 	static Database d = new Database();
+	int userIndex;
 	String uStart, uDest, uCar, uCarnum, uDriver, uTime, uTicket;
+	public AnchorPane editProfile;
 	public AnchorPane DriveAddFull, DriverEdit;
 	public VBox MainTabManager;
 	public VBox ManageTripsTab;
@@ -74,6 +77,9 @@ public class HomeScreenManagerController implements Initializable {
 	public DatePicker date;
 	public TextField ticket, ticket2;
 	public TextField Time1, Time2, Time12, Time22;
+	public TextField FirstnameManager,LastnameManager,UsernameManager,CityManager,CountryManager;
+	public PasswordField PasswordManager, RepassManager;
+	public ChoiceBox<String> GenderManager;
 	public ListView<String> Table;
 	public ListView<String> Table2;
 	public TableColumn<Trip, Integer> TripIDc;
@@ -139,6 +145,76 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(MainScene);
 	}
+	
+	public void initEditProfile() {
+		FirstnameManager.setText(M.firstname);
+		LastnameManager.setText(M.lastname);
+		PasswordManager.setText(M.getPassword());
+		RepassManager.setText(M.getPassword());
+		CityManager.setText(M.city);
+		CountryManager.setText(M.country);
+		GenderManager.getItems().addAll("Male", "Female");
+		GenderManager.setValue(M.gender);
+	}
+	
+	public void toEditprofileClicked(ActionEvent e) {
+		editProfile.setVisible(true);
+		ProfTitle.setVisible(false);
+		ProfFull.setVisible(false);
+	}
+	
+	public void returnFromEditProfile(ActionEvent e) {
+		ProfTitle.setVisible(true);
+		ProfFull.setVisible(true);
+		editProfile.setVisible(false);
+	}
+	
+	public static void displayDialogueBox(String title, String message, String buttonTxt, String buttonTxt2) {
+		Stage window = new Stage();
+		window.setTitle(title);
+		window.setMinWidth(300);
+		window.initModality(Modality.APPLICATION_MODAL);
+		HBox internalLayout = new HBox(10);
+		Button Button2 = new Button(buttonTxt);
+		Button Button1 = new Button(buttonTxt2);
+		internalLayout.getChildren().addAll(Button1, Button2);
+		internalLayout.setAlignment(Pos.CENTER);
+		Label error = new Label(message);
+		Button1.setOnAction(e->{
+			flag = false;
+			window.close();
+			});
+		
+		Button2.setOnAction(e-> {
+			flag = true;
+			window.close();
+		});
+		VBox layout = new VBox(10);
+		layout.getChildren().addAll(error, internalLayout);
+		layout.setAlignment(Pos.CENTER);
+		
+		Scene scene = new Scene(layout);
+		window.setScene(scene);
+		window.showAndWait();
+	}
+	
+	public void saveProfileEditClicked(ActionEvent e) throws IOException {
+		displayDialogueBox("MESSAGE","Are you sure you want to update the saved data?","Yes","No");
+		if(flag) {
+			M.firstname = FirstnameManager.getText();
+		M.lastname = LastnameManager.getText();
+		M.username = UsernameManager.getText();
+		M.setPassword(PasswordManager.getText());
+		M.city = CityManager.getText();
+		M.country = CountryManager.getText();
+		M.gender = GenderManager.getValue();
+		d.M[userIndex] = M;
+		d.saveManagerData();
+		}
+		else return;
+		
+	}
+	
 
 // --------------- Manage Trips Button ------------\\
 	

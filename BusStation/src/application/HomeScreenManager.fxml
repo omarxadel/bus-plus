@@ -33,18 +33,37 @@
    <left>
       <AnchorPane>
          <children>
-            <VBox fx:id="MainTabManager" alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="276.0" prefWidth="154.0" spacing="15.0" visible="false" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="labelHelloManager" text="Hello Mister" />
-                  <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
-                  <Button fx:id="ManageTrips" mnemonicParsing="false" onAction="#ManageTripButtonClicked" text="Manage Trips" />
-                  <Button mnemonicParsing="false" onAction="#manageDriverButtonClicked" text="Manage Drivers" />
+                  <Label fx:id="labelHelloManager" text="Hello Mister">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <Region prefHeight="0.0" prefWidth="144.0" />
+                  <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" prefWidth="144.0" text="Profile" />
+                  <Button fx:id="ManageTrips" mnemonicParsing="false" onAction="#ManageTripButtonClicked" prefWidth="144.0" text="Manage Trips" />
+                  <Button mnemonicParsing="false" onAction="#manageDriverButtonClicked" prefWidth="144.0" text="Manage Drivers" />
                   <Button mnemonicParsing="false" text="Manage System Admins" />
-                  <Button fx:id="LogOutButton" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+                  <Button fx:id="LogOutButton" mnemonicParsing="false" onAction="#logOut" prefWidth="144.0" text="Log Out" />
 
                </children>
                <padding>
-                  <Insets left="10.0" />
+                  <Insets left="20.0" top="15.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="ManageTripsTab" alignment="TOP_CENTER" prefHeight="361.0" prefWidth="157.0" spacing="20.0" visible="false">
+               <children>
+                  <Label text="Manage Trips">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <Region prefHeight="0.0" prefWidth="200.0" />
+                  <Button fx:id="addNewTrip" minHeight="25.0" minWidth="118.0" mnemonicParsing="false" onAction="#addTripButtonClicked" text="Add a new trip" />
+                  <Button minHeight="25.0" minWidth="118.0" mnemonicParsing="false" onAction="#editButtonClicked" text="Edit an existing trip" />
+                  <Button fx:id="PassengerProfileButton1" minHeight="25.0" minWidth="118.0" mnemonicParsing="false" onAction="#returnManageTripButtonClicked" text="Return" />
+               </children>
+               <padding>
+                  <Insets left="20.0" top="15.0" />
                </padding>
             </VBox>
             <VBox fx:id="ProfTitle" alignment="TOP_RIGHT" prefHeight="364.0" prefWidth="150.0" spacing="10.0" visible="false" AnchorPane.topAnchor="20.0">
@@ -54,15 +73,6 @@
                         <Font size="25.0" />
                      </font>
                   </Label>
-               </children>
-            </VBox>
-            <VBox fx:id="ManageTripsTab" alignment="TOP_CENTER" prefHeight="361.0" prefWidth="149.0" spacing="10.0" visible="false">
-               <children>
-                  <Label text="Manage Trips" />
-                  <Button fx:id="addNewTrip" mnemonicParsing="false" onAction="#addTripButtonClicked" text="Add a new trip" />
-                  <Button mnemonicParsing="false" onAction="#editButtonClicked" text="Edit an existing trip" />
-                  <Button mnemonicParsing="false" text="Cancel a trip" />
-                  <Button fx:id="PassengerProfileButton1" mnemonicParsing="false" onAction="#returnManageTripButtonClicked" text="Return" />
                </children>
             </VBox>
             <VBox fx:id="addTripTitle" alignment="TOP_RIGHT" prefHeight="354.0" prefWidth="150.0" visible="false" AnchorPane.topAnchor="20.0">
@@ -87,8 +97,43 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="0.0" BorderPane.alignment="CENTER">
          <children>
+            <AnchorPane fx:id="editProfile" prefHeight="367.0" prefWidth="450.0">
+               <children>
+                  <HBox layoutX="66.0" layoutY="34.0" prefHeight="270.0" prefWidth="318.0" spacing="20.0">
+                     <children>
+                        <VBox alignment="CENTER" spacing="19.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="34.0" text="Firstname" textAlignment="CENTER" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="197.0" layoutY="142.0" text="Lastname" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="142.0" text="Username" textAlignment="CENTER" GridPane.rowIndex="4" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="88.0" text="Password" textAlignment="CENTER" GridPane.rowIndex="2" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="118.0" text="Re-Enter Password" textAlignment="CENTER" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="115.0" text="City" textAlignment="CENTER" GridPane.rowIndex="3" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="161.0" text="Country" textAlignment="CENTER" GridPane.rowIndex="5" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="245.0" text="Gender" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <TextField fx:id="FirstnameManager" layoutX="10.0" layoutY="10.0" promptText="Firstname" />
+                              <TextField fx:id="LastnameManager" promptText="Lastname" />
+                              <TextField fx:id="UsernameManager" promptText="Username" />
+                              <PasswordField fx:id="PasswordManager" promptText="Password" />
+                              <PasswordField fx:id="RepassManager" layoutX="10.0" layoutY="115.0" promptText="Re-Enter Password" />
+                              <TextField fx:id="CityManager" layoutX="10.0" layoutY="10.0" promptText="City" />
+                              <TextField fx:id="CountryManager" layoutX="10.0" layoutY="45.0" promptText="Country" />
+                              <ChoiceBox fx:id="GenderManager" prefWidth="150.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button layoutX="180.0" layoutY="328.0" mnemonicParsing="false" text="Save Changes" />
+                  <Button layoutX="40.0" layoutY="328.0" mnemonicParsing="false" text="Return" />
+                  <Button layoutX="335.0" layoutY="328.0" mnemonicParsing="false" text="Delete Account" />
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="ProfFull" prefHeight="363.0" prefWidth="451.0" visible="false">
                <children>
                   <VBox alignment="CENTER" layoutX="183.0" layoutY="36.0" spacing="2.0">

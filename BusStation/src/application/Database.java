@@ -192,7 +192,6 @@ public class Database {
 				continue;
 			}
 			else {
-				System.out.println("Error in files");
 				break;
 			}
 		}
@@ -226,7 +225,6 @@ public class Database {
 			float ticket = i.nextFloat();
 			Seat seat = S[J];
 			T[J] = new Trip (ID, type, start, dest, vehicle, vnum, driver, date, time, ticket, seat);
-			//System.out.println(T[J].ID);
 			J++;
 		}
 
@@ -240,35 +238,63 @@ public class Database {
 			}
 			catch(Exception e) {	
 				try {
-					x = new Formatter("TripsData.txt");
+					x = new Formatter("Ticket.txt");
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
 			}
 		
-		int J = 0;
+		int J = 0, iterator = 0;
 		Tk = new  Ticket [200];
+		Trip thisTrip = null;
 		while(i.hasNext()) {
-			int ID = i.nextInt();
+			int ID_trip = i.nextInt();
 			String uname = i.next();
-			int serial=i.nextInt();
-			String seat=i.next();
-			float price=i.nextFloat();
-			Tk [J] = new Ticket (ID,uname,serial,seat,price);
+			int serial = i.nextInt();
+			String seat = i.next();
+			float price = i.nextFloat();
+			while(T[iterator] != null) {
+				if(ID_trip == T[iterator].ID) {
+					thisTrip = T[iterator];
+					break;
+				}
+				else iterator++;
+			}
+			if (thisTrip == null) {
+				
+			}
+			else {
+			Tk [J] = new Ticket (thisTrip, uname, serial, seat, price);
 			J++;
-			System.out.println(J);
+			}
 		}
 	
 	}
 	
-	public void addManagerData(String fname, String lname, String uname, String pw, int ID, String city, String country) {
+	public Manager addManagerData(String fname, String lname, String uname, String pw, String city, String country, String gender) throws IOException{
 		try {
-			x = new Formatter("ManagersData.txt");
-		} catch (FileNotFoundException e) {
+			f = new FileWriter("ManagersData.txt", true);
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		x.format("%s %s %s %s %d %s %s", fname, lname , uname, pw , ID, city, country , "Manager");
+
+	int ID = 300;
+	int i=0;
+	while(P[i]!=null) {
+		if(P[i].ID == ID){
+			ID++;
+			i++;
+			continue;
+		}
+		else { 
+			break;
+		}
 	}
+	f.write("\r\n" + fname + " " + lname + " " + uname + " " + pw + " " + ID + " " + city + " " + country + " " + gender);
+	Manager m = new Manager(fname, lname, uname, pw, ID, city, country, gender, "Manager");
+	f.close();
+	return m;
+}
 	
 	public Passenger addPassengerData(String fname, String lname, String uname, String pw, String city, String country, String gender) throws IOException{
 			try {
@@ -370,6 +396,51 @@ public class Database {
 	getTripData();
 	return t;
 }
+	
+	
+	public Driver addDriver(String fname, String lname, String uname, String pw, String city, String country) throws IOException {
+	    int ID=5500;			
+		int j=0;
+		while(D[j]!= null) {
+			if(D[j].ID == ID) {
+				ID++;
+				j++;
+			}
+			else {
+				j++;
+				continue;
+			}
+		}
+		try {
+			f = new FileWriter("DriversData.txt", true);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	f.write("\r\n" + fname + " " + lname + " " + uname + " " + pw + " " + Integer.toString(ID) + " " + city + " " + country + " " + "Driver");
+	Driver new_D = new Driver(fname, lname, uname, pw, ID, city, country, "Driver");
+	f.close();
+	getDriverData();
+	return new_D;
+	}
+
+	public Ticket addTicket(Trip currentT, String uname, int serial, String seat, float price) throws IOException {
+		fr = new FileWriter("Ticket.txt", true);
+		inp = new Scanner("Ticket.txt");
+		
+		Ticket newTicket = new Ticket (currentT, uname, serial, seat, price);
+		if(inp.hasNext()) {
+			fr.write("\r\n" + currentT.ID + " " + uname + " " + serial + " " + seat + " " + price);
+		}
+		else fr.write("" + currentT.ID + " " + uname + " " + serial + " " + seat + " " + price);
+			fr.close();
+		getTicketData();
+		return newTicket;
+	}
+	
+	public void saveTicketData() {
+		
+	}
+	
 
 	public void saveTripData() throws IOException {
 		String ID, type, start, dest, vehicle, vnum, drivername, date, time, ticketprice;
@@ -456,6 +527,7 @@ public class Database {
 		saveTripData();
 	}
 		public void saveDriversData() throws IOException {
+		
 			String ID;
 			int i=1;
 			try {	
@@ -474,32 +546,28 @@ public class Database {
 			}
 			fr.close();
 		}
-	
-		public Driver addDriver(String fname, String lname, String uname, String pw, String city, String country) throws IOException {
-		    int ID=5500;			
-			int j=0;
-			while(D[j]!= null) {
-				if(D[j].ID == ID) {
-					ID++;
-					j++;
-				}
-				else {
-					j++;
-					continue;
-				}
-			}
-			try {
-				f = new FileWriter("DriversData.txt", true);
-			} catch (IOException e) {
+		
+		public void saveManagerData() throws IOException {
+			String ID;
+			int i=1;
+			try {	
+					fr = new FileWriter("ManagersData.txt", false);
+					inp = new Scanner(new File("ManagersData.txt"));
+			} 
+			catch (IOException e) {
 				e.printStackTrace();
 			}	
-		f.write("\r\n" + fname + " " + lname + " " + uname + " " + pw + " " + Integer.toString(ID) + " " + city + " " + country + " " + "Driver");
-		Driver new_D = new Driver(fname, lname, uname, pw, ID, city, country, "Driver");
-		f.close();
-		getDriverData();
-		return new_D;
+			ID = Integer.toString(M[0].ID);
+			fr.write(""+ M[0].firstname + " " + M[0].lastname + " "+ M[0].username + " " + M[0].getPassword() + " " + ID + " " + M[0].city + " " + M[0].country + " " + M[0].job);
+			while(M[i] != null) {
+				ID = Integer.toString(M[i].ID);
+				fr.write("\r\n"+ M[i].firstname + " " + M[i].lastname + " " + M[i].getPassword() + " " + ID + " " + M[i].city + " " + M[i].country + " " + M[i].job);
+				i++;
+			}
+			fr.close();
 		}
 	
+		
 	public void removeDriver(int index) throws IOException {
 		int i = index;
 		System.out.println(i);

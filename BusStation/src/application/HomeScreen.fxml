@@ -100,7 +100,7 @@
                         <Button fx:id="ReturnProf" layoutX="-9.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
                      </children>
                   </AnchorPane>
-                  <VBox fx:id="SearchTabs" alignment="TOP_CENTER" layoutX="-2.0" prefHeight="369.0" prefWidth="322.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox fx:id="SearchTabs" alignment="TOP_CENTER" layoutX="-2.0" prefHeight="369.0" prefWidth="322.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label text="Search for your trip" />
                         <ChoiceBox fx:id="type" prefWidth="150.0" />
@@ -108,14 +108,31 @@
                         <ChoiceBox fx:id="destination" prefWidth="150.0" />
                         <DatePicker fx:id="date" promptText="Select date" />
                         <Button fx:id="confirm" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="25.0" prefWidth="103.0" text="Search" />
-                        <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" text="Seating options" visible="false" />
                      </children>
                   </VBox>
-                  <AnchorPane fx:id="searchResultPane" prefHeight="369.0" prefWidth="320.0">
+                  <AnchorPane fx:id="searchResultPane" prefHeight="369.0" prefWidth="335.0" visible="false">
                      <children>
                         <ListView fx:id="searchView" layoutX="13.0" layoutY="14.0" prefHeight="229.0" prefWidth="295.0" />
+                        <Button layoutX="241.0" layoutY="256.0" mnemonicParsing="false" onAction="#bookTripButtonClicked" text="Book Trip" />
                         <Button layoutX="13.0" layoutY="256.0" mnemonicParsing="false" onAction="#returnSearchTab" text="Return" />
-                        <Button layoutX="240.0" layoutY="256.0" mnemonicParsing="false" text="Book Trip" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="booking" prefHeight="369.0" prefWidth="347.0" visible="false">
+                     <children>
+                        <Label fx:id="startDestLabel" layoutX="14.0" layoutY="62.0" text="Start - Destination" />
+                        <Label layoutX="14.0" layoutY="14.0" text="Selected Trip Information" />
+                        <Button layoutX="257.0" layoutY="282.0" mnemonicParsing="false" onAction="#bookTripClicked" text="Book Now!" />
+                        <Label fx:id="timeLabel" layoutX="14.0" layoutY="99.0" text="Time" />
+                        <Label fx:id="dateLabel" layoutX="13.0" layoutY="116.0" text="Date" />
+                        <Label fx:id="priceLabel" layoutX="13.0" layoutY="168.0" text="Price for one ticket" />
+                        <TextField fx:id="seatingTxt" layoutX="261.0" layoutY="173.0" prefHeight="25.0" prefWidth="34.0" />
+                        <HBox alignment="CENTER" layoutX="121.0" layoutY="190.0" prefHeight="64.0" prefWidth="212.0" spacing="20.0">
+                           <children>
+                              <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" text="Choose Seats" />
+                              <Label fx:id="seatsLabel" text="Available Seats" />
+                           </children>
+                        </HBox>
+                        <Button layoutX="26.0" layoutY="282.0" mnemonicParsing="false" onAction="#returnBookTripButtonClicked" text="Return" />
                      </children>
                   </AnchorPane>
                </children>
@@ -153,4 +170,3 @@
       </BorderPane>
    </children>
 </AnchorPane>
-

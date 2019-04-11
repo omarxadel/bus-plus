@@ -1,9 +1,11 @@
 package application;
 
 public class Seat {
+	String [] seatingChart = new String [50];
 	boolean [][] seat;
 	int capacity;
 	String vtype;
+	
 	
 	public Seat(String type) {
 		if(type.equals("Bus")) {
@@ -26,6 +28,8 @@ public class Seat {
 			seat = new boolean [1][3];
 			capacity = 3;
 		}
+		
+		initSeatingChart();
 	}
 	
 	boolean isBooked(int row, int col) {
@@ -71,4 +75,59 @@ public class Seat {
 		}
 		return counter;
 	}
+	
+	public void initSeatingChart() {
+		int i = 0;
+		if(capacity == 12) {
+			while(i<6) {
+				seatingChart[i] = ("A"+ (i+1));
+				i++;
+			}
+			while(i<12) {
+				seatingChart[i] = ("B" + ((i+1)));
+				i++;
+			}
+		}
+		else if(capacity == 36) {
+			while(i<18) {
+				seatingChart[i] = ("A"+ (i+1));
+				i++;
+			}
+			while(i<36) {
+				seatingChart[i] = ("B" + ((i+1)));
+				i++;
+			}
+		}
+		else if(capacity == 48) {
+			while(i<24) {
+				seatingChart[i] = ("A"+ (i+1));
+				i++;
+			}
+			while(i<48) {
+				seatingChart[i] = ("B" + ((i+1)));
+				i++;
+			}
+		}
+		
+		else return;
+	}
+	
+	
+	public String getSeatLocation() {
+		initSeatingChart();
+		int i=0, j=0, k=0;
+		for(i = 0 ; i < seat.length ; i++) {
+			for(j = 0 ; j < seat[i].length ; j++) {
+				if(!seat[i][j]) {
+					bookSeat(i,j);
+					return seatingChart[k];
+				}
+				k++;
+			}
+			k++;
+		}
+		return null;
+	}
+	
+	
 }
