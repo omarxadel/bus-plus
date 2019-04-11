@@ -1,6 +1,7 @@
 package application;
 
 
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -36,11 +37,13 @@ import javafx.stage.Stage;
 
 public class HomeScreenManagerController implements Initializable {
 	
+	static boolean flag = false;
 	int index, ID;
 	Manager M;
 	Driver D[];
 	static Database d = new Database();
 	String uStart, uDest, uCar, uCarnum, uDriver, uTime, uTicket;
+	public AnchorPane DriveAddFull, DriverEdit;
 	public VBox MainTabManager;
 	public VBox ManageTripsTab;
 	public VBox ProfTitle;
@@ -67,10 +70,12 @@ public class HomeScreenManagerController implements Initializable {
 	public ChoiceBox<String> car;
 	public ChoiceBox<String> carNo;
 	public ChoiceBox<String> carNo2;
+	public ChoiceBox<String> ttype, ttype1;
 	public DatePicker date;
 	public TextField ticket, ticket2;
 	public TextField Time1, Time2, Time12, Time22;
 	public ListView<String> Table;
+	public ListView<String> Table2;
 	public TableColumn<Trip, Integer> TripIDc;
 	public TableColumn<Trip, String> TripStart; 
 	public TableColumn<Trip, String> TripDest; 
@@ -86,6 +91,8 @@ public class HomeScreenManagerController implements Initializable {
 	public AnchorPane UpdateTrips;
 	private String dateGet;
 	private String time;
+	public TextField FirstnameAdd, LastnameAdd, UsernameAdd , PasswordAdd, RepassAdd, CityAdd, CountryAdd;
+	private String uType;
 
 
 @Override
@@ -93,6 +100,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	trip = d.T;
 	initTable();
 	updateDataInit();
+	initTableDriver();
 }
 	
 // --------------- Profile Controls ---------------\\
@@ -111,16 +119,19 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		Country.setText("" + M.city +", "+ M.country);
 		Id.setText("" + M.ID);
 	}
+	
 	public void profileButtonClicked(ActionEvent e) {
 		ProfTitle.setVisible(true);
 		ProfFull.setVisible(true);
 		MainTabManager.setVisible(false);
 	}
+
 	public void returnProfButtonClicked(ActionEvent e) {
 		MainTabManager.setVisible(true);
 		ProfTitle.setVisible(false);
 		ProfFull.setVisible(false);
 	}
+	
 	public void logOut(ActionEvent e) throws IOException {
 		Parent Main = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		Scene MainScene = new Scene(Main);
@@ -128,7 +139,9 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(MainScene);
 	}
+
 // --------------- Manage Trips Button ------------\\
+	
 	public void ManageTripButtonClicked(ActionEvent e) {
 		ManageTripsTab.setVisible(true);
 		MainTabManager.setVisible(false);
@@ -137,9 +150,21 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		MainTabManager.setVisible(true);
 		ManageTripsTab.setVisible(false);
 	}
+
+	public boolean isTicketPrice(String ticketInput) {
+		try {
+			Float.parseFloat(ticketInput);
+			return true;
+		}
+		catch(NumberFormatException exception) {
+			return false;
+		}
+	}
 	// --------------- Add Trips Controls ------------\\
 	
 	public void choiceInit() {
+		ttype.getItems().addAll("One-Way", "Round-Trip");
+		ttype.setValue("One-Way");
 		startL.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
 		startL.setValue("District1");
 		DestL.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
@@ -156,6 +181,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	}
 	
 	public void choiceReset() {
+		ttype.setValue("One-Way");
 		startL.setValue("District1");
 		DestL.setValue("District10");
 		car.setValue("KiaGranbird");
@@ -180,6 +206,9 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		 Trip T = null;
 		 if(this.date.getValue() == null || startL.getValue() == null || DestL.getValue() == null || Driver.getValue() == null || car.getValue() == null || carNo.getValue() == null || ticket.getText() == null || Time1.getText() == (null) || Time2.getText() == (null) || ticket.getText().isEmpty() || Time1.getText().isEmpty() || Time2.getText().isEmpty()) {
 			 AlertBox.display("UNEXPECTED INPUTS", "Please make sure you filled all the fields!", "OK");
+		 }
+		 else if(!isTicketPrice(ticket.getText())) {
+			 AlertBox.display("UNEXPECTED INPUTS", "Please make sure you enter a vaid ticket price!", "OK");
 		 }
 		 else {
 		 String date = this.date.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -207,45 +236,48 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 				}
 			 else txttime2 = Integer.toString(timevalid2);
 			time = ("" + txttime + ":" + txttime2);
-			T = d.addTripData(startL.getValue(), DestL.getValue(), car.getValue(), carNo.getValue(), Driver.getValue(), date, time, ticket.getText());
+			
+			T = d.addTripData(ttype.getValue(), startL.getValue(), DestL.getValue(), car.getValue(), carNo.getValue(), Driver.getValue(), date, time, ticket.getText());
+			Table.getItems().add(Integer.toString(T.ID) + " " + T.type + " " + T.start + " " + T.destination + " " + (T.vmodel) + " " + Integer.toString(T.vnum)+ " " + T.driverName + " " + T.date + " " + T.time + " " + Float.toString(T.ticket));
 			AlertBox.display("SUCCESS", "A new trip was added susccessfully!", "OK");
-		 }
+			choiceReset();
+			}
 		 else if(flag2) {
 			 AlertBox.display("UNEXPECTED INPUT!", "You have to insert a valid time input!", "OK");
 			 Time1.setText(null);
 			 Time2.setText(null);
 		 }
 		 }
-		 choiceReset();
-		 Table.getItems().add(Integer.toString(T.ID) + " " + T.start + " " + T.destination + " " + (T.vmodel) + " " + Integer.toString(T.vnum) + " " + T.date + " " + T.time + " " + Float.toString(T.ticket));
+		 
 	 }
 
 // --------------- Edit Trips Controls ------------\\
 
-public void initTable() {
-	String[] tripData = getTrips();
-	int i = 0;
-	while (tripData[i] != null) {
-		Table.getItems().add(tripData[i]);
-		i++;
-	}
-	
-}
-	 
-public String[] getTrips(){
-	int i=0;
-	String ID, ticketData, tripData, vnumb;
-	String [] tripsView = new String[100];
-	while(d.T[i] != null) {
-		ID = Integer.toString(d.T[i].ID);
-		vnumb = Integer.toString(d.T[i].vnum);
-		ticketData = Float.toString(d.T[i].ticket);
-		tripData = (ID + " " + d.T[i].start + " " + d.T[i].destination + " " + d.T[i].vmodel + " " + vnumb + " " + d.T[i].date + " " + d.T[i].time + " " + ticketData);
-		tripsView[i] = tripData;
-		i++;
-	}
-	return tripsView;
-}
+	 public void initTable() {
+			String[] tripData = getTrips();
+			int i = 0;
+			while (tripData[i] != null) {
+				Table.getItems().add(tripData[i]);
+				i++;
+			}
+			
+		}
+			 
+		public String[] getTrips(){
+			int i=0;
+			String ID, ticketData, tripData, vnumb;
+			String [] tripsView = new String[100];
+			while(d.T[i] != null) {
+				ID = Integer.toString(d.T[i].ID);
+				vnumb = Integer.toString(d.T[i].vnum);
+				ticketData = Float.toString(d.T[i].ticket);
+				tripData = (ID + " " + d.T[i].type + " " + d.T[i].start + " " + d.T[i].destination + " " + d.T[i].vmodel + " " + vnumb + " " + d.T[i].driverName + " " + d.T[i].date + " " + d.T[i].time + " " + ticketData);
+				tripsView[i] = tripData;
+				i++;
+			}
+			return tripsView;
+		}
+
 
 	public void editButtonClicked(ActionEvent e) {
 		editTitle.setVisible(true);
@@ -263,8 +295,11 @@ public String[] getTrips(){
 
 	public void cancelTripButtonClicked(ActionEvent e) throws IOException {
 		displayDialogueBox("MESSAGE ALERT", "Are you sure you want to cancel the selected trip?", "Yes", "Abort", Table.getSelectionModel().getSelectedIndex());
-		Table.getItems().remove(Table.getSelectionModel().getSelectedIndex());
+		if(flag) {
+			Table.getItems().remove(Table.getSelectionModel().getSelectedIndex());
+		}
 	}
+	
 	
 	public static void displayDialogueBox(String title, String message, String buttonTxt, String buttonTxt2, int index) {
 		Stage window = new Stage();
@@ -277,42 +312,17 @@ public String[] getTrips(){
 		internalLayout.getChildren().addAll(Button1, Button2);
 		internalLayout.setAlignment(Pos.CENTER);
 		Label error = new Label(message);
-		Button2.setOnAction(e-> window.close());
+		Button2.setOnAction(e->{
+			window.close();
+			flag = false;
+			});
+		
 		Button1.setOnAction(e-> {
 			try {
 				d.cancelTrip(index);
+				flag = true;
 				window.close();
 				
-			} catch (IOException e1) {
-				System.out.println("Error in cancelTrip");
-				e1.printStackTrace();
-			}
-		});
-		VBox layout = new VBox(10);
-		layout.getChildren().addAll(error, internalLayout);
-		layout.setAlignment(Pos.CENTER);
-		
-		Scene scene = new Scene(layout);
-		window.setScene(scene);
-		window.showAndWait();
-	}
-	
-	public static void displayDialogueBoxUpdate(String title, String message, String buttonTxt, String buttonTxt2, int index) {
-		Stage window = new Stage();
-		window.setTitle(title);
-		window.setMinWidth(600);
-		window.setMinHeight(600);
-		window.initModality(Modality.APPLICATION_MODAL);
-		HBox internalLayout = new HBox(10);
-		Button Button1 = new Button(buttonTxt);
-		Button Button2 = new Button(buttonTxt2);
-		internalLayout.getChildren().addAll(Button1, Button2);
-		internalLayout.setAlignment(Pos.CENTER);
-		Label error = new Label(message);
-		Button1.setOnAction(e-> window.close());
-		Button2.setOnAction(e-> {
-			try {
-				d.cancelTrip(index);
 			} catch (IOException e1) {
 				System.out.println("Error in cancelTrip");
 				e1.printStackTrace();
@@ -345,15 +355,16 @@ public String[] getTrips(){
 			editFull.setVisible(false);
 			Table.setVisible(false);
 			dateGet = d.T[index].date;
-			updateInit(ID, d.T[index].start, d.T[index].destination, d.T[index].vmodel, Integer.toString(d.T[index].vnum), dateGet, time1[0], time1[1], Float.toString(d.T[index].ticket), d.T[index].driverName, index);
+			updateInit(ID, d.T[index].type , d.T[index].start, d.T[index].destination, d.T[index].vmodel, Integer.toString(d.T[index].vnum) ,dateGet, time1[0], time1[1], Float.toString(d.T[index].ticket), d.T[index].driverName, index);
 		}
 	}
 	
 	
 	public void updateDataInit() {
+		ttype1.getItems().addAll("One-Way", "Round-Trip");
 		startL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
-	DestL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
-	int i = 0;
+		DestL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
+		int i = 0;
 		while(d.D[i] != null) {
 			Driver2.getItems().add(d.D[i].username);
 			i++;
@@ -367,7 +378,8 @@ public String[] getTrips(){
 	}
 	
 	
-	public void updateInit(int ID, String start, String dest, String v, String vnum, String date, String time1, String time2, String tick, String select, int ind) {
+	public void updateInit(int ID, String type, String start, String dest, String v, String vnum, String date, String time1, String time2, String tick, String select, int ind) {
+		uType = type;
 		uStart = start;
 		uDest = dest;
 		uCar = v;
@@ -375,6 +387,7 @@ public String[] getTrips(){
 		time = (time1 + ":" + time2);
 		uTicket = tick;
 		uDriver = select;
+		ttype1.setValue(type);
 		startL2.setValue(start);
 		DestL2.setValue(dest);
 		Driver2.setValue(select);
@@ -393,6 +406,9 @@ public String[] getTrips(){
 	}
 	
 	public void updateButtonClicked(ActionEvent e) throws IOException {
+		do AlertBox.display("UNEXPECTED INPUT", "Please enter a valid ticket price!", "OK");
+		while(!isTicketPrice(ticket2.getText()));
+		
 			if(date2.getValue() != null) {
 				dateGet = this.date2.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			}
@@ -417,12 +433,197 @@ public String[] getTrips(){
 			 if(ticket2.getText() != (null)) {
 				 uTicket = ticket2.getText();
 			 }
+			 uType = ttype1.getValue();
 			 Seat s;
 			 s = new Vehicle(uCar).s;
-			 Trip T = new Trip(ID, uStart, uDest, uCar, Integer.parseInt(uCarnum), uDriver, dateGet, time, Float.parseFloat(uTicket), s);
+			 Trip T = new Trip(ID, uType, uStart, uDest, uCar, Integer.parseInt(uCarnum), uDriver, dateGet, time, Float.parseFloat(uTicket), s);
 			 d.T[index] = T;
 			 d.saveTripData();
 			 Table.getItems().remove(index);
-			 String tripData = (ID + " " + uStart + " " + uDest + " " + uCar + " " + uCarnum + " " + dateGet + " " + time + " " + uTicket);
+			 String tripData = (ID + " " + uType + " " + uStart + " " + uDest + " " + uCar + " " + uCarnum + " " + uDriver + " " + dateGet + " " + time + " " + uTicket);
 			 Table.getItems().add(index, tripData);
+			 AlertBox.display("SUCCESS", "Trips were updated successfully!", "Return");
+			 editTitle.setVisible(true);
+			 Table.setVisible(true);
+			 editFull.setVisible(true);
+			 UpdateTrips.setVisible(false);
+			 
 	}
+	
+	// --------------- Manage Driver Controls ------------\\
+	
+	
+	public void initTableDriver() {
+		String[] driverData = getDrivers();
+		int i = 0;
+		while (driverData[i] != null) {
+			Table2.getItems().add(driverData[i]);
+			i++;
+		}
+		
+	}
+		 
+	public String[] getDrivers(){
+		int i=0;
+		String ID, driverData;
+		String [] driverView = new String[100];
+		while(d.D[i] != null) {
+			ID = Integer.toString(d.D[i].ID);
+			driverData = (d.D[i].firstname + " " + d.D[i].lastname + " " + d.D[i].username+ " " + ID + " " + d.D[i].city + " " + d.D[i].country);
+			driverView[i] = driverData;
+			i++;
+		}
+		return driverView;
+	}
+	
+	
+		public void manageDriverButtonClicked(ActionEvent e) {
+			System.out.println("Click");
+			DriveAddFull.setVisible(true);
+			Table2.setVisible(true);
+			MainTabManager.setVisible(false);
+		}
+
+		public void returnManageDriverClicked(ActionEvent e) {
+			MainTabManager.setVisible(true);
+			DriveAddFull.setVisible(false);
+			Table2.setVisible(false);
+		}
+
+		public void removeDriverButtonClicked(ActionEvent e) throws IOException {
+			displayDialogueBoxDriver("MESSAGE ALERT", "Are you sure you want to remove the selected driver?", "Abort", "Yes", Table2.getSelectionModel().getSelectedIndex());
+			if(flag) {
+				Table2.getItems().remove(Table2.getSelectionModel().getSelectedIndex());
+			}
+		}
+		
+		public static void displayDialogueBoxDriver(String title, String message, String buttonTxt, String buttonTxt2, int index) {
+			Stage window = new Stage();
+			window.setTitle(title);
+			window.setMinWidth(300);
+			window.initModality(Modality.APPLICATION_MODAL);
+			HBox internalLayout = new HBox(10);
+			Button Button2 = new Button(buttonTxt);
+			Button Button1 = new Button(buttonTxt2);
+			internalLayout.getChildren().addAll(Button1, Button2);
+			internalLayout.setAlignment(Pos.CENTER);
+			Label error = new Label(message);
+			Button2.setOnAction(e-> {
+				flag=false;
+			window.close();}
+					);
+			Button1.setOnAction(e-> {
+				try {
+					d.removeDriver(index);
+					flag=true;
+					window.close();
+					
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			});
+			VBox layout = new VBox(10);
+			layout.getChildren().addAll(error, internalLayout);
+			layout.setAlignment(Pos.CENTER);
+			
+			Scene scene = new Scene(layout);
+			window.setScene(scene);
+			window.showAndWait();
+		}
+		
+
+		public void editDriverButtonClicked() throws IOException {
+				
+				DriverEdit.setVisible(true);
+				Table2.setVisible(false);
+				DriveAddFull.setVisible(false);
+				
+				index = Table2.getSelectionModel().getSelectedIndex();
+				if(index == -1) {
+				}
+				else {				
+				editDriverInit(d.D[index].firstname, d.D[index].lastname, d.D[index].username, d.D[index].getPassword(), d.D[index].city, d.D[index].country);
+				}
+		}
+		
+		public void editDriverInit(String fname, String lname, String username, String password, String city, String country) {
+			FirstnameAdd.setText(fname);
+			LastnameAdd.setText(lname);
+			UsernameAdd.setText(username);
+			PasswordAdd.setText(password);
+			CityAdd.setText(city);
+			CountryAdd.setText(country);
+		}
+		
+		public void editDriverReset() {
+			FirstnameAdd.setText(null);
+			LastnameAdd.setText(null);
+			UsernameAdd.setText(null);
+			PasswordAdd.setText(null);
+			RepassAdd.setText(null);
+			CityAdd.setText(null);
+			CountryAdd.setText(null);
+		}
+
+		public void closeDriverOutClicked(ActionEvent e) {
+			MainTabManager.setVisible(true);
+			Table2.setVisible(false);
+			DriveAddFull.setVisible(false);
+		}
+		
+		public void returnDriverInClicked(ActionEvent e) {
+			Table2.setVisible(true);
+			DriveAddFull.setVisible(true);
+			DriverEdit.setVisible(false);
+		}
+		
+		public void updateDriverClicked(ActionEvent e) throws IOException {
+			if(index == -1) {
+				AlertBox.display("ERROR", "Can't update user if you didn't select one!", "OK");
+			}
+			else {
+			if(FirstnameAdd.getText()==null || LastnameAdd.getText() == null || PasswordAdd.getText() == null || RepassAdd.getText() == null || CityAdd.getText() == null || CountryAdd.getText() == null || FirstnameAdd.getText().isEmpty() || PasswordAdd.getText().isEmpty() || RepassAdd.getText().isEmpty() || CityAdd.getText().isEmpty()|| CountryAdd.getText( ).isEmpty()) {
+				AlertBox.display("UNEXPECTED INPUTS!", "Please make sure you fill in all the fields!", "OK");
+			}
+			else if (!PasswordAdd.getText().equals(RepassAdd.getText())) {
+					AlertBox.display("UNEXPECTED INPUTS!", "Please re-enter the password correctly", "OK");
+				}
+			else{ Driver D = new Driver(FirstnameAdd.getText(), LastnameAdd.getText(), UsernameAdd.getText() ,PasswordAdd.getText(), d.D[index].ID , CityAdd.getText(), CountryAdd.getText(), "Driver");
+				d.D[index] = D;
+				d.saveDriversData();
+				Table2.getItems().remove(index);
+				String DriverData = (FirstnameAdd.getText() + " " + LastnameAdd.getText() + " " + UsernameAdd.getText() + " " + d.D[index].ID + " "  + CityAdd.getText() + " " +  CountryAdd.getText());
+				Table2.getItems().add(index, DriverData);
+				AlertBox.display("SUCCESS", "Selected Driver was updated successfully!", "Return");
+				editDriverReset();
+				Table2.setVisible(true);
+				DriveAddFull.setVisible(true);
+				DriverEdit.setVisible(false);
+			}
+			}
+			
+		}
+		public void saveAsClicked(ActionEvent e) throws IOException {
+				if(FirstnameAdd.getText()==null || LastnameAdd.getText() == null || PasswordAdd.getText() == null || RepassAdd.getText() == null || CityAdd.getText() == null || CountryAdd.getText() == null || FirstnameAdd.getText().isEmpty() || PasswordAdd.getText().isEmpty() || RepassAdd.getText().isEmpty() || CityAdd.getText().isEmpty()|| CountryAdd.getText( ).isEmpty()) {
+					AlertBox.display("UNEXPECTED INPUTS!", "Please make sure you fill in all the fields!", "OK");
+				}
+				else if(!PasswordAdd.getText().equals(RepassAdd.getText())) {
+					AlertBox.display("UNEXPECTED INPUTS!", "Please re-enter the password correctly", "OK");
+				}
+				else {
+					d.addDriver(FirstnameAdd.getText(), LastnameAdd.getText(), UsernameAdd.getText() ,PasswordAdd.getText(), CityAdd.getText(), CountryAdd.getText());
+					int i=0;
+					while(d.D[i] != null) {
+						i++;
+					}
+					String DriverData = (FirstnameAdd.getText() + " " + LastnameAdd.getText() + " " + UsernameAdd.getText() + " " + d.D[i-1].ID + " "  + CityAdd.getText() + " " +  CountryAdd.getText());
+					Table2.getItems().add(DriverData);
+				
+				AlertBox.display("SUCCESS", "New Driver was added successfully!", "Return");
+				editDriverReset();
+				Table2.setVisible(true);
+				DriveAddFull.setVisible(true);
+				DriverEdit.setVisible(false);
+				}
+			}
+}

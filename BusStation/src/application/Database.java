@@ -12,6 +12,7 @@ public class Database {
 	Driver [] D;
 	Passenger [] P;
 	Trip [] T;
+	Ticket [] Tk;
 	Seat [] S;
 	Vehicle vehicle;
 	
@@ -21,6 +22,7 @@ public class Database {
 		getPassengerData();
 		getSeats();
 		getTripData();
+		getTicketData();
 	}
 	
 	public void getManagerData() {
@@ -232,8 +234,32 @@ public class Database {
 		
 	}
 	
+	public void getTicketData() {
+		try{
+			i = new Scanner(new File("Ticket.txt"));
+			}
+			catch(Exception e) {	
+				try {
+					x = new Formatter("TripsData.txt");
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
+			}
+		
+		int J = 0;
+		Tk = new  Ticket [200];
+		while(i.hasNext()) {
+			int ID = i.nextInt();
+			String uname = i.next();
+			int serial=i.nextInt();
+			String seat=i.next();
+			float price=i.nextFloat();
+			Tk [J] = new Ticket (ID,uname,serial,seat,price);
+			J++;
+			System.out.println(J);
+		}
 	
-
+	}
 	
 	public void addManagerData(String fname, String lname, String uname, String pw, int ID, String city, String country) {
 		try {
