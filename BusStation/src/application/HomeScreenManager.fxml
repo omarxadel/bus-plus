@@ -31,42 +31,42 @@
       </MenuBar>
    </top>
    <left>
-      <AnchorPane>
+      <AnchorPane prefHeight="384.0" prefWidth="200.0">
          <children>
-            <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="276.0" prefWidth="154.0" spacing="15.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="371.0" prefWidth="199.0" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="labelHelloManager" text="Hello Mister">
                      <font>
                         <Font size="15.0" />
                      </font></Label>
                   <Region prefHeight="0.0" prefWidth="144.0" />
-                  <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" prefWidth="144.0" text="Profile" />
-                  <Button fx:id="ManageTrips" mnemonicParsing="false" onAction="#ManageTripButtonClicked" prefWidth="144.0" text="Manage Trips" />
-                  <Button mnemonicParsing="false" onAction="#manageDriverButtonClicked" prefWidth="144.0" text="Manage Drivers" />
-                  <Button mnemonicParsing="false" onAction="#manageManagersButtonClicked" text="Manage System Admins" />
-                  <Button fx:id="LogOutButton" mnemonicParsing="false" onAction="#logOut" prefWidth="144.0" text="Log Out" />
+                  <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" prefWidth="144.0" style="-fx-background-color: ed8063;" text="Profile" />
+                  <Button fx:id="ManageTrips" mnemonicParsing="false" onAction="#ManageTripButtonClicked" prefWidth="144.0" style="-fx-background-color: ed8063;" text="Manage Trips" />
+                  <Button mnemonicParsing="false" onAction="#manageDriverButtonClicked" prefWidth="144.0" style="-fx-background-color: ed8063;" text="Manage Drivers" />
+                  <Button mnemonicParsing="false" onAction="#manageManagersButtonClicked" style="-fx-background-color: ed8063;" text="Manage System Admins" />
+                  <Button fx:id="LogOutButton" mnemonicParsing="false" onAction="#logOut" prefWidth="144.0" style="-fx-background-color: ed8063;" text="Log Out" />
 
                </children>
                <padding>
                   <Insets left="20.0" top="15.0" />
                </padding>
             </VBox>
-            <VBox fx:id="ManageTripsTab" alignment="TOP_CENTER" prefHeight="361.0" prefWidth="157.0" spacing="20.0" visible="false">
+            <VBox fx:id="ManageTripsTab" alignment="TOP_CENTER" prefHeight="354.0" prefWidth="199.0" spacing="10.0" visible="false">
                <children>
                   <Label text="Manage Trips">
                      <font>
                         <Font size="15.0" />
                      </font></Label>
                   <Region prefHeight="0.0" prefWidth="200.0" />
-                  <Button fx:id="addNewTrip" minHeight="25.0" minWidth="118.0" mnemonicParsing="false" onAction="#addTripButtonClicked" text="Add a new trip" />
-                  <Button minHeight="25.0" minWidth="118.0" mnemonicParsing="false" onAction="#editButtonClicked" text="Edit an existing trip" />
-                  <Button fx:id="PassengerProfileButton1" minHeight="25.0" minWidth="118.0" mnemonicParsing="false" onAction="#returnManageTripButtonClicked" text="Return" />
+                  <Button fx:id="addNewTrip" minHeight="25.0" minWidth="118.0" mnemonicParsing="false" onAction="#addTripButtonClicked" style="-fx-background-color: ed8063;" text="Add a new trip" />
+                  <Button minHeight="25.0" minWidth="118.0" mnemonicParsing="false" onAction="#editButtonClicked" style="-fx-background-color: ed8063;" text="Edit an existing trip" />
+                  <Button fx:id="PassengerProfileButton1" minHeight="25.0" minWidth="118.0" mnemonicParsing="false" onAction="#returnManageTripButtonClicked" style="-fx-background-color: ed8063;" text="Return" />
                </children>
                <padding>
                   <Insets left="20.0" top="15.0" />
                </padding>
             </VBox>
-            <VBox fx:id="ProfTitle" alignment="TOP_RIGHT" prefHeight="364.0" prefWidth="150.0" spacing="10.0" visible="false" AnchorPane.topAnchor="20.0">
+            <VBox fx:id="ProfTitle" alignment="TOP_RIGHT" layoutY="8.0" prefHeight="376.0" prefWidth="196.0" spacing="10.0" visible="false" AnchorPane.topAnchor="8.0">
                <children>
                   <Label alignment="CENTER" text="Your Profile">
                      <font>
@@ -75,7 +75,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="addTripTitle" alignment="TOP_RIGHT" prefHeight="354.0" prefWidth="150.0" visible="false" AnchorPane.topAnchor="20.0">
+            <VBox fx:id="addTripTitle" alignment="TOP_RIGHT" layoutY="1.0" prefHeight="373.0" prefWidth="196.0" visible="false" AnchorPane.topAnchor="1.0">
                <children>
                   <Label alignment="CENTER" text="Add Trip">
                      <font>
@@ -84,7 +84,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="editTitle" alignment="TOP_RIGHT" layoutY="20.0" prefHeight="354.0" prefWidth="150.0" visible="false">
+            <VBox fx:id="editTitle" alignment="TOP_RIGHT" layoutY="2.0" prefHeight="372.0" prefWidth="196.0" visible="false">
                <children>
                   <Label alignment="CENTER" text="Edit Trips">
                      <font>
@@ -99,7 +99,7 @@
    <center>
       <AnchorPane prefHeight="0.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="editProfile" prefHeight="367.0" prefWidth="450.0" visible="false">
+            <AnchorPane fx:id="editProfile" prefHeight="367.0" prefWidth="414.0" visible="false">
                <children>
                   <HBox layoutX="66.0" layoutY="34.0" prefHeight="270.0" prefWidth="318.0" spacing="20.0">
                      <children>
@@ -129,9 +129,9 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Button layoutX="180.0" layoutY="328.0" mnemonicParsing="false" onAction="#saveProfileEditClicked" text="Save Changes" />
-                  <Button layoutX="40.0" layoutY="328.0" mnemonicParsing="false" text="Return" />
-                  <Button layoutX="335.0" layoutY="328.0" mnemonicParsing="false" text="Delete Account" />
+                  <Button layoutX="175.0" layoutY="328.0" mnemonicParsing="false" onAction="#saveProfileEditClicked" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Save Changes" />
+                  <Button layoutX="40.0" layoutY="328.0" mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Return" />
+                  <Button layoutX="306.0" layoutY="328.0" mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Delete Account" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="ProfFull" prefHeight="363.0" prefWidth="451.0" visible="false">
@@ -166,14 +166,14 @@
                      </children>
                   </VBox>
                   <Separator layoutX="14.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
-                  <Button layoutX="327.0" layoutY="324.0" mnemonicParsing="false" onAction="#toEditprofileClicked" text="Edit Account Info." />
-                  <Button fx:id="profReturn" layoutX="30.0" layoutY="324.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
+                  <Button layoutX="277.0" layoutY="324.0" mnemonicParsing="false" onAction="#toEditprofileClicked" prefWidth="125.0" style="-fx-background-color: ed8063;" text="Edit Account Info." />
+                  <Button fx:id="profReturn" layoutX="30.0" layoutY="324.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" prefWidth="125.0" style="-fx-background-color: ed8063;" text="Return" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="addTripFull" prefHeight="363.0" prefWidth="451.0" visible="false">
                <children>
-         <Button layoutX="375.0" layoutY="324.0" mnemonicParsing="false" onAction="#addTripButtonClickedin" text="Add Trip" />
-         <Button fx:id="AddReturn" layoutX="30.0" layoutY="324.0" mnemonicParsing="false" onAction="#ReturnAddTripClicked" text="Return" />
+         <Button layoutX="324.0" layoutY="324.0" mnemonicParsing="false" onAction="#addTripButtonClickedin" prefWidth="75.0" style="-fx-background-color: ed8063;" text="Add Trip" />
+         <Button fx:id="AddReturn" layoutX="30.0" layoutY="324.0" mnemonicParsing="false" onAction="#ReturnAddTripClicked" prefWidth="75.0" style="-fx-background-color: ed8063;" text="Return" />
          <VBox alignment="CENTER" layoutX="244.0" spacing="7.0" />
          <Separator layoutX="14.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
          <VBox alignment="BASELINE_LEFT" layoutX="62.0" layoutY="33.0" spacing="15.0">
@@ -214,18 +214,18 @@
    </VBox> </children> </AnchorPane>
             <AnchorPane fx:id="editFull" prefHeight="364.0" prefWidth="449.0" visible="false">
                <children>
-                  <Button fx:id="PassengerProfileButton111" layoutX="338.0" layoutY="325.0" mnemonicParsing="false" onAction="#cancelTripButtonClicked" text="Cancel Trip" />
-                  <Button fx:id="PassengerProfileButton11" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnEditTripClicked" text="Return" />
+                  <Button fx:id="PassengerProfileButton111" layoutX="312.0" layoutY="325.0" mnemonicParsing="false" onAction="#cancelTripButtonClicked" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Cancel Trip" />
+                  <Button fx:id="PassengerProfileButton11" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnEditTripClicked" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Return" />
                   <ListView fx:id="Table" layoutX="25.0" layoutY="23.0" prefHeight="293.0" prefWidth="387.0" />
-                  <Button fx:id="PassengerProfileButton1111" layoutX="184.0" layoutY="325.0" mnemonicParsing="false" onAction="#updateTripsButtonClicked" text="Update Trip" />
+                  <Button fx:id="PassengerProfileButton1111" layoutX="169.0" layoutY="325.0" mnemonicParsing="false" onAction="#updateTripsButtonClicked" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Update Trip" />
                   <Separator layoutX="11.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="UpdateTrips" layoutY="5.0" prefHeight="363.0" prefWidth="451.0" visible="false">
                <children>
-                  <Button fx:id="AddReturn1" layoutX="30.0" layoutY="324.0" mnemonicParsing="false" onAction="#closeClicked" text="Return" />
+                  <Button fx:id="AddReturn1" layoutX="61.0" layoutY="324.0" mnemonicParsing="false" onAction="#closeClicked" prefWidth="120.0" style="-fx-background-color: ed8063;" text="Return" />
                   <Separator layoutX="14.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
-                  <Button layoutX="355.0" layoutY="324.0" mnemonicParsing="false" onAction="#updateButtonClicked" text="UpdateTrip" />
+                  <Button layoutX="270.0" layoutY="324.0" mnemonicParsing="false" onAction="#updateButtonClicked" prefWidth="120.0" style="-fx-background-color: ed8063;" text="UpdateTrip" />
                   <HBox layoutX="61.0" layoutY="27.0" spacing="30.0">
                      <children>
                         <VBox alignment="BASELINE_LEFT" spacing="15.0">
@@ -270,17 +270,17 @@
             </AnchorPane>
             <AnchorPane fx:id="DriveAddFull" layoutX="1.0" layoutY="5.0" prefHeight="364.0" prefWidth="449.0" visible="false">
                <children>
-                  <Button fx:id="EditDriverButton" layoutX="150.0" layoutY="325.0" mnemonicParsing="false" onAction="#editDriverButtonClicked" text="Update Drivers Table" />
-                  <Button fx:id="PassengerProfileButton111" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnManageDriverClicked" text="Return" />
+                  <Button fx:id="EditDriverButton" layoutX="154.0" layoutY="325.0" mnemonicParsing="false" onAction="#editDriverButtonClicked" prefWidth="130.0" style="-fx-background-color: ed8063;" text="Update Drivers Table" />
+                  <Button fx:id="PassengerProfileButton111" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnManageDriverClicked" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Return" />
                   <ListView fx:id="Table2" layoutX="25.0" layoutY="23.0" prefHeight="293.0" prefWidth="387.0" />
                   <Separator layoutX="11.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
-                  <Button fx:id="RemoveDriver" layoutX="318.0" layoutY="325.0" mnemonicParsing="false" onAction="#removeDriverButtonClicked" text="Remove Driver" />
+                  <Button fx:id="RemoveDriver" layoutX="312.0" layoutY="325.0" mnemonicParsing="false" onAction="#removeDriverButtonClicked" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Remove Driver" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="DriverEdit" prefHeight="364.0" prefWidth="449.0" visible="false">
                <children>
-                  <Button fx:id="Saveas" layoutX="278.0" layoutY="325.0" mnemonicParsing="false" onAction="#saveAsClicked" text="Save as a new Driver" />
-                  <Button fx:id="ReturnDriverAdd" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnDriverInClicked" text="Return" />
+                  <Button fx:id="Saveas" layoutX="278.0" layoutY="325.0" mnemonicParsing="false" onAction="#saveAsClicked" style="-fx-background-color: ed8063;" text="Save as a new Driver" />
+                  <Button fx:id="ReturnDriverAdd" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnDriverInClicked" style="-fx-background-color: ed8063;" text="Return" />
                   <Separator layoutX="11.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
                   <HBox layoutX="66.0" layoutY="29.0" prefHeight="270.0" prefWidth="318.0" spacing="20.0">
                      <children>
@@ -308,22 +308,22 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Button fx:id="UpdateDriver" layoutX="110.0" layoutY="325.0" mnemonicParsing="false" onAction="#updateDriverClicked" text="Update Selected Driver" />
+                  <Button fx:id="UpdateDriver" layoutX="110.0" layoutY="325.0" mnemonicParsing="false" onAction="#updateDriverClicked" style="-fx-background-color: ed8063;" text="Update Selected Driver" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="ManagerDb" layoutX="11.0" layoutY="15.0" prefHeight="364.0" prefWidth="449.0" visible="false">
                <children>
-                  <Button fx:id="EditDriverButton1" layoutX="125.0" layoutY="325.0" mnemonicParsing="false" onAction="#editManagerButtonClicked" text="Update Managers Table" />
-                  <Button fx:id="PassengerProfileButton1112" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnManageManagerClicked" text="Return" />
+                  <Button fx:id="EditDriverButton1" layoutX="122.0" layoutY="325.0" mnemonicParsing="false" onAction="#editManagerButtonClicked" style="-fx-background-color: ed8063;" text="Update Managers Table" />
+                  <Button fx:id="PassengerProfileButton1112" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnManageManagerClicked" style="-fx-background-color: ed8063;" text="Return" />
                   <ListView fx:id="managerTable" layoutX="25.0" layoutY="23.0" prefHeight="293.0" prefWidth="387.0" />
                   <Separator layoutX="11.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
-                  <Button fx:id="RemoveDriver1" layoutX="302.0" layoutY="325.0" mnemonicParsing="false" onAction="#removeManagerButtonClicked" text="Remove Manager" />
+                  <Button fx:id="RemoveDriver1" layoutX="302.0" layoutY="325.0" mnemonicParsing="false" onAction="#removeManagerButtonClicked" style="-fx-background-color: ed8063;" text="Remove Manager" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="managerUpdate" layoutX="10.0" layoutY="10.0" prefHeight="364.0" prefWidth="449.0" visible="false">
                <children>
-                  <Button fx:id="Saveas1" layoutX="278.0" layoutY="325.0" mnemonicParsing="false" onAction="#saveAsManagerClicked" text="Save as a new Manager" />
-                  <Button fx:id="ReturnDriverAdd1" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnManagerInClicked" text="Return" />
+                  <Button fx:id="Saveas1" layoutX="278.0" layoutY="325.0" mnemonicParsing="false" onAction="#saveAsManagerClicked" style="-fx-background-color: ed8063;" text="Save as a new Manager" />
+                  <Button fx:id="ReturnDriverAdd1" layoutX="25.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnManagerInClicked" style="-fx-background-color: ed8063;" text="Return" />
                   <Separator layoutX="11.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
                   <HBox layoutX="66.0" layoutY="29.0" prefHeight="270.0" prefWidth="318.0" spacing="20.0">
                      <children>
@@ -353,7 +353,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Button fx:id="UpdateDriver1" layoutX="110.0" layoutY="325.0" mnemonicParsing="false" onAction="#updateManagerClicked" text="Update Selected Manager" />
+                  <Button fx:id="UpdateDriver1" layoutX="110.0" layoutY="325.0" mnemonicParsing="false" onAction="#updateManagerClicked" style="-fx-background-color: ed8063;" text="Update Selected Manager" />
                </children>
             </AnchorPane> </children>
       </AnchorPane>
@@ -362,8 +362,7 @@
       <HBox BorderPane.alignment="CENTER">
 
          <children>
-            <Label text="Status Bar" />
-            <Label text="Label" />
+            <Label text="Status: All is set" />
          </children>
       </HBox>
    </bottom>

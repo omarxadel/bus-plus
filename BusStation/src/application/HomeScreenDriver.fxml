@@ -32,17 +32,17 @@
          <children>
             <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="364.0" prefWidth="150.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="WelcomeDriver" text="Hello Mr." />
-                  <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
-                  <Button fx:id="StartTrip" mnemonicParsing="false" text="Start a new trip" />
-                  <Button fx:id="Tripscomments" mnemonicParsing="false" text="Trips comments" />
-                  <MenuButton fx:id="TripsSchedule" mnemonicParsing="false" onAction="#SelectTrip" text="Trips">
+                  <Label fx:id="WelcomeDriver" text="Hello Mr.">
+                     <font>
+                        <Font size="23.0" />
+                     </font></Label>
+                  <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Profile" />
+                  <MenuButton fx:id="TripsSchedule" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SelectTrip" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Trips" textAlignment="CENTER">
                     <items>
                       <MenuItem fx:id="line1" mnemonicParsing="false" onAction="#SelectTrip" text="My Trips" />
-                      <MenuItem fx:id="line2" mnemonicParsing="false" onAction="#SelectTrip" text="Trips History" />
                     </items>
                   </MenuButton>
-                  <Button fx:id="logout" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#logOut" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Log Out" />
                </children>
             </VBox>
             <VBox fx:id="ProfTitle" alignment="TOP_RIGHT" prefHeight="364.0" prefWidth="150.0" spacing="10.0" visible="false" AnchorPane.topAnchor="20.0">
@@ -103,14 +103,14 @@
                      </children>
                   </VBox>
                   <Separator layoutX="14.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
-                  <Button fx:id="EditAccount" layoutX="327.0" layoutY="324.0" mnemonicParsing="false" onAction="#toEditprofileClicked" text="Edit Account Info." />
-                  <Button fx:id="profReturn" layoutX="30.0" layoutY="324.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
+                  <Button fx:id="EditAccount" layoutX="327.0" layoutY="324.0" mnemonicParsing="false" onAction="#toEditprofileClicked" style="-fx-background-color: ed8063;" text="Edit Account Info." />
+                  <Button fx:id="profReturn" layoutX="30.0" layoutY="324.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" style="-fx-background-color: ed8063;" text="Return" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="trip1" layoutY="7.0" prefHeight="361.0" prefWidth="449.0" visible="false">
                <children>
                   <ListView fx:id="line1V" layoutX="12.0" layoutY="14.0" prefHeight="317.0" prefWidth="419.0" />
-                  <Button fx:id="Back1" layoutX="18.0" layoutY="335.0" mnemonicParsing="false" onAction="#BackMainTab" text="Return" />
+                  <Button fx:id="Back1" layoutX="18.0" layoutY="335.0" mnemonicParsing="false" onAction="#BackMainTab" style="-fx-background-color: ed8063;" text="Return" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="editProfile" prefHeight="368.0" prefWidth="449.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -143,9 +143,9 @@
                   </HBox>
                   <HBox layoutX="30.0" layoutY="313.0" prefHeight="41.0" prefWidth="369.0" spacing="60.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#returnFromEditProfile" text="Return" />
-                        <Button mnemonicParsing="false" onAction="#saveProfileEditClicked" text="Save Changes" />
-                        <Button mnemonicParsing="false" text="Delete Account" />
+                        <Button mnemonicParsing="false" onAction="#returnFromEditProfile" style="-fx-background-color: ed8063;" text="Return" />
+                        <Button mnemonicParsing="false" onAction="#saveProfileEditClicked" style="-fx-background-color: ed8063;" text="Save Changes" />
+                        <Button mnemonicParsing="false" style="-fx-background-color: ed8063;" text="Delete Account" />
                      </children>
                   </HBox>
                </children>
@@ -156,8 +156,7 @@
    <bottom>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <Label text="Status Bar" />
-            <Label text="Label" />
+            <Label text="Status: Idle" />
          </children>
       </HBox>
    </bottom>

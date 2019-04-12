@@ -8,73 +8,97 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" side="LEFT" style="-fx-background-color: #303f52;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
   <tabs>
-    <Tab id="LoginTab" fx:id="LoginTab" text="Login">
+    <Tab id="LoginTab" fx:id="LoginTab" style="-fx-background-color: #ED8063;" text="Login">
          <content>
-            <SplitPane dividerPositions="0.5">
+            <SplitPane dividerPositions="0.5" style="-fx-background-color: #303f52;">
               <items>
-                  <VBox alignment="TOP_CENTER" spacing="10.0">
+                  <VBox alignment="TOP_CENTER" spacing="20.0" SplitPane.resizableWithParent="false">
                      <children>
-                        <Label contentDisplay="CENTER" layoutX="88.0" layoutY="14.0" text="Log in to Bus">
+                        <Label contentDisplay="CENTER" layoutX="88.0" layoutY="14.0" text="Log in to Bus+" textFill="#ed8063">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
                         <TextField fx:id="LogUser" layoutX="67.0" layoutY="44.0" promptText="Username" />
                         <PasswordField fx:id="LogPass" layoutX="69.0" layoutY="69.0" prefHeight="25.0" prefWidth="292.0" promptText="Password" />
-                        <Button fx:id="LoginMain" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="100.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="25.0" prefWidth="91.0" text="Login" />
+                        <Button fx:id="LoginMain" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="100.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #ED8063;" text="Login" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                            <children>                         
-                              <RadioButton fx:id="UserRadio" mnemonicParsing="false" text="User" />
-                              <RadioButton fx:id="DriverRadio" mnemonicParsing="false" text="Driver" />
-                              <RadioButton fx:id="AdminRadio" mnemonicParsing="false" text="Admin" />
+                              <RadioButton fx:id="UserRadio" mnemonicParsing="false" text="User" textFill="#ed8063">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="DriverRadio" mnemonicParsing="false" text="Driver" textFill="#ed8063">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font></RadioButton>
+                              <RadioButton fx:id="AdminRadio" mnemonicParsing="false" text="Admin" textFill="#ed8063">
+                                 <font>
+                                    <Font name="Calibri Bold" size="12.0" />
+                                 </font></RadioButton>
                            </children>
                         </HBox>
                      </children>
                      <padding>
-                        <Insets left="5.0" right="5.0" top="10.0" />
+                        <Insets left="10.0" right="10.0" top="25.0" />
                      </padding>
                   </VBox>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303f52;" />
               </items>
             </SplitPane>
          </content>
     </Tab>
-    <Tab fx:id="RegisterTab" text="Register">
+    <Tab fx:id="RegisterTab" style="-fx-background-color: ED8063;" text="Register">
          <content>
             <SplitPane dividerPositions="0.5">
               <items>
-                  <VBox alignment="TOP_CENTER" spacing="10.0">
+                  <VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #303F52;" SplitPane.resizableWithParent="false">
                      <children>
-                        <Label text="Register to Bus" textAlignment="CENTER">
+                        <Label text="Register to Bus" textAlignment="CENTER" textFill="#ed8063">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="Calibri Bold" size="20.0" />
                            </font>
                         </Label>
-                        <Label text="Enter your Username:" />
+                        <Label text="Enter your Username:" textFill="#ed8063">
+                           <font>
+                              <Font name="Calibri Bold" size="13.0" />
+                           </font></Label>
                         <TextField fx:id="RegUser" promptText="Username" GridPane.columnIndex="1" />
-                        <Label text="Enter your Password:" GridPane.rowIndex="1" />
+                        <Label text="Enter your Password:" textFill="#ed8063" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Calibri Bold" size="13.0" />
+                           </font></Label>
                         <PasswordField fx:id="RegPass" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label layoutX="95.0" layoutY="60.0" text="Re-Enter your Password:" />
+                        <Label layoutX="95.0" layoutY="60.0" text="Re-Enter your Password:" textFill="#ed8063">
+                           <font>
+                              <Font name="Calibri Bold" size="13.0" />
+                           </font></Label>
                         <PasswordField fx:id="RegPass1" layoutX="15.0" layoutY="149.0" promptText="Re-Enter Password" />
-                        <Button fx:id="SignUpMain" mnemonicParsing="false" onAction="#signUpButtonClicked" text="Sign Up" GridPane.rowIndex="2" />
+                        <Button fx:id="SignUpMain" mnemonicParsing="false" onAction="#signUpButtonClicked" style="-fx-background-color: ed8063;" text="Sign Up" textFill="WHITE" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Calibri Bold" size="13.0" />
+                           </font></Button>
                      </children>
                      <padding>
-                        <Insets left="5.0" right="5.0" top="10.0" />
+                        <Insets left="10.0" right="10.0" top="25.0" />
                      </padding>
                   </VBox>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303f52;" SplitPane.resizableWithParent="false" />
               </items>
             </SplitPane>
          </content>
     </Tab>
-      <Tab fx:id="RegisterTab1" text="Info">
+      <Tab fx:id="RegisterTab1" style="-fx-background-color: ed8063;" text="Info">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #303f52;">
                <children>
                   <TextArea editable="false" layoutX="18.0" layoutY="60.0" mouseTransparent="true" prefHeight="166.0" prefWidth="534.0" text="Bus is a desktop application developed for booking bus tickets online. It also makes you able to book, change, or cancel trips. It supports most of the operating systems available." wrapText="true" AnchorPane.bottomAnchor="174.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="60.0" />
-                  <Label layoutX="18.0" layoutY="14.0" text="Information">
+                  <Label layoutX="18.0" layoutY="14.0" text="Information" textFill="#ed8063">
                      <font>
                         <Font size="31.0" />
                      </font>

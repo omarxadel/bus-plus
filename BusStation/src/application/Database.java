@@ -19,7 +19,17 @@ public class Database {
 	
 	public Database() {
 		location = new Locations();
-		getManagerData();
+		try {
+			createManagersInitFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			getManagerData();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		getDriverData();
 		getPassengerData();
 		getSeats();
@@ -27,7 +37,22 @@ public class Database {
 		getTicketData();
 	}
 	
-	public void getManagerData() {
+	private void createManagersInitFile() throws IOException {
+		File temp = new File("ManagersData.txt");
+		if(temp.exists()) {
+			return;
+		}
+		else {
+			x = new Formatter("ManagersData.txt");
+			fr = new FileWriter("ManagersData.txt", true);
+			f.write("Omar" + " " + "Adel" + " " + "omarxadel" + " " + "12345" + " " + "5544" + " " + "Alexandria" + " " + "Egypt" + " " + "Male");
+			
+		}
+		
+		
+	}
+
+	public void getManagerData() throws IOException {
 		
 		try{
 		i = new Scanner(new File("ManagersData.txt"));
@@ -41,6 +66,7 @@ public class Database {
 		}
 		M = new  Manager [5];
 		int J = 0;
+		if(i != null) {
 		while(i.hasNext()) {
 			String fname = i.next();
 			String lname = i.next();
@@ -53,7 +79,10 @@ public class Database {
 			String gender = i.next();
 			M[J] = new Manager (fname, lname, uname, pword, ID, city, country, job, gender);
 			J++;
-			//System.out.println(M[J-1].username);
+		}}
+		else {
+			fr = new FileWriter("ManagersData.txt", true);
+			f.write("Omar" + " " + "Adel" + " " + "omarxadel" + " " + "12345" + " " + "5544" + " " + "Alexandria" + " " + "Egypt" + " " + "Male");
 		}
 	}
 	
@@ -66,12 +95,13 @@ public class Database {
 				try {
 					x = new Formatter("PassengerData.txt");
 				} catch (FileNotFoundException e1) {
-					e1.printStackTrace();
+					
 				}
 			}
 		
 		int J=0;
 		P = new  Passenger [25];
+		if(i != null) {
 		while(i.hasNext()) {
 			String fname = i.next();
 			String lname = i.next();
@@ -84,7 +114,7 @@ public class Database {
 			P[J] = new Passenger (fname, lname, uname, pword, ID, city, country, gender);
 			J++;
 		}
-
+		}
 	}
 	
 
@@ -102,6 +132,7 @@ public class Database {
 		
 		int J = 0;
 		D = new  Driver [25];
+		if(i != null) {
 		while(i.hasNext()) {
 			String fname = i.next();
 			String lname = i.next();
@@ -114,7 +145,7 @@ public class Database {
 			D[J] = new Driver (fname, lname, uname, pword, ID, city, country, job);
 			
 			J++;
-		}
+		}}
 
 	}
 	
@@ -132,7 +163,7 @@ public class Database {
 		int[] J;
 		int m, k=0, l=0;
 		S = new Seat [100];
-		
+		if(i != null) {
 		while(i.hasNext()) {
 			m = i.nextInt();
 			//System.out.println(m);
@@ -197,7 +228,7 @@ public class Database {
 				break;
 			}
 		}
-		
+		}
 	}
 	
 	public void getTripData() {
@@ -214,6 +245,7 @@ public class Database {
 		
 		int J = 0;
 		T = new  Trip [100];
+		if(i != null) {
 		while(i.hasNext()) {
 			int ID = i.nextInt();
 			String type = i.next();
@@ -231,7 +263,7 @@ public class Database {
 		}
 
 
-		
+		}
 	}
 	
 	public void getTicketData() {
@@ -249,6 +281,7 @@ public class Database {
 		int J = 0, iterator = 0;
 		Tk = new  Ticket [200];
 		Trip thisTrip = null;
+		if(i != null) {
 		while(i.hasNext()) {
 			int ID_trip = i.nextInt();
 			String uname = i.next();
@@ -271,7 +304,7 @@ public class Database {
 			J++;
 			}
 		}
-		
+		}
 	
 	}
 	
@@ -279,6 +312,7 @@ public class Database {
 		try {
 			f = new FileWriter("ManagersData.txt", true);
 		} catch (IOException e) {
+			x = new Formatter("ManagersData.txt");
 			e.printStackTrace();
 		}
 
@@ -305,7 +339,7 @@ public class Database {
 			try {
 				f = new FileWriter("PassengerData.txt", true);
 			} catch (IOException e) {
-				e.printStackTrace();
+				x = new Formatter("PassengerData.txt");
 			}
 
 		int ID = 5544;
@@ -375,6 +409,7 @@ public class Database {
 		try {
 			f = new FileWriter("TripsData.txt", true);
 		} catch (IOException e) {
+			x = new Formatter("TripsData.txt");
 			e.printStackTrace();
 		}	
 	f.write("\r\n" + ID + " " + type + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " " + ticketprice);
@@ -419,6 +454,7 @@ public class Database {
 		try {
 			f = new FileWriter("DriversData.txt", true);
 		} catch (IOException e) {
+			x = new Formatter("DriversData.txt");
 			e.printStackTrace();
 		}	
 	f.write("\r\n" + fname + " " + lname + " " + uname + " " + pw + " " + Integer.toString(ID) + " " + city + " " + country + " " + "Driver");
@@ -429,9 +465,13 @@ public class Database {
 	}
 
 	public Ticket addTicket(Trip currentT, String uname, int serial, String seat, float price, String payment) throws IOException {
-		fr = new FileWriter("Ticket.txt", true);
-		inp = new Scanner("Ticket.txt");
-		
+		try {
+			fr = new FileWriter("Ticket.txt", true);
+			inp = new Scanner("Ticket.txt");
+		}
+		catch(Exception e) {
+			x = new Formatter("Ticket.txt");
+		}
 		Ticket newTicket = new Ticket (currentT, uname, serial, seat, price, payment);
 		if(inp.hasNext()) {
 			fr.write("\r\n" + currentT.ID + " " + uname + " " + serial + " " + seat + " " + price + " " + payment);
@@ -452,6 +492,7 @@ public class Database {
 			fr = new FileWriter("Seats.txt", false);
 			inp = new Scanner(new File("Seats.txt"));
 		} catch (IOException e) {
+			x = new Formatter("Seats.txt");
 			e.printStackTrace();
 		}	
 		int row, col;
@@ -493,6 +534,7 @@ public class Database {
 				inp = new Scanner(new File("TripsData.txt"));
 		} 
 		catch (IOException e) {
+			x = new Formatter("TripsData.txt");
 			e.printStackTrace();
 		}	
 		ID = Integer.toString(T[0].ID);
@@ -526,12 +568,12 @@ public class Database {
 		fr = new FileWriter("Seats.txt", false);
 		inp = new Scanner(new File("Seats.txt"));
 	} catch (IOException e) {
+		x = new Formatter("Seats.txt");
 		e.printStackTrace();
 	}	
 	int row, col;
 	i=1;
 	fr.write("" + T[0].seat.capacity);
-	//System.out.println(T[0].seat.capacity);
 	row = T[0].seat.seat.length;
 	col = T[0].seat.seat[0].length;
 	for(int iterator = 0; iterator < row ; iterator++) {
@@ -564,7 +606,6 @@ public class Database {
 		while(T[i+1] != null) {
 			T[i] = T[i+1];
 			i++;
-			System.out.println(i);
 		}
 		T[i] = null;
 		saveTripData();
@@ -578,6 +619,7 @@ public class Database {
 					inp = new Scanner(new File("DriversData.txt"));
 			} 
 			catch (IOException e) {
+				x = new Formatter("DriversData.txt");
 				e.printStackTrace();
 			}	
 			ID = Integer.toString(D[0].ID);
@@ -598,6 +640,7 @@ public class Database {
 					inp = new Scanner(new File("ManagersData.txt"));
 			} 
 			catch (IOException e) {
+				x = new Formatter("ManagersData.txt");
 				e.printStackTrace();
 			}	
 			ID = Integer.toString(M[0].ID);
@@ -614,7 +657,6 @@ public class Database {
 		
 	public void removeDriver(int index) throws IOException {
 		int i = index;
-		System.out.println(i);
 		while(D[i+1] != null) {
 			D[i] = D[i+1];
 			i++;

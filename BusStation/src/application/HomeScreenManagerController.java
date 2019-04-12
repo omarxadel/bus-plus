@@ -740,7 +740,6 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 			else {
 			ID = Integer.toString(d.M[i].ID);
 			managerData = (d.M[i].firstname + " " + d.M[i].lastname + " " + d.M[i].username+ " " + ID + " " + d.M[i].city + " " + d.M[i].country);
-			System.out.println(managerData);
 			managerView[i] = managerData;
 			i++;
 		}}
