@@ -85,6 +85,7 @@ public class MainMenuController implements Initializable{
 		HomeScreenManagerController controller = loader.getController();
 		controller.getProfile(a);
 		controller.D = auth.getDrivers();
+		controller.currentuserInd = index;
 		controller.choiceInit();
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(MHome);

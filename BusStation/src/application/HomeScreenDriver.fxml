@@ -11,14 +11,12 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="View">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem mnemonicParsing="false" text="My Profile" />
+                  <MenuItem fx:id="seeTrips" mnemonicParsing="false" onAction="#myTripsClicked" text="My Trips" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Edit Profile" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -71,20 +69,6 @@
    <center>
       <AnchorPane prefHeight="363.0" prefWidth="190.0" BorderPane.alignment="CENTER">
          <children>
-
-            <AnchorPane fx:id="trip2" prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <ListView prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="trip3" prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-
-                  <ListView prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-
-               </children>
-            </AnchorPane>
             <Button fx:id="Back" layoutX="14.0" layoutY="342.0" mnemonicParsing="false" onAction="#BackMainTab" text="Ok" visible="false" />
             <AnchorPane fx:id="ProfFull" layoutX="236.0" prefHeight="363.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -119,7 +103,7 @@
                      </children>
                   </VBox>
                   <Separator layoutX="14.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
-                  <Button fx:id="EditAccount" layoutX="327.0" layoutY="324.0" mnemonicParsing="false" text="Edit Account Info." />
+                  <Button fx:id="EditAccount" layoutX="327.0" layoutY="324.0" mnemonicParsing="false" onAction="#toEditprofileClicked" text="Edit Account Info." />
                   <Button fx:id="profReturn" layoutX="30.0" layoutY="324.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
                </children>
             </AnchorPane>
@@ -127,6 +111,43 @@
                <children>
                   <ListView fx:id="line1V" layoutX="12.0" layoutY="14.0" prefHeight="317.0" prefWidth="419.0" />
                   <Button fx:id="Back1" layoutX="18.0" layoutY="335.0" mnemonicParsing="false" onAction="#BackMainTab" text="Return" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="editProfile" prefHeight="368.0" prefWidth="449.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox layoutX="66.0" layoutY="34.0" prefHeight="270.0" prefWidth="318.0" spacing="20.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="22.0">
+                           <children>
+                              <Label text="First name" />
+                              <Label text="Last name" />
+                              <Label text="Username" />
+                              <Label text="Password" />
+                              <Label text="Re-Enter Password" />
+                              <Label text="City" />
+                              <Label text="Country" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="276.0" prefWidth="175.0" spacing="13.0">
+                           <children>
+                              <TextField fx:id="FirstnameManager" promptText="Firstname" />
+                              <TextField fx:id="LastnameManager" promptText="Lastname" />
+                              <TextField fx:id="UsernameManager" promptText="Username" />
+                              <PasswordField fx:id="PasswordManager" promptText="Password" />
+                              <PasswordField fx:id="RepassManager" promptText="Re-Enter Password" />
+                              <TextField fx:id="CityManager" promptText="City" />
+                              <TextField fx:id="CountryManager" promptText="Country" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="30.0" layoutY="313.0" prefHeight="41.0" prefWidth="369.0" spacing="60.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#returnFromEditProfile" text="Return" />
+                        <Button mnemonicParsing="false" onAction="#saveProfileEditClicked" text="Save Changes" />
+                        <Button mnemonicParsing="false" text="Delete Account" />
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
          </children>

@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 public class PromoCode implements PaymentMethod {
 	
-	HashMap <String, Integer> promocodes = new HashMap<String, Integer>();
+	HashMap <String, Float> promocodes = new HashMap<String, Float>();
 	float newPrice;
 	
 	public PromoCode() {
-		promocodes.put("plusGet50", 50);
-		promocodes.put("firstRide+", 100);
-		promocodes.put("wlcmSummer", 10);
-		promocodes.put("alexUni22", 30);
+		promocodes.put("plusGet50", (float) 50);
+		promocodes.put("firstRide+", (float) 100);
+		promocodes.put("wlcmSummer", (float) 10);
+		promocodes.put("alexUni22", (float) 30);
 	}
 	
 	
@@ -21,8 +21,8 @@ public class PromoCode implements PaymentMethod {
 	
 	@Override
 	public void pay(float amount, String code) {
-		int percentage = promocodes.get(code);
-		newPrice = amount%percentage;
+		float percentage = promocodes.get(code);
+		newPrice = amount*(percentage/100);
 	}
 	
 	public float getNewPrice() {

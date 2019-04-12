@@ -26,6 +26,7 @@ import javafx.scene.control.*;
 
 public class HomeScreenController implements Initializable {
 
+	String [] promocode = new String [5];
 	float totalCheck = 0;
 	static PaymentMethod pay;
 	Ticket new_Ticket;
@@ -42,10 +43,8 @@ public class HomeScreenController implements Initializable {
 	public Trip[] trip;
 	//Driver D;
 	static Database d = new Database();
-	public AnchorPane Trip1, booking;
+	public AnchorPane Trip1, booking, myTripsPane;
 	public AnchorPane payment;
-	public AnchorPane Trip2;
-	public AnchorPane Trip3;
 	public AnchorPane Editacc;
 	public AnchorPane searchResultPane;
 	public Button PromoCodes;
@@ -70,7 +69,6 @@ public class HomeScreenController implements Initializable {
 	public Label ID;
 	public VBox ProfTitle;
 	public VBox SearchTabs;
-	public VBox instr;
 	public VBox LabelChoose;
 	public TextField seatingTxt;
 	public ChoiceBox<String> type;
@@ -78,11 +76,15 @@ public class HomeScreenController implements Initializable {
 	public ChoiceBox<String> destination;
 	public DatePicker date;
 	public ListView<String> searchView;
-	public ListView<String> purchaseView;
+	public ListView<String> purchaseView, myTrips;
 	private Trip [] resultTrips;
 	private String [] results;
 	public Label startDestLabel, timeLabel, dateLabel, priceLabel, seatsLabel;
 	private Ticket[] upaid;
+	private Ticket[] resultTickets;
+	private String[] Ticketresults;
+	int instr;
+	private int pIndex;
 	
 	// --------------- Profile Controls ---------------\\
 	 
@@ -107,7 +109,6 @@ public class HomeScreenController implements Initializable {
 		ProfTitle.setVisible(true);
 		Editacc.setVisible(true);
 		SearchTabs.setVisible(false);
-		instr.setVisible(false);
 		PassengerTabs.setVisible(false);
 		
 		
@@ -116,7 +117,6 @@ public class HomeScreenController implements Initializable {
 	public void returnProfButtonClicked (ActionEvent e)
 	{   
 		SearchTabs.setVisible(true);
-		instr.setVisible(true);
 		PassengerTabs.setVisible(true);
 		ProfFull.setVisible(false);
 		ProfTitle.setVisible(false);
@@ -135,7 +135,6 @@ public class HomeScreenController implements Initializable {
 	
 	public void SeatingOptions (ActionEvent e) throws IOException
 	{
-		SeatsDesign.Design(48);
 		seatingTxt.setText("");
 		SeatsDesign.display(reservedTrip, reservedTrip.seat.capacity);
 		seatsChosen = SeatsDesign.getSeatsChosen();		
@@ -212,7 +211,6 @@ public class HomeScreenController implements Initializable {
 		searchResultPane.setVisible(true);
 		SearchTabs.setVisible(false);
 		PassengerTabs.setVisible(false);
-		instr.setVisible(false);
 	}
 	
 	public void choiceReset() {
@@ -228,7 +226,6 @@ public class HomeScreenController implements Initializable {
 		choiceReset();
 		SearchTabs.setVisible(true);
 		PassengerTabs.setVisible(true);
-		instr.setVisible(true);
 		searchResultPane.setVisible(false);
 	}
 	
@@ -369,10 +366,22 @@ public class HomeScreenController implements Initializable {
 			boolean flag = PaymentWindow.display("Promo Code", "Payment Information", "Promo", "Return", "Enter", "Promo Code");
 			if(flag) {
 				String credit = PaymentWindow.code;
+				int i = 0;
 				if(d.promo.validatePromoCode(credit)) {
-					pay.pay(totalCheck, credit);
+					while(promocode[i] != null) {
+						if(promocode[i].equals(credit)) {
+							AlertBox.display("ERROR", "You can't use a promo code twice at the same session", "OK");
+							i++;
+							return;
+							
+						}}
+				
+					d.promo.pay(totalCheck, credit);
 					totalCheck = d.promo.getNewPrice();
+					promocode[pIndex] = credit;
+					book(3);
 				}
+				else AlertBox.display("ERROR", "Not an existing promo code!", "OK");
 			}
 			return;
 		}
@@ -395,10 +404,6 @@ public class HomeScreenController implements Initializable {
 					unpaidTickets[index] = tmp;
 					i++;
 					index++;
-					//AlertBox.display("SUCCESS", "Your reservation was added successfully! You may now view it from MyTrips tab!", "OK");
-					//searchResultPane.setVisible(true);
-					//booking.setVisible(false);
-					//d.addTicket(reservedTrip, P.username, tmp.serial, tmp.seat, tmp.price, tmp.payment);
 			}
 		}
 		else {
@@ -410,14 +415,10 @@ public class HomeScreenController implements Initializable {
 						totalCheck += tmp.price;
 						unpaidTickets[index] = tmp;
 						i++;
-						//searchResultPane.setVisible(true);
-						//booking.setVisible(false);
 					}
-					//d.addTicket(reservedTrip, P.username, tmp.serial, tmp.seat, tmp.price, tmp.payment);
-					//AlertBox.display("SUCCESS", "Your reservation was added successfully! You may now view it from MyTrips tab!", "OK");
 			}			
 			else if(seatsChosen == null) {
-				int numSeats = 0;
+				int numSeats;
 			
 				try{
 					numSeats = Integer.parseInt(seatingTxt.getText());
@@ -432,18 +433,15 @@ public class HomeScreenController implements Initializable {
 					return null;
 				}
 				while(numSeats != 0) {
-					if(reservedTrip.seat.bookRandom() == null || reservedTrip.seat.bookRandom().equals(null)) {
-						AlertBox.display("EXCEPTION", "Sorry! All seats are booked!", "OK");
-					}
-					else {
+					System.out.println(numSeats);
 					Ticket tmp = reserve.makeReservation(reservedTrip, P.username, ticketSerialGenerator(), reservedTrip.seat.bookRandom(), "UNPAID");
 					totalCheck += tmp.price;
 					unpaidTickets[index] = tmp;
 					upaid = unpaidTickets;
 					index++;
 					numSeats --;
+					
 				}
-					}
 			}
 		}
 		
@@ -482,13 +480,15 @@ public class HomeScreenController implements Initializable {
 	public void clearUnpaidTicket() {
 		purchaseView.getItems().clear();
 		checkTotal.setText(null);
-		reservedTrip = null;
 		searchResultPane.setVisible(true);
 		booking.setVisible(false);
 		payment.setVisible(false);
 		totalCheck = 0;
+		reservedTrip = null;
+		upaid = null;
 		
 	}
+	
 	
 	public void book(int type) throws IOException {
 		Ticket [] unpaidTickets = upaid;
@@ -496,11 +496,15 @@ public class HomeScreenController implements Initializable {
 		while(unpaidTickets[i] != null) {
 			if(type == 1) {
 				d.addTicket(unpaidTickets[i].T, P.username, unpaidTickets[i].serial, unpaidTickets[i].seat , unpaidTickets[i].price, "Cash");
-			//	unpaidTickets[i].T.seat.bookByName(unpaidTickets[i].seat);
+			}
+			else if(type == 3) {
+				checkTotal.setText(Float.toString(totalCheck) + " €");
+				AlertBox.display("SUCCESS", "Your total check has been reduced by "+d.promo.promocodes.get(promocode[pIndex]) + " %", "Continue");
+				pIndex++;
+				return;
 			}
 			else {
 				d.addTicket(unpaidTickets[i].T, P.username, unpaidTickets[i].serial, unpaidTickets[i].seat , unpaidTickets[i].price, "CreditCard");
-			//	unpaidTickets[i].T.seat.bookByName(unpaidTickets[i].seat);
 			}
 			i++;
 		}
@@ -512,6 +516,13 @@ public class HomeScreenController implements Initializable {
 	
 	public void returnPaymentClicked(ActionEvent e) {
 		purchaseView.getItems().clear();
+		int i = 0;
+		if(upaid != null)
+		while(upaid[i] != null) {
+			reservedTrip.seat.resetByName(upaid[i].seat);
+			i++;
+		}
+		
 		booking.setVisible(true);
 		payment.setVisible(false);
 	}
@@ -529,16 +540,7 @@ public class HomeScreenController implements Initializable {
 		{
 			Trip1.setVisible(true);
 		}
-		if(line2.getTypeSelector() != null)
-		{
-			Trip2.setVisible(true);
-		}
-		if(line3.getTypeSelector() != null)
-		{
-			Trip3.setVisible(true);
-		}
 		SearchTabs.setVisible(false);
-		instr.setVisible(false);
 		PassengerTabs.setVisible(false);
 		
 	}
@@ -546,11 +548,8 @@ public class HomeScreenController implements Initializable {
 	{
 		
 		SearchTabs.setVisible(true);
-		instr.setVisible(true);
 		PassengerTabs.setVisible(true);
 		Trip1.setVisible(false);
-		Trip2.setVisible(false);
-		Trip3.setVisible(false);
 		LabelChoose.setVisible(false);
 		back.setVisible(false);
 	}
@@ -560,4 +559,67 @@ public class HomeScreenController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		choiceInit();
 	}
+	
+	
+	//--------------- MyTrips View ---------------\\
+	
+	
+	public Ticket[] queryMyTrips() {
+		int i = 0, k =0;
+		resultTickets = new Ticket[100];
+		while(d.Tk[i] != null) {
+			if(d.Tk[i].uname.equals(P.username)){
+				resultTickets[k] = d.Tk[i];
+				k++;
+			}
+			i++;
+		}
+		return resultTickets;
+	}
+	
+	public String [] showMyResults() {
+		Ticket [] Tk = queryMyTrips();
+		Ticketresults = new String[50];
+		int i = 0;
+		while(Tk[i] != null) {
+			Ticketresults[i] = ("Ticket Number: " + Tk[i].serial + "		Destination: "+ Tk[i].T.destination + "		Start: " + Tk[i].T.start + "		Ticket Price: " + Tk[i].price + "		Payment Method Chosen: " + Tk[i].payment);
+			i++;
+		}
+		return Ticketresults;
+	}
+	
+	public void myTripTableInit() {
+		String [] results = showMyResults();
+		int i = 0;
+		while(results[i] != null) {
+			myTrips.getItems().add(results[i]);
+			i++;
+		}
+	}
+
+	
+	public void myTripsClicked(ActionEvent e) {
+		myTripTableInit();
+		myTripsPane.setVisible(true);
+		myTrips.setVisible(true);
+		searchResultPane.setVisible(false);
+		SearchTabs.setVisible(false);
+		PassengerTabs.setVisible(false);
+	}
+	
+	public void myTripsReset() {
+		myTrips.getItems().clear();
+		
+	}
+	
+	public void returnMyTrips(ActionEvent e) {
+		myTripsReset();
+		SearchTabs.setVisible(true);
+		PassengerTabs.setVisible(true);
+		myTripsPane.setVisible(false);
+	}
+	
+	
+	
+	
 }

@@ -1,7 +1,7 @@
 package application;
 
 public class LoginAuthentication {
-	Database d = new Database();
+	static Database d = new Database();
 	
 	public int authenticateAdmin(String username, String password) {
 		int i = 0;

@@ -11,7 +11,7 @@
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <AnchorPane prefHeight="355.0" prefWidth="124.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="372.0" prefWidth="191.0" BorderPane.alignment="CENTER">
                <children>
                   <VBox fx:id="LabelChoose" alignment="TOP_CENTER" layoutY="31.0" prefHeight="135.0" prefWidth="132.0" visible="false">
                      <children>
@@ -22,12 +22,11 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" prefHeight="355.0" prefWidth="124.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" prefHeight="355.0" prefWidth="124.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label fx:id="WelcomeLabel" text="Hello Mr." />
                         <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="MyProfile" />
-                        <Button fx:id="PromoCodes" mnemonicParsing="false" text="Promo Codes" />
-                        <Button fx:id="Settings" mnemonicParsing="false" text="Settings" />
+                        <Button fx:id="MyTrips" mnemonicParsing="false" onAction="#myTripsClicked" text="My Trips" />
                         <Button fx:id="Service" mnemonicParsing="false" text="Customer Service" />
                         <Button fx:id="logout" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
                      </children>
@@ -100,7 +99,7 @@
                         <Button fx:id="ReturnProf" layoutX="-9.0" layoutY="325.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
                      </children>
                   </AnchorPane>
-                  <VBox fx:id="SearchTabs" alignment="TOP_CENTER" layoutX="-2.0" prefHeight="369.0" prefWidth="322.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox fx:id="SearchTabs" alignment="TOP_CENTER" layoutX="-2.0" prefHeight="369.0" prefWidth="322.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label text="Search for your trip" />
                         <ChoiceBox fx:id="type" prefWidth="150.0" />
@@ -146,6 +145,13 @@
                         <Button layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#returnPaymentClicked" text="Return" />
                      </children>
                   </AnchorPane>
+                  <AnchorPane fx:id="myTripsPane" prefHeight="374.0" prefWidth="348.0" visible="false">
+                     <children>
+                        <ListView fx:id="myTrips" layoutX="16.0" layoutY="14.0" prefHeight="300.0" prefWidth="316.0" />
+                        <Button layoutX="16.0" layoutY="335.0" mnemonicParsing="false" onAction="#returnMyTrips" text="Return" />
+                        <Button layoutX="245.0" layoutY="335.0" mnemonicParsing="false" text="Ticket Details" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </center>
@@ -158,15 +164,6 @@
                         <Button fx:id="EditAccount" layoutX="45.0" layoutY="329.0" mnemonicParsing="false" text="Edit Account  Info." />
                      </children>
                   </AnchorPane>
-                  <VBox fx:id="instr" alignment="TOP_CENTER" layoutX="14.0" prefHeight="355.0" prefWidth="254.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label text="How it works" />
-                        <Label text="Search" />
-                        <Label text="Find" />
-                        <Label text="book!" />
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="234.0" text="Booking a bus trip never been so easy!" />
-                     </children>
-                  </VBox>
                </children>
             </AnchorPane>
          </right>

@@ -39,13 +39,13 @@ import javafx.stage.Stage;
 public class HomeScreenManagerController implements Initializable {
 	
 	static boolean flag = false;
-	int index, ID;
+	int index, ID, currentuserInd;
 	Manager M;
 	Driver D[];
 	static Database d = new Database();
 	int userIndex;
 	String uStart, uDest, uCar, uCarnum, uDriver, uTime, uTicket;
-	public AnchorPane editProfile;
+	public AnchorPane editProfile, ManagerDb, managerEdit;
 	public AnchorPane DriveAddFull, DriverEdit;
 	public VBox MainTabManager;
 	public VBox ManageTripsTab;
@@ -81,7 +81,7 @@ public class HomeScreenManagerController implements Initializable {
 	public PasswordField PasswordManager, RepassManager;
 	public ChoiceBox<String> GenderManager;
 	public ListView<String> Table;
-	public ListView<String> Table2;
+	public ListView<String> Table2, managerTable;
 	public TableColumn<Trip, Integer> TripIDc;
 	public TableColumn<Trip, String> TripStart; 
 	public TableColumn<Trip, String> TripDest; 
@@ -98,7 +98,10 @@ public class HomeScreenManagerController implements Initializable {
 	private String dateGet;
 	private String time;
 	public TextField FirstnameAdd, LastnameAdd, UsernameAdd , PasswordAdd, RepassAdd, CityAdd, CountryAdd;
+	public TextField FirstnameAdd1, LastnameAdd1, UsernameAdd1 , PasswordAdd1, RepassAdd1, CityAdd1, CountryAdd1;
+	public ChoiceBox<String> GenderAdd1;
 	private String uType;
+	public AnchorPane managerUpdate;
 
 
 @Override
@@ -149,6 +152,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	public void initEditProfile() {
 		FirstnameManager.setText(M.firstname);
 		LastnameManager.setText(M.lastname);
+		UsernameManager.setText(M.username);
 		PasswordManager.setText(M.getPassword());
 		RepassManager.setText(M.getPassword());
 		CityManager.setText(M.city);
@@ -158,12 +162,14 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	}
 	
 	public void toEditprofileClicked(ActionEvent e) {
+		initEditProfile();
 		editProfile.setVisible(true);
 		ProfTitle.setVisible(false);
 		ProfFull.setVisible(false);
 	}
 	
 	public void returnFromEditProfile(ActionEvent e) {
+		getProfile(d.M[currentuserInd]);
 		ProfTitle.setVisible(true);
 		ProfFull.setVisible(true);
 		editProfile.setVisible(false);
@@ -201,7 +207,12 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	public void saveProfileEditClicked(ActionEvent e) throws IOException {
 		displayDialogueBox("MESSAGE","Are you sure you want to update the saved data?","Yes","No");
 		if(flag) {
-			M.firstname = FirstnameManager.getText();
+		if(FirstnameManager.getText() == null || LastnameManager.getText() == null || UsernameManager.getText() == null || PasswordManager.getText() == null || CityManager.getText() == null || CountryManager.getText() == null || GenderManager.getValue() == null) {
+			if(FirstnameManager.getText().equals(null) || LastnameManager.getText().equals(null) || UsernameManager.getText().equals(null) || PasswordManager.getText().equals(null) || CityManager.getText().equals(null) || CountryManager.getText().equals(null) || GenderManager.getValue().equals(null)) {
+				AlertBox.display("UNEXPECTED INPUTS!", "Make sure you fill in all the fields!", "OK");
+			}
+		}
+		M.firstname = FirstnameManager.getText();
 		M.lastname = LastnameManager.getText();
 		M.username = UsernameManager.getText();
 		M.setPassword(PasswordManager.getText());
@@ -210,6 +221,9 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		M.gender = GenderManager.getValue();
 		d.M[userIndex] = M;
 		d.saveManagerData();
+		AlertBox.display("SUCCESS", "Account has been updated successfully!", "OK");
+		returnFromEditProfile(e);
+		
 		}
 		else return;
 		
@@ -528,6 +542,12 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	
 	// --------------- Manage Driver Controls ------------\\
 	
+
+	public void manageDriverButtonClicked(ActionEvent e) {
+		DriveAddFull.setVisible(true);
+		Table2.setVisible(true);
+		MainTabManager.setVisible(false);
+	}
 	
 	public void initTableDriver() {
 		String[] driverData = getDrivers();
@@ -551,14 +571,6 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 		}
 		return driverView;
 	}
-	
-	
-		public void manageDriverButtonClicked(ActionEvent e) {
-			System.out.println("Click");
-			DriveAddFull.setVisible(true);
-			Table2.setVisible(true);
-			MainTabManager.setVisible(false);
-		}
 
 		public void returnManageDriverClicked(ActionEvent e) {
 			MainTabManager.setVisible(true);
@@ -702,4 +714,197 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 				DriverEdit.setVisible(false);
 				}
 			}
+		
+	// --------------- Manage Admin Controls ------------\\
+		
+		
+			public void initTableManager() {
+				String[] managerData = getManagers();
+				int i = 0;
+				while (managerData[i] != null) {
+					managerTable.getItems().add(managerData[i]);
+					i++;
+				}		
+		
+	}
+		 
+	public String[] getManagers(){
+		int i=0;
+		String ID, managerData;
+		String [] managerView = new String[100];
+		while(d.M[i] != null) {
+			if(d.M[i].username == M.username) {
+				i++;
+				System.out.println(i);
+			}
+			else {
+			ID = Integer.toString(d.M[i].ID);
+			managerData = (d.M[i].firstname + " " + d.M[i].lastname + " " + d.M[i].username+ " " + ID + " " + d.M[i].city + " " + d.M[i].country);
+			System.out.println(managerData);
+			managerView[i] = managerData;
+			i++;
+		}}
+		return managerView;
+	}
+	
+	
+
+		
+		
+			public void manageManagersButtonClicked(ActionEvent e) {
+				initTableManager();
+				ManagerDb.setVisible(true);
+				managerTable.setVisible(true);
+				MainTabManager.setVisible(false);
+			}
+
+			public void returnManageManagerClicked(ActionEvent e) {
+				MainTabManager.setVisible(true);
+				ManagerDb.setVisible(false);
+				managerTable.setVisible(false);
+			}
+
+			public void removeManagerButtonClicked(ActionEvent e) throws IOException {
+				displayDialogueBoxDriver("MESSAGE ALERT", "Are you sure you want to remove the selected account?", "Abort", "Yes", Table2.getSelectionModel().getSelectedIndex());
+				if(flag) {
+					managerTable.getItems().remove(managerTable.getSelectionModel().getSelectedIndex());
+				}
+			}
+			
+			public static void displayDialogueBoxManager(String title, String message, String buttonTxt, String buttonTxt2, int index) {
+				Stage window = new Stage();
+				window.setTitle(title);
+				window.setMinWidth(300);
+				window.initModality(Modality.APPLICATION_MODAL);
+				HBox internalLayout = new HBox(10);
+				Button Button2 = new Button(buttonTxt);
+				Button Button1 = new Button(buttonTxt2);
+				internalLayout.getChildren().addAll(Button1, Button2);
+				internalLayout.setAlignment(Pos.CENTER);
+				Label error = new Label(message);
+				Button2.setOnAction(e-> {
+					flag=false;
+				window.close();}
+						);
+				Button1.setOnAction(e-> {
+					try {
+						d.removeManager(index);
+						flag=true;
+						window.close();
+						
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				});
+				VBox layout = new VBox(10);
+				layout.getChildren().addAll(error, internalLayout);
+				layout.setAlignment(Pos.CENTER);
+				
+				Scene scene = new Scene(layout);
+				window.setScene(scene);
+				window.showAndWait();
+			}
+			
+
+			public void editManagerButtonClicked() throws IOException {
+					
+					
+					
+					index = managerTable.getSelectionModel().getSelectedIndex();
+					if(index == -1) {
+						AlertBox.display("Error","Please make sure you select a manager!", "OK");
+						return;
+					}
+					else {
+						
+					editManagerInit(d.M[index].firstname, d.M[index].lastname, d.M[index].username, d.M[index].getPassword(), d.M[index].city, d.M[index].country, d.M[index].gender);
+					managerUpdate.setVisible(true);
+					managerTable.setVisible(false);
+					ManagerDb.setVisible(false);
+					}
+			}
+			
+			public void editManagerInit(String fname, String lname, String username, String password, String city, String country, String gender) {
+				FirstnameAdd1.setText(fname);
+				LastnameAdd1.setText(lname);
+				UsernameAdd1.setText(username);
+				PasswordAdd1.setText(password);
+				CityAdd1.setText(city);
+				CountryAdd1.setText(country);
+				GenderAdd1.getItems().addAll("Male", "Female");
+				GenderAdd1.setValue(gender);
+			}
+			
+			public void editManagerReset() {
+				FirstnameAdd1.setText(null);
+				LastnameAdd1.setText(null);
+				UsernameAdd1.setText(null);
+				PasswordAdd1.setText(null);
+				RepassAdd1.setText(null);
+				CityAdd1.setText(null);
+				CountryAdd1.setText(null);
+			}
+
+			public void closeManagerOutClicked(ActionEvent e) {
+				MainTabManager.setVisible(true);
+				managerTable.setVisible(false);
+				ManagerDb.setVisible(false);
+			}
+			
+			public void returnManagerInClicked(ActionEvent e) {
+				managerTable.setVisible(true);
+				ManagerDb.setVisible(true);
+				managerUpdate.setVisible(false);
+			}
+			
+			public void updateManagerClicked(ActionEvent e) throws IOException {
+				if(index == -1) {
+					AlertBox.display("ERROR", "Can't update user if you didn't select one!", "OK");
+				}
+				else {
+				if(FirstnameAdd1.getText()==null || LastnameAdd1.getText() == null || PasswordAdd1.getText() == null || RepassAdd1.getText() == null || CityAdd1.getText() == null || CountryAdd1.getText() == null || FirstnameAdd1.getText().isEmpty() || PasswordAdd1.getText().isEmpty() || RepassAdd1.getText().isEmpty() || CityAdd1.getText().isEmpty()|| CountryAdd1.getText( ).isEmpty()) {
+					AlertBox.display("UNEXPECTED INPUTS!", "Please make sure you fill in all the fields!", "OK");
+				}
+				else if (!PasswordAdd1.getText().equals(RepassAdd1.getText())) {
+						AlertBox.display("UNEXPECTED INPUTS!", "Please re-enter the password correctly", "OK");
+					}
+				else{ Manager M = new Manager(FirstnameAdd1.getText(), LastnameAdd1.getText(), UsernameAdd1.getText() ,PasswordAdd1.getText(), d.M[index].ID , CityAdd1.getText(), CountryAdd1.getText(), "Manager", GenderAdd1.getValue());
+					d.M[index] = M;
+					d.saveManagerData();
+					managerTable.getItems().remove(index);
+					String ManagerData = (FirstnameAdd1.getText() + " " + LastnameAdd1.getText() + " " + UsernameAdd1.getText() + " " + d.M[index].ID + " "  + CityAdd1.getText() + " " +  CountryAdd1.getText());
+					managerTable.getItems().add(index, ManagerData);
+					AlertBox.display("SUCCESS", "Selected account was updated successfully!", "Return");
+					editManagerReset();
+					managerTable.setVisible(true);
+					ManagerDb.setVisible(true);
+					managerUpdate.setVisible(false);
+				}
+				}
+				
+			}
+			public void saveAsManagerClicked(ActionEvent e) throws IOException {
+					if(FirstnameAdd1.getText()==null || LastnameAdd1.getText() == null || PasswordAdd1.getText() == null || RepassAdd1.getText() == null || CityAdd1.getText() == null || CountryAdd1.getText() == null || FirstnameAdd1.getText().isEmpty() || PasswordAdd1.getText().isEmpty() || RepassAdd1.getText().isEmpty() || CityAdd1.getText().isEmpty()|| CountryAdd1.getText( ).isEmpty()) {
+						AlertBox.display("UNEXPECTED INPUTS!", "Please make sure you fill in all the fields!", "OK");
+					}
+					else if(!PasswordAdd1.getText().equals(RepassAdd1.getText())) {
+						AlertBox.display("UNEXPECTED INPUTS!", "Please re-enter the password correctly", "OK");
+					}
+					else {
+						d.addManagerData(FirstnameAdd1.getText(), LastnameAdd1.getText(), UsernameAdd1.getText() ,PasswordAdd1.getText(), CityAdd1.getText(), CountryAdd1.getText(), GenderAdd1.getValue());
+						int i=0;
+						while(d.M[i] != null) {
+							i++;
+						}
+						String ManagerData = (FirstnameAdd1.getText() + " " + LastnameAdd1.getText() + " " + UsernameAdd1.getText() + " " + d.M[i-1].ID + " "  + CityAdd1.getText() + " " +  CountryAdd1.getText());
+						managerTable.getItems().add(ManagerData);
+					
+					AlertBox.display("SUCCESS", "New account was added successfully!", "Return");
+					editManagerReset();
+					managerTable.setVisible(true);
+					ManagerDb.setVisible(true);
+					managerUpdate.setVisible(false);
+					}
+				}
+		
 }

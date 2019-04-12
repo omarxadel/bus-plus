@@ -174,8 +174,8 @@ public class Database {
 			else if(m == 12) {
 				l=0;
 				S[k] = new Seat("Minibus");
-				for(int row = 0 ; row < 3 ; row++) {
-					for(int col = 0 ; col < 4; col++) {
+				for(int col = 0 ; col < 3 ; col++) {
+					for(int row = 0 ; row < 4; row++) {
 						if(l<m) {
 							if(J[l++] == 1) S[k].bookSeat(col, row);
 						}
@@ -299,6 +299,7 @@ public class Database {
 	f.write("\r\n" + fname + " " + lname + " " + uname + " " + pw + " " + ID + " " + city + " " + country + " " + gender);
 	Manager m = new Manager(fname, lname, uname, pw, ID, city, country, gender, "Manager");
 	f.close();
+	getManagerData();
 	return m;
 }
 	
@@ -602,13 +603,14 @@ public class Database {
 				e.printStackTrace();
 			}	
 			ID = Integer.toString(M[0].ID);
-			fr.write(""+ M[0].firstname + " " + M[0].lastname + " "+ M[0].username + " " + M[0].getPassword() + " " + ID + " " + M[0].city + " " + M[0].country + " " + M[0].job);
+			fr.write(""+ M[0].firstname + " " + M[0].lastname + " "+ M[0].username + " " + M[0].getPassword() + " " + ID + " " + M[0].city + " " + M[0].country + " " + M[0].job + " " + M[0].gender);
 			while(M[i] != null) {
 				ID = Integer.toString(M[i].ID);
-				fr.write("\r\n"+ M[i].firstname + " " + M[i].lastname + " " + M[i].getPassword() + " " + ID + " " + M[i].city + " " + M[i].country + " " + M[i].job);
+				fr.write("\r\n"+ M[i].firstname + " " + M[i].lastname + " " + M[i].username + " " + M[i].getPassword() + " " + ID + " " + M[i].city + " " + M[i].country + " " + M[i].job + " " + M[i].gender);
 				i++;
 			}
 			fr.close();
+			getManagerData();
 		}
 	
 		
@@ -620,9 +622,23 @@ public class Database {
 			i++;
 		}
 		D[i] = null;
-		System.out.println(i);
 		saveDriversData();
 	}
+
+	public void removeManager(int index) throws IOException {
+		int i = index;
+		while(M[i+1] != null) {
+			M[i] = M[i+1];
+			i++;
+		}
+		M[i] = null;
+		saveManagerData();
+		
+	}
+
+	
+		
+	
 	
 }
   

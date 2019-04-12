@@ -1,7 +1,11 @@
 package application;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,15 +16,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class SeatsDesign {
-	static Stage window;
+public class SeatsDesign implements Initializable{
 	static String [] bookedSeats = new String[50];
 	static Trip T;
 	HomeScreenController homescreen;
 	int SNum;
-	Stage NewWindow=new Stage ();
+	static Stage window=new Stage ();
 	static GridPane grid = new  GridPane ();
-	static Scene scene=new Scene(grid);
+	static Scene scene = new Scene(grid);
 	static int i = 0;
 	
 	
@@ -74,6 +77,14 @@ public class SeatsDesign {
 	grid.setAlignment(Pos.CENTER);
 	    
 	//----------------------------------------------------------------------------//
+	OK.setOnAction(new EventHandler<ActionEvent>() {
+
+	@Override
+	public void handle(ActionEvent event) {
+		window.close();
+	}
+	});
+	
 	one.setOnAction(new EventHandler<ActionEvent>() {
 
 	@Override
@@ -1102,6 +1113,16 @@ public class SeatsDesign {
 	grid.setAlignment(Pos.CENTER);
 	
 	//----------------------------------------------------------------------//
+	Ok.setOnAction(new EventHandler<ActionEvent>() {
+
+	@Override
+	public void handle(ActionEvent event) {
+	
+		window.close();
+	}
+	
+	});
+	
 	
 	one.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -1922,25 +1943,33 @@ public class SeatsDesign {
 	}
 	return grid;
 	
-	}
+}
 	
 	public void setScene(Scene scene) {
 	this.scene = scene;
 	}
-	
-	public static void display(Trip current, int capacity) {
-	T = current;
-	Stage window = new Stage();
+	public static void windowInit() {
 	window.setTitle("Seating Chart");
-	window.setMinWidth(1000);
+	window.setMinWidth(800);
 	window.setMinHeight(500);
 	window.initModality(Modality.APPLICATION_MODAL);	
-	Scene scene = new Scene(Design(capacity));
+	}
+	public static void display(Trip current, int capacity) {
+	T = current;
+	
+	Parent root = Design(capacity);
+	scene.setRoot(root);
 	window.setScene(scene);
 	window.showAndWait();
 	}
 	
 	public static String[] getSeatsChosen() {
 		return bookedSeats;
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		windowInit();
+		
 	}
 }
