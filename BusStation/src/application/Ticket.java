@@ -7,13 +7,15 @@ public class Ticket {
 	String seat;
 	float price ;
 	int ID;
-	public Ticket (Trip T,String uname,int serial,String seat,float price)
+	String payment;
+	public Ticket (Trip T,String uname,int serial,String seat,float price, String payment)
 	{
 	    this.T = T;
 		this.uname=uname;
 		this.serial=serial;
 		this.seat=seat;
 		this.price=price;
+		this.payment = payment;
 	}
 	
 	public float CalculatePrice ()

@@ -280,8 +280,7 @@ public class SeatsDesign {
 	});
 	
 	}
-	if (sNum==36)
-	{
+	if (sNum==36){
 	Button driver = new Button ("D");
 	Button one = new Button("A1");
 	Button two = new Button("A2");
@@ -368,15 +367,14 @@ public class SeatsDesign {
 	grid.setAlignment(Pos.CENTER);
 	
 	//-------------------------------------------------------------------//
-	Ok.setOnAction(new EventHandler<ActionEvent>() {
 
+	Ok.setOnAction(new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent event) {
-		
 			window.close();
 		}
-		
-		});
+	});
+	
 	one.setOnAction(new EventHandler<ActionEvent>() {
 
 	@Override
@@ -392,7 +390,6 @@ public class SeatsDesign {
 	one.setStyle("-fx-background-color: darkslateblue;");
 	}
 	}
-	
 	});
 	two.setOnAction(new EventHandler<ActionEvent>() {
 
