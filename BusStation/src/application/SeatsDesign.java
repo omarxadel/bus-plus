@@ -378,8 +378,8 @@ public class SeatsDesign implements Initializable{
 	grid.setAlignment(Pos.CENTER);
 	
 	//-------------------------------------------------------------------//
-	
-	Ok.setOnAction(new EventHandler<ActionEvent>(){
+
+	Ok.setOnAction(new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent event) {
 			window.close();
@@ -1107,10 +1107,10 @@ public class SeatsDesign implements Initializable{
 	
 	grid.add(Ok,7,15);
 	
-	grid.setVgap(7); 
-	    grid.setHgap(7);
+	//grid.setVgap(7); 
+	//grid.setHgap(7);
 	    
-	grid.setAlignment(Pos.CENTER);
+	//grid.setAlignment(Pos.CENTER);
 	
 	//----------------------------------------------------------------------//
 	Ok.setOnAction(new EventHandler<ActionEvent>() {
@@ -1946,7 +1946,7 @@ public class SeatsDesign implements Initializable{
 }
 	
 	public void setScene(Scene scene) {
-	this.scene = scene;
+	SeatsDesign.scene = scene;
 	}
 	public static void windowInit() {
 	window.setTitle("Seating Chart");

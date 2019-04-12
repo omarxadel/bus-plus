@@ -7,7 +7,6 @@ public class LoginAuthentication {
 		int i = 0;
 			while(d.M[i]!=null) {
 				if(d.M[i].username.equals(username) && d.M[i].getPassword().equals(password)) {
-					System.out.println(i);
 					return i;
 				}
 				else { 
