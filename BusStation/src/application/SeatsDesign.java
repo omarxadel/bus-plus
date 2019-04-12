@@ -13,7 +13,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SeatsDesign {
-	static String [] bookedSeats;
 	static Stage window;
 	static String [] bookedSeats = new String[50];
 	static Trip T;
@@ -21,7 +20,6 @@ public class SeatsDesign {
 	int SNum;
 	Stage NewWindow=new Stage ();
 	static GridPane grid = new  GridPane ();
-	Scene scene=new Scene(grid);
 	static Scene scene=new Scene(grid);
 	static int i = 0;
 	
@@ -282,8 +280,7 @@ public class SeatsDesign {
 	});
 	
 	}
-	if (sNum==36)
-	{
+	if (sNum==36){
 	Button driver = new Button ("D");
 	Button one = new Button("A1");
 	Button two = new Button("A2");
@@ -370,15 +367,14 @@ public class SeatsDesign {
 	grid.setAlignment(Pos.CENTER);
 	
 	//-------------------------------------------------------------------//
-	OK.setOnAction(new EventHandler<ActionEvent>() {
-
+	
+	Ok.setOnAction(new EventHandler<ActionEvent>(){
 		@Override
 		public void handle(ActionEvent event) {
-		
 			window.close();
 		}
-		
-		});
+	});
+	
 	one.setOnAction(new EventHandler<ActionEvent>() {
 
 	@Override
@@ -394,7 +390,6 @@ public class SeatsDesign {
 	one.setStyle("-fx-background-color: darkslateblue;");
 	}
 	}
-	
 	});
 	two.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -1926,10 +1921,8 @@ public class SeatsDesign {
 	});
 	}
 	return grid;
-	}
-	}
 	
-	});
+	}
 	
 	public void setScene(Scene scene) {
 	this.scene = scene;
