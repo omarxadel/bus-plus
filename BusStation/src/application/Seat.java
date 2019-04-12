@@ -20,7 +20,7 @@ public class Seat {
 		}
 		else if(type.equals("Minibus")) {
 			vtype = type;
-			seat = new boolean [3][4];
+			seat = new boolean [4][3];
 			capacity = 12;
 		}
 		else if(type.equals("Limo")) {
@@ -113,21 +113,266 @@ public class Seat {
 	}
 	
 	
-	public String getSeatLocation() {
-		initSeatingChart();
-		int i=0, j=0, k=0;
-		for(i = 0 ; i < seat.length ; i++) {
-			for(j = 0 ; j < seat[i].length ; j++) {
-				if(!seat[i][j]) {
-					bookSeat(i,j);
-					return seatingChart[k];
-				}
-				k++;
+	public String bookRandom() {
+		int i = 0;
+		if(capacity == 12) {
+			while(i<6) {
+			if(isBookedByName("A"+(i+1))) {
+				i++;
 			}
-			k++;
+			else return ("A"+(i+1));
+			}
+			while(i<12) {
+				if(isBookedByName("B"+(i+1))) {
+					i++;
+				}
+				else return("B"+(i+1));
+			}
+		}
+		else if(capacity == 36) {
+			while(i<18) {
+			if(isBookedByName("A"+(i+1))) {
+				i++;
+			}
+			else return ("A"+(i+1));
+			}
+			while(i<36) {
+				if(isBookedByName("B"+(i+1))) {
+					i++;
+				}
+				else return("B"+(i+1));
+			}
+		}
+		else if(capacity == 48) {
+			while(i<24) {
+			if(isBookedByName("A"+(i+1))) {
+				i++;
+			}
+			else return ("A"+(i+1));
+			}
+			while(i<24) {
+				if(isBookedByName("B"+(i+1))) {
+					i++;
+				}
+				else return("B"+(i+1));
+			}
 		}
 		return null;
 	}
 	
+	public boolean isBookedByName(String name) {
+		if (capacity == 12) {
+			if(name.equals("A1")) return isBooked(0,0);
+			else if(name.equals("A2")) return isBooked(1,0);
+			else if(name.equals("A3")) return isBooked(0,1);
+			else if(name.equals("A4")) return isBooked(1,1);
+			else if(name.equals("A5")) return isBooked(0,2);
+			else if(name.equals("A6")) return isBooked(1,2);
+			else if(name.equals("B1")) return isBooked(0,3);
+			else if(name.equals("B2")) return isBooked(1,3);
+			else if(name.equals("B3")) return isBooked(2,0);
+			else if(name.equals("B4")) return isBooked(2,1);
+			else if(name.equals("B5")) return isBooked(2,2);
+			else if(name.equals("B6")) return isBooked(2,3);
+		}
+		else if(capacity == 36) {
+			if(name.equals("A1")) return isBooked(0,0);
+			else if(name.equals("A2")) return isBooked(1,0);
+			else if(name.equals("A3")) return isBooked(0,1);
+			else if(name.equals("A4")) return isBooked(1,1);
+			else if(name.equals("A5")) return isBooked(0,2);
+			else if(name.equals("A6")) return isBooked(1,2);
+			else if(name.equals("A7")) return isBooked(0,3);
+			else if(name.equals("A8")) return isBooked(1,3);
+			else if(name.equals("A9")) return isBooked(0,4);
+			else if(name.equals("A10")) return isBooked(1,4);
+			else if(name.equals("A11")) return isBooked(0,5);
+			else if(name.equals("A12")) return isBooked(1,5);
+			else if(name.equals("A13")) return isBooked(0,6);
+			else if(name.equals("A14")) return isBooked(1,6);
+			else if(name.equals("A15")) return isBooked(0,7);
+			else if(name.equals("A16")) return isBooked(1,7);
+			else if(name.equals("A17")) return isBooked(0,8);
+			else if(name.equals("A18")) return isBooked(1,8);
+			else if(name.equals("B1")) return isBooked(2,0);
+			else if(name.equals("B2")) return isBooked(3,0);
+			else if(name.equals("B3")) return isBooked(2,1);
+			else if(name.equals("B4")) return isBooked(3,1);
+			else if(name.equals("B5")) return isBooked(2,2);
+			else if(name.equals("B6")) return isBooked(3,2);
+			else if(name.equals("B7")) return isBooked(2,3);
+			else if(name.equals("B8")) return isBooked(3,3);
+			else if(name.equals("B9")) return isBooked(2,4);
+			else if(name.equals("B10")) return isBooked(3,4);
+			else if(name.equals("B11")) return isBooked(2,5);
+			else if(name.equals("B12")) return isBooked(3,5);
+			else if(name.equals("B13")) return isBooked(2,6);
+			else if(name.equals("B14")) return isBooked(3,6);
+			else if(name.equals("B15")) return isBooked(2,7);
+			else if(name.equals("B16")) return isBooked(3,7);
+			else if(name.equals("B17")) return isBooked(2,8);
+			else if(name.equals("B18")) return isBooked(3,8);
+		}
+		else if(capacity == 48) {
+			if(name.equals("A1")) return isBooked(0,0);
+			else if(name.equals("A2")) return isBooked(1,0);
+			else if(name.equals("A3")) return isBooked(0,1);
+			else if(name.equals("A4")) return isBooked(1,1);
+			else if(name.equals("A5")) return isBooked(0,2);
+			else if(name.equals("A6")) return isBooked(1,2);
+			else if(name.equals("A7")) return isBooked(0,3);
+			else if(name.equals("A8")) return isBooked(1,3);
+			else if(name.equals("A9")) return isBooked(0,4);
+			else if(name.equals("A10")) return isBooked(1,4);
+			else if(name.equals("A11")) return isBooked(0,5);
+			else if(name.equals("A12")) return isBooked(1,5);
+			else if(name.equals("A13")) return isBooked(0,6);
+			else if(name.equals("A14")) return isBooked(1,6);
+			else if(name.equals("A15")) return isBooked(0,7);
+			else if(name.equals("A16")) return isBooked(1,7);
+			else if(name.equals("A17")) return isBooked(0,8);
+			else if(name.equals("A18")) return isBooked(1,8);
+			else if(name.equals("A19")) return isBooked(0,9);
+			else if(name.equals("A20")) return isBooked(1,9);
+			else if(name.equals("A21")) return isBooked(0,10);
+			else if(name.equals("A22")) return isBooked(1,10);
+			else if(name.equals("A23")) return isBooked(0,11);
+			else if(name.equals("A24")) return isBooked(1,11);
+			else if(name.equals("B1")) return isBooked(2,0);
+			else if(name.equals("B2")) return isBooked(3,0);
+			else if(name.equals("B3")) return isBooked(2,1);
+			else if(name.equals("B4")) return isBooked(3,1);
+			else if(name.equals("B5")) return isBooked(2,2);
+			else if(name.equals("B6")) return isBooked(3,2);
+			else if(name.equals("B7")) return isBooked(2,3);
+			else if(name.equals("B8")) return isBooked(3,3);
+			else if(name.equals("B9")) return isBooked(2,4);
+			else if(name.equals("B10")) return isBooked(3,4);
+			else if(name.equals("B11")) return isBooked(2,5);
+			else if(name.equals("B12")) return isBooked(3,5);
+			else if(name.equals("B13")) return isBooked(2,6);
+			else if(name.equals("B14")) return isBooked(3,6);
+			else if(name.equals("B15")) return isBooked(2,7);
+			else if(name.equals("B16")) return isBooked(3,7);
+			else if(name.equals("B17")) return isBooked(2,8);
+			else if(name.equals("B18")) return isBooked(3,8);
+			else if(name.equals("B19")) return isBooked(2,9);
+			else if(name.equals("B20")) return isBooked(3,9);
+			else if(name.equals("B21")) return isBooked(2,10);
+			else if(name.equals("B22")) return isBooked(3,10);
+			else if(name.equals("B23")) return isBooked(2,11);
+			else if(name.equals("B24")) return isBooked(3,11);
+		}
+		return false;
+	}
+	
+	
+	public void bookByName(String name) {
+		if (capacity == 12) {
+			if(name.equals("A1")) bookSeat(0,0);
+			else if(name.equals("A2")) bookSeat(1,0);
+			else if(name.equals("A3")) bookSeat(0,1);
+			else if(name.equals("A4")) bookSeat(1,1);
+			else if(name.equals("A5")) bookSeat(0,2);
+			else if(name.equals("A6")) bookSeat(1,2);
+			else if(name.equals("B1")) bookSeat(0,3);
+			else if(name.equals("B2")) bookSeat(1,3);
+			else if(name.equals("B3")) bookSeat(2,0);
+			else if(name.equals("B4")) bookSeat(2,1);
+			else if(name.equals("B5")) bookSeat(2,2);
+			else if(name.equals("B6")) bookSeat(2,3);
+			return;
+		}
+		else if(capacity == 36) {
+			if(name.equals("A1")) bookSeat(0,0);
+			else if(name.equals("A2")) bookSeat(1,0);
+			else if(name.equals("A3")) bookSeat(0,1);
+			else if(name.equals("A4")) bookSeat(1,1);
+			else if(name.equals("A5")) bookSeat(0,2);
+			else if(name.equals("A6")) bookSeat(1,2);
+			else if(name.equals("A7")) bookSeat(0,3);
+			else if(name.equals("A8")) bookSeat(1,3);
+			else if(name.equals("A9")) bookSeat(0,4);
+			else if(name.equals("A10")) bookSeat(1,4);
+			else if(name.equals("A11")) bookSeat(0,5);
+			else if(name.equals("A12")) bookSeat(1,5);
+			else if(name.equals("A13")) bookSeat(0,6);
+			else if(name.equals("A14")) bookSeat(1,6);
+			else if(name.equals("A15")) bookSeat(0,7);
+			else if(name.equals("A16")) bookSeat(1,7);
+			else if(name.equals("A17")) bookSeat(0,8);
+			else if(name.equals("A18")) bookSeat(1,8);
+			else if(name.equals("B1")) bookSeat(2,0);
+			else if(name.equals("B2")) bookSeat(3,0);
+			else if(name.equals("B3")) bookSeat(2,1);
+			else if(name.equals("B4")) bookSeat(3,1);
+			else if(name.equals("B5")) bookSeat(2,2);
+			else if(name.equals("B6")) bookSeat(3,2);
+			else if(name.equals("B7")) bookSeat(2,3);
+			else if(name.equals("B8")) bookSeat(3,3);
+			else if(name.equals("B9")) bookSeat(2,4);
+			else if(name.equals("B10")) bookSeat(3,4);
+			else if(name.equals("B11")) bookSeat(2,5);
+			else if(name.equals("B12")) bookSeat(3,5);
+			else if(name.equals("B13")) bookSeat(2,6);
+			else if(name.equals("B14")) bookSeat(3,6);
+			else if(name.equals("B15")) bookSeat(2,7);
+			else if(name.equals("B16")) bookSeat(3,7);
+			else if(name.equals("B17")) bookSeat(2,8);
+			else if(name.equals("B18")) bookSeat(3,8);
+			return;
+		}
+		else if(capacity == 48) {
+			if(name.equals("A1")) bookSeat(0,0);
+			else if(name.equals("A2")) bookSeat(1,0);
+			else if(name.equals("A3")) bookSeat(0,1);
+			else if(name.equals("A4")) bookSeat(1,1);
+			else if(name.equals("A5")) bookSeat(0,2);
+			else if(name.equals("A6")) bookSeat(1,2);
+			else if(name.equals("A7")) bookSeat(0,3);
+			else if(name.equals("A8")) bookSeat(1,3);
+			else if(name.equals("A9")) bookSeat(0,4);
+			else if(name.equals("A10")) bookSeat(1,4);
+			else if(name.equals("A11")) bookSeat(0,5);
+			else if(name.equals("A12")) bookSeat(1,5);
+			else if(name.equals("A13")) bookSeat(0,6);
+			else if(name.equals("A14")) bookSeat(1,6);
+			else if(name.equals("A15")) bookSeat(0,7);
+			else if(name.equals("A16")) bookSeat(1,7);
+			else if(name.equals("A17")) bookSeat(0,8);
+			else if(name.equals("A18")) bookSeat(1,8);
+			else if(name.equals("A19")) bookSeat(0,9);
+			else if(name.equals("A20")) bookSeat(1,9);
+			else if(name.equals("A21")) bookSeat(0,10);
+			else if(name.equals("A22")) bookSeat(1,10);
+			else if(name.equals("A23")) bookSeat(0,11);
+			else if(name.equals("A24")) bookSeat(1,11);
+			else if(name.equals("B1")) bookSeat(2,0);
+			else if(name.equals("B2")) bookSeat(3,0);
+			else if(name.equals("B3")) bookSeat(2,1);
+			else if(name.equals("B4")) bookSeat(3,1);
+			else if(name.equals("B5")) bookSeat(2,2);
+			else if(name.equals("B6")) bookSeat(3,2);
+			else if(name.equals("B7")) bookSeat(2,3);
+			else if(name.equals("B8")) bookSeat(3,3);
+			else if(name.equals("B9")) bookSeat(2,4);
+			else if(name.equals("B10")) bookSeat(3,4);
+			else if(name.equals("B11")) bookSeat(2,5);
+			else if(name.equals("B12")) bookSeat(3,5);
+			else if(name.equals("B13")) bookSeat(2,6);
+			else if(name.equals("B14")) bookSeat(3,6);
+			else if(name.equals("B15")) bookSeat(2,7);
+			else if(name.equals("B16")) bookSeat(3,7);
+			else if(name.equals("B17")) bookSeat(2,8);
+			else if(name.equals("B18")) bookSeat(3,8);
+			else if(name.equals("B19")) bookSeat(2,9);
+			else if(name.equals("B20")) bookSeat(3,9);
+			else if(name.equals("B21")) bookSeat(2,10);
+			else if(name.equals("B22")) bookSeat(3,10);
+			else if(name.equals("B23")) bookSeat(2,11);
+			else if(name.equals("B24")) bookSeat(3,11);
+			return;
+		}
+	}
 	
 }

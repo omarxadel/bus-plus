@@ -26,7 +26,10 @@ import javafx.scene.control.*;
 
 public class HomeScreenController implements Initializable {
 
+	float totalCheck = 0;
+	static PaymentMethod pay;
 	Ticket new_Ticket;
+	Ticket [] unpaidTickets;
 	static Reservation reserve = new Reservation();
 	Trip reservedTrip;
 	static boolean flag;
@@ -40,6 +43,7 @@ public class HomeScreenController implements Initializable {
 	//Driver D;
 	static Database d = new Database();
 	public AnchorPane Trip1, booking;
+	public AnchorPane payment;
 	public AnchorPane Trip2;
 	public AnchorPane Trip3;
 	public AnchorPane Editacc;
@@ -59,6 +63,7 @@ public class HomeScreenController implements Initializable {
 	public MenuItem line3;
 	public VBox PassengerTabs;
 	public Label WelcomeLabel;
+	public Label checkTotal;
 	public AnchorPane ProfFull;
 	public Label Fname;
 	public Label Country;
@@ -73,9 +78,11 @@ public class HomeScreenController implements Initializable {
 	public ChoiceBox<String> destination;
 	public DatePicker date;
 	public ListView<String> searchView;
+	public ListView<String> purchaseView;
 	private Trip [] resultTrips;
 	private String [] results;
 	public Label startDestLabel, timeLabel, dateLabel, priceLabel, seatsLabel;
+	private Ticket[] upaid;
 	
 	// --------------- Profile Controls ---------------\\
 	 
@@ -129,7 +136,7 @@ public class HomeScreenController implements Initializable {
 	public void SeatingOptions (ActionEvent e) throws IOException
 	{
 		seatingTxt.setText("");
-		SeatsDesign.display(reservedTrip, 48);
+		SeatsDesign.display(reservedTrip, reservedTrip.seat.capacity);
 		seatsChosen = SeatsDesign.getSeatsChosen();		
 	}
 
@@ -142,14 +149,17 @@ public class HomeScreenController implements Initializable {
 
 	public void choiceInit() {
 		type.getItems().addAll("One-Way", "Round-Trip");
-		start.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
-		destination.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
+		start.getItems().addAll(d.location.getLocations());
+		destination.getItems().addAll(d.location.getLocations());
+		type.setValue("One-Way");
+		start.setValue("Brussels");
+		destination.setValue("Amsterdam");
 	}
 	
 	public String[] getSelection() {
 		String [] searchData = new String [4];
-		if(type.getValue() == null || start.getValue() == null || destination.getValue() == null || date.getValue() == null) {
-			AlertBox.display("UNEXPECTED INPUTS", "Make sure you enter all the search fields!", "OK");
+		if(type.getValue() == null || start.getValue() == null || destination.getValue() == null || date.getValue() == null || start.getValue().equals(destination.getValue())) {
+			AlertBox.display("UNEXPECTED INPUTS", "Make sure you enter all the search fields correctly!", "OK");
 		}
 		else {
 			searchData[0] = type.getValue();
@@ -203,14 +213,15 @@ public class HomeScreenController implements Initializable {
 		SearchTabs.setVisible(false);
 		PassengerTabs.setVisible(false);
 		instr.setVisible(false);
-		
 	}
 	
 	public void choiceReset() {
 		type.setValue(null);
 		start.setValue(null);
 		destination.setValue(null);
-		date.setValue(null);		
+		date.setValue(null);
+		searchView.getItems().clear();
+		
 	}
 	
 	public void returnSearchTab(ActionEvent e) {
@@ -287,21 +298,107 @@ public class HomeScreenController implements Initializable {
 	
 	
 	public void bookTripClicked(ActionEvent e) throws IOException {
+		paymentDisplay();
+		showUnpaidTickets();
+		
+	}
+
+	//--------------- Payment Window ---------------\\
+	
+	
+	public int ticketSerialGenerator() {
+		int serial = 225000 , i = 0 ;
+		while(d.Tk[i] != null) {
+			if(d.Tk[i].serial == serial) {
+				serial++;
+				i++;
+				continue;
+			}
+			else {
+				i++;
+				continue;
+			}
+		}
+		i=0;
+		if(upaid == null) {
+			
+		}
+		else {
+	while(upaid[i] != null) {
+			if(upaid[i].serial == serial) {
+				serial++;
+				i++;
+				continue;
+			}
+			else {
+				i++;
+				continue;
+			}
+		}}
+		return serial;
+	}
+
+	public void paymentDisplay() {
+		payment.setVisible(true);
+		booking.setVisible(false);
+	}
+	
+	public void getPaymentMethod(String paymentMethod) throws IOException {
+		if(paymentMethod.equals("Cash")) {
+			pay = new Cash();
+			book(1);
+		}
+		else if(paymentMethod.equals("Credit")) {
+			pay = new CreditCard();
+			boolean flag = PaymentWindow.display("Credit Card", "Payment Information", "Card", "Return", "Pay "+totalCheck + " €", "Card Number");
+			if(flag) {
+				String credit = PaymentWindow.code;
+				if(d.credit.validateCreditCard(credit)) {
+					if(d.credit.sufficient(totalCheck, credit)) {
+						pay.pay(totalCheck, credit);
+						book(2);
+					}
+					else AlertBox.display("ERROR", "Not sufficient balance!", "OK");
+				}
+				else AlertBox.display("ERROR", "Not an existing credit card number!", "OK");
+				return;
+			}
+		}
+		else if(paymentMethod.equals("Promo")) {
+			pay = new PromoCode();
+			boolean flag = PaymentWindow.display("Promo Code", "Payment Information", "Promo", "Return", "Enter", "Promo Code");
+			if(flag) {
+				String credit = PaymentWindow.code;
+				if(d.promo.validatePromoCode(credit)) {
+					pay.pay(totalCheck, credit);
+					totalCheck = d.promo.getNewPrice();
+				}
+			}
+			return;
+		}
+	}
+	
+	public Ticket[] getUnpaidTickets() {
+		int index=0;
+		Ticket [] unpaidTickets = new Ticket[50];
 		if(seatingTxt.getText().equals(null) || seatingTxt.getText() == null) {
 			if(seatsChosen == null) {
 				AlertBox.display("UNEXPECTED INPUTS", "Please make sure you chose at least 1 seat!", "OK");
-				return;
+				return null;
 			}
 			else {
 				int i = 0;
 				Ticket tmp = null;
 				while(seatsChosen[i] != null)
-					tmp = reserve.makeReservation(reservedTrip, P.username, seatsChosen[i]);
+					tmp = reserve.makeReservation(reservedTrip, P.username,ticketSerialGenerator(), seatsChosen[i], "UNPAID");
+					totalCheck += tmp.price;
+					unpaidTickets[index] = tmp;
 					i++;
-					AlertBox.display("SUCCESS", "Your reservation was added successfully! You may now view it from MyTrips tab!", "OK");
-					searchResultPane.setVisible(true);
-					booking.setVisible(false);
-					d.addTicket(reservedTrip, P.username, tmp.serial, tmp.seat, tmp.price);
+					index++;
+					//AlertBox.display("SUCCESS", "Your reservation was added successfully! You may now view it from MyTrips tab!", "OK");
+					//searchResultPane.setVisible(true);
+					//booking.setVisible(false);
+					//d.addTicket(reservedTrip, P.username, tmp.serial, tmp.seat, tmp.price, tmp.payment);
 			}
 		}
 		else {
@@ -309,13 +406,15 @@ public class HomeScreenController implements Initializable {
 					int i = 0;
 					Ticket tmp = null;
 					while(seatsChosen[i] != null) {
-						tmp = reserve.makeReservation(reservedTrip, P.username, seatsChosen[i]);
+						tmp = reserve.makeReservation(reservedTrip, P.username, ticketSerialGenerator(), seatsChosen[i], "UNPAID");
+						totalCheck += tmp.price;
+						unpaidTickets[index] = tmp;
 						i++;
-						searchResultPane.setVisible(true);
-						booking.setVisible(false);
+						//searchResultPane.setVisible(true);
+						//booking.setVisible(false);
 					}
-					d.addTicket(reservedTrip, P.username, tmp.serial, tmp.seat, tmp.price);
-					AlertBox.display("SUCCESS", "Your reservation was added successfully! You may now view it from MyTrips tab!", "OK");
+					//d.addTicket(reservedTrip, P.username, tmp.serial, tmp.seat, tmp.price, tmp.payment);
+					//AlertBox.display("SUCCESS", "Your reservation was added successfully! You may now view it from MyTrips tab!", "OK");
 			}			
 			else if(seatsChosen == null) {
 				int numSeats = 0;
@@ -324,28 +423,101 @@ public class HomeScreenController implements Initializable {
 					numSeats = Integer.parseInt(seatingTxt.getText());
 					if(numSeats > reservedTrip.seat.getFreeSeats()) {
 						AlertBox.display("UNEXPECTED INPUTS", "Enter a valid number of seats!", "OK");
-						return;
+						return null;
 					}
 				}
 				catch(NumberFormatException exception) {
 					AlertBox.display("UNEXPECTED INPUTS", "Enter a valid number of seats!", "OK");
 					seatingTxt.setText("");
-					return;
+					return null;
 				}
 				while(numSeats != 0) {
-				
-					Ticket tmp = reserve.makeReservation(reservedTrip, P.username, reservedTrip.seat.getSeatLocation());
-					d.addTicket(reservedTrip, P.username, tmp.serial, tmp.seat, tmp.price);
+					if(reservedTrip.seat.bookRandom() == null || reservedTrip.seat.bookRandom().equals(null)) {
+						AlertBox.display("EXCEPTION", "Sorry! All seats are booked!", "OK");
+					}
+					else {
+					Ticket tmp = reserve.makeReservation(reservedTrip, P.username, ticketSerialGenerator(), reservedTrip.seat.bookRandom(), "UNPAID");
+					totalCheck += tmp.price;
+					unpaidTickets[index] = tmp;
+					upaid = unpaidTickets;
+					index++;
 					numSeats --;
+				}
+					}
 			}
-			
-			
-			AlertBox.display("SUCCESS", "Your reservation was added successfully! You may now view it from MyTrips tab!", "OK");
-			searchResultPane.setVisible(true);
-			booking.setVisible(false);
-			}
-		}}
+		}
 		
+		return unpaidTickets;
+	}
+	
+	
+	public void showUnpaidTickets() {
+		int i = 0;
+		Ticket[] unpaid = getUnpaidTickets();
+		String unpaidData;
+		while(unpaid[i] != null) {
+			unpaidData = (unpaid[i].serial + " " + unpaid[i].T.destination + " " + unpaid[i].T.start + " " + unpaid[i].T.date + " " + unpaid[i].T.time + " " + unpaid[i].price + " " + unpaid[i].seat);
+			purchaseView.getItems().add(unpaidData);
+			i++;
+		}
+		checkTotal.setText(Float.toString(totalCheck) + " €");
+	}
+	
+	public void bookNowClicked(ActionEvent e) {
+		showUnpaidTickets();
+	}
+	
+	public void cashButtonClicked(ActionEvent e) throws IOException {
+		getPaymentMethod("Cash");
+	}
+	
+	public void creditButtonClicked(ActionEvent e) throws IOException {
+		getPaymentMethod("Credit");
+	}
+	
+	public void promoButtonClicked(ActionEvent e) throws IOException {
+		getPaymentMethod("Promo");
+	}
+	
+	public void clearUnpaidTicket() {
+		purchaseView.getItems().clear();
+		checkTotal.setText(null);
+		reservedTrip = null;
+		searchResultPane.setVisible(true);
+		booking.setVisible(false);
+		payment.setVisible(false);
+		totalCheck = 0;
+		
+	}
+	
+	public void book(int type) throws IOException {
+		Ticket [] unpaidTickets = upaid;
+		int i = 0;
+		while(unpaidTickets[i] != null) {
+			if(type == 1) {
+				d.addTicket(unpaidTickets[i].T, P.username, unpaidTickets[i].serial, unpaidTickets[i].seat , unpaidTickets[i].price, "Cash");
+			//	unpaidTickets[i].T.seat.bookByName(unpaidTickets[i].seat);
+			}
+			else {
+				d.addTicket(unpaidTickets[i].T, P.username, unpaidTickets[i].serial, unpaidTickets[i].seat , unpaidTickets[i].price, "CreditCard");
+			//	unpaidTickets[i].T.seat.bookByName(unpaidTickets[i].seat);
+			}
+			i++;
+		}
+		d.saveTripData();
+		clearUnpaidTicket();
+		AlertBox.display("SUCCESS", "Your reservation has been made successfully! You may now view it from MyTrips tab!", "OK");
+		
+	}
+	
+	public void returnPaymentClicked(ActionEvent e) {
+		purchaseView.getItems().clear();
+		booking.setVisible(true);
+		payment.setVisible(false);
+	}
+	
+	
+	
 	
 //--------------- Trips Schedule Tab ---------------\\
 

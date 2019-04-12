@@ -135,6 +135,17 @@
                         <Button layoutX="26.0" layoutY="282.0" mnemonicParsing="false" onAction="#returnBookTripButtonClicked" text="Return" />
                      </children>
                   </AnchorPane>
+                  <AnchorPane fx:id="payment" prefHeight="372.0" prefWidth="347.0" visible="false">
+                     <children>
+                        <ListView fx:id="purchaseView" layoutX="14.0" layoutY="14.0" prefHeight="223.0" prefWidth="316.0" />
+                        <Label layoutX="14.0" layoutY="252.0" text="Check Total :" />
+                        <Label fx:id="checkTotal" layoutX="97.0" layoutY="252.0" text="TotalCheck" />
+                        <Button layoutX="14.0" layoutY="281.0" mnemonicParsing="false" onAction="#cashButtonClicked" prefWidth="83.0" text="Cash" />
+                        <Button layoutX="132.0" layoutY="281.0" mnemonicParsing="false" onAction="#creditButtonClicked" prefWidth="83.0" text="Credit Card" />
+                        <Button layoutX="247.0" layoutY="281.0" mnemonicParsing="false" onAction="#promoButtonClicked" text="Promo Code" />
+                        <Button layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#returnPaymentClicked" text="Return" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </center>

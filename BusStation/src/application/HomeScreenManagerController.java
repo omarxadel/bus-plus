@@ -241,10 +241,10 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	public void choiceInit() {
 		ttype.getItems().addAll("One-Way", "Round-Trip");
 		ttype.setValue("One-Way");
-		startL.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
-		startL.setValue("District1");
-		DestL.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
-		DestL.setValue("District10");
+		startL.getItems().addAll(d.location.getLocations());
+		startL.setValue("Brussels");
+		DestL.getItems().addAll(d.location.getLocations());
+		DestL.setValue("Amsterdam");
 		int i = 0;
 		while(D[i] != null) {
 			Driver.getItems().add(D[i].username);
@@ -438,8 +438,8 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	
 	public void updateDataInit() {
 		ttype1.getItems().addAll("One-Way", "Round-Trip");
-		startL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
-		DestL2.getItems().addAll("District1","District2","District3","District4","District5","District6","District7","District8", "District9", "District10");
+		startL2.getItems().addAll(d.location.getLocations());
+		DestL2.getItems().addAll(d.location.getLocations());
 		int i = 0;
 		while(d.D[i] != null) {
 			Driver2.getItems().add(d.D[i].username);
