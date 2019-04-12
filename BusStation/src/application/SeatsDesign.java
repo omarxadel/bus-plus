@@ -13,6 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SeatsDesign {
+	static String [] bookedSeats;
 	static Stage window;
 	static String [] bookedSeats = new String[50];
 	static Trip T;
@@ -20,6 +21,7 @@ public class SeatsDesign {
 	int SNum;
 	Stage NewWindow=new Stage ();
 	static GridPane grid = new  GridPane ();
+	Scene scene=new Scene(grid);
 	static Scene scene=new Scene(grid);
 	static int i = 0;
 	
@@ -74,16 +76,6 @@ public class SeatsDesign {
 	grid.setAlignment(Pos.CENTER);
 	    
 	//----------------------------------------------------------------------------//
-	
-	OK.setOnAction(new EventHandler<ActionEvent>() {
-
-		@Override
-		public void handle(ActionEvent event) {
-		
-			window.close();
-		}
-		
-		});
 	one.setOnAction(new EventHandler<ActionEvent>() {
 
 	@Override
@@ -378,14 +370,15 @@ public class SeatsDesign {
 	grid.setAlignment(Pos.CENTER);
 	
 	//-------------------------------------------------------------------//
-	Ok.setOnAction(new EventHandler<ActionEvent>() {
-	@Override
-	public void handle(ActionEvent event) {
-	
-		window.close();
-	}
-	});
-	
+	OK.setOnAction(new EventHandler<ActionEvent>() {
+
+		@Override
+		public void handle(ActionEvent event) {
+		
+			window.close();
+		}
+		
+		});
 	one.setOnAction(new EventHandler<ActionEvent>() {
 
 	@Override
@@ -1109,18 +1102,11 @@ public class SeatsDesign {
 	grid.add(Ok,7,15);
 	
 	grid.setVgap(7); 
-	grid.setHgap(7);
+	    grid.setHgap(7);
 	    
 	grid.setAlignment(Pos.CENTER);
 	
 	//----------------------------------------------------------------------//
-	Ok.setOnAction(new EventHandler<ActionEvent>() {
-		@Override
-		public void handle(ActionEvent event) {
-		
-			window.close();
-		}
-		});
 	
 	one.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -1940,26 +1926,23 @@ public class SeatsDesign {
 	});
 	}
 	return grid;
+	}
+	}
 	
-	}
-
-	public Scene getScene() {
-	return scene;
-	}
-
+	});
+	
 	public void setScene(Scene scene) {
 	this.scene = scene;
 	}
 	
 	public static void display(Trip current, int capacity) {
 	T = current;
-	window = new Stage();
+	Stage window = new Stage();
 	window.setTitle("Seating Chart");
 	window.setMinWidth(1000);
 	window.setMinHeight(500);
-	window.initModality(Modality.APPLICATION_MODAL);
-	Parent root = Design(capacity);
-	scene.setRoot(root);
+	window.initModality(Modality.APPLICATION_MODAL);	
+	Scene scene = new Scene(Design(capacity));
 	window.setScene(scene);
 	window.showAndWait();
 	}

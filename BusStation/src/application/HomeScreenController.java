@@ -135,11 +135,11 @@ public class HomeScreenController implements Initializable {
 	
 	public void SeatingOptions (ActionEvent e) throws IOException
 	{
+		SeatsDesign.Design(48);
 		seatingTxt.setText("");
 		SeatsDesign.display(reservedTrip, reservedTrip.seat.capacity);
 		seatsChosen = SeatsDesign.getSeatsChosen();		
 	}
-
 	public Scene getScene() {
 		return scene;
 	}
