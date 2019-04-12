@@ -7,12 +7,9 @@ public class Locations {
 	public Locations() {
 		
 	}
-	
-	
 	public String[] getLocations() {
 		return locations;
 	}
-	
 	public float getPrice(String city1, String city2) {
 		if(city1.equals("Brussels")) {
 			if(city2.equals("Zurich")) return 30;
