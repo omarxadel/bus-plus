@@ -59,7 +59,7 @@
             <ChoiceBox fx:id="GenderSelectReg" prefWidth="150.0" />
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="125.0">
                <children>
-                  <Button fx:id="Return" mnemonicParsing="false" style="-fx-background-color: ed8063;" text="Return" textFill="WHITE" />
+                  <Button fx:id="Return" mnemonicParsing="false" onAction="#returnClicked" style="-fx-background-color: ed8063;" text="Return" textFill="WHITE" />
                                     <Button fx:id="SignUpMain" mnemonicParsing="false" onAction="#SignUpMainClicked" style="-fx-background-color: ed8063;" text="Sign Up" textFill="WHITE" />
                </children>
             </HBox>

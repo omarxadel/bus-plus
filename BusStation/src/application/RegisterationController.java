@@ -71,6 +71,19 @@ public class RegisterationController implements Initializable {
 		AlertBox.display("SUCCESS!", "Welcome to Bus " + FnameReg.getText(), "Proceed");
 		homeUserLoader(e, p);
 	}
-
-
+	
+	public void returnClicked(ActionEvent e) throws IOException {
+		
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("MainMenu.fxml"));
+			Parent Main = loader.load();
+			Scene Regs = new Scene(Main);
+			
+			Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
+			window.setScene(Regs);
+		}
+	
 }
+
+
+
