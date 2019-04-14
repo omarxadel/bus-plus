@@ -582,6 +582,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 			displayDialogueBoxDriver("MESSAGE ALERT", "Are you sure you want to remove the selected driver?", "Abort", "Yes", Table2.getSelectionModel().getSelectedIndex());
 			if(flag) {
 				Table2.getItems().remove(Table2.getSelectionModel().getSelectedIndex());
+				AlertBox.display("SUCCESS", "Your Trip was removed successfully!", "OK");
 			}
 		}
 		

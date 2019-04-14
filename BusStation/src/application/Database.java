@@ -258,6 +258,7 @@ public class Database {
 			String time = i.next();
 			float ticket = i.nextFloat();
 			Seat seat = S[J];
+			
 			T[J] = new Trip (ID, type, start, dest, vehicle, vnum, driver, date, time, ticket, seat);
 			J++;
 		}
@@ -362,37 +363,21 @@ public class Database {
 	
 	public Trip addTripData(String type, String start, String dest, String vehicle, String vnum, String drivername, String date, String time, String ticketprice) throws IOException{
 		int ID=0;
-		System.out.println(start + dest + vehicle + vnum + drivername + date + time + ticketprice);
 		switch(start) {
-			case "District1":
+			case "Brussels":
 				ID = 105000;
 				break;
-			case "District2":
+			case "Amsterdam":
 				ID = 115000;
 				break;
-			case "District3":
+			case "Munich":
 				ID = 125000;
 				break;
-			case "District4":
+			case "Zurich":
 				ID = 135000;
 				break;
-			case "District5":
+			case "Vienna":
 				ID = 145000;
-				break;
-			case "District6":
-				ID = 155000;
-				break;
-			case "District7":
-				ID = 165000;
-				break;
-			case "District8":
-				ID = 175000;
-				break;
-			case "District9":
-				ID = 185000;
-				break;
-			case "District10":
-				ID = 195000;
 				break;
 		}
 		int j=0;
@@ -426,7 +411,6 @@ public class Database {
 	}	
 	
 	int cap = this.vehicle.getCap();
-	System.out.println(cap);
 	fr.write("\r\n" + cap);
 	while(cap!=0) {
 		fr.write(" 0");
@@ -573,7 +557,9 @@ public class Database {
 	}	
 	int row, col;
 	i=1;
+	
 	fr.write("" + T[0].seat.capacity);
+	System.out.println(T[0].seat.seat.length);
 	row = T[0].seat.seat.length;
 	col = T[0].seat.seat[0].length;
 	for(int iterator = 0; iterator < row ; iterator++) {
@@ -584,9 +570,8 @@ public class Database {
 	}
 		while(T[i] != null) {
 			fr.write("\r\n" + T[i].vehicle.s.capacity);
-			System.out.println(T[i].seat.capacity);
 			row = T[i].seat.seat.length;
-			col = T[i].seat.seat[i].length;
+			col = T[i].seat.seat[0].length;
 			for(int iterator = 0; iterator < row ; iterator++) {
 				for(int iterator2 = 0; iterator2 < col ; iterator2 ++) {
 						if(T[i].seat.seat[iterator][iterator2]) fr.write(" 1");
@@ -608,6 +593,8 @@ public class Database {
 			i++;
 		}
 		T[i] = null;
+		i = index;
+		
 		saveTripData();
 	}
 		public void saveDriversData() throws IOException {
@@ -626,7 +613,7 @@ public class Database {
 			fr.write(""+ D[0].firstname + " " + D[0].lastname + " "+ D[0].username + " " + D[0].getPassword() + " " + ID + " " + D[0].city + " " + D[0].country + " " + D[0].job);
 			while(D[i] != null) {
 				ID = Integer.toString(D[i].ID);
-				fr.write("\r\n"+ D[i].firstname + " " + D[i].lastname + " " + D[i].getPassword() + " " + ID + " " + D[i].city + " " + D[i].country + " " + D[i].job);
+				fr.write("\r\n"+ D[i].firstname + " " + D[i].lastname + " " + D[i].username + " " + D[i].getPassword() + " " + ID + " " + D[i].city + " " + D[i].country + " " + D[i].job);
 				i++;
 			}
 			fr.close();

@@ -231,37 +231,58 @@
                   </AnchorPane>
                   <AnchorPane fx:id="booking" prefHeight="369.0" prefWidth="347.0" visible="false">
                      <children>
-                        <Label fx:id="startDestLabel" layoutX="14.0" layoutY="62.0" text="Start - Destination" />
-                        <Label layoutX="14.0" layoutY="14.0" text="Selected Trip Information" />
-                        <Button layoutX="257.0" layoutY="282.0" mnemonicParsing="false" onAction="#bookTripClicked" text="Book Now!" />
-                        <Label fx:id="timeLabel" layoutX="14.0" layoutY="99.0" text="Time" />
-                        <Label fx:id="dateLabel" layoutX="13.0" layoutY="116.0" text="Date" />
-                        <Label fx:id="priceLabel" layoutX="13.0" layoutY="168.0" text="Price for one ticket" />
+                        <Label fx:id="startDestLabel" layoutX="14.0" layoutY="62.0" text="Start - Destination" textFill="#ed8062">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Label>
+                        <Label layoutX="14.0" layoutY="14.0" text="Selected Trip Information" textFill="#ed8063">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Label>
+                        <Button layoutX="257.0" layoutY="282.0" mnemonicParsing="false" onAction="#bookTripClicked" style="-fx-background-color: ed8063;" text="Book Now!" />
+                        <Label fx:id="timeLabel" layoutX="14.0" layoutY="99.0" text="Time" textFill="#ed8063">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="dateLabel" layoutX="13.0" layoutY="116.0" text="Date" textFill="#ed8063">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="priceLabel" layoutX="13.0" layoutY="168.0" text="Price for one ticket" textFill="#ed8063">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Label>
                         <TextField fx:id="seatingTxt" layoutX="261.0" layoutY="173.0" prefHeight="25.0" prefWidth="34.0" />
                         <HBox alignment="CENTER" layoutX="121.0" layoutY="190.0" prefHeight="64.0" prefWidth="212.0" spacing="20.0">
                            <children>
-                              <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" text="Choose Seats" />
-                              <Label fx:id="seatsLabel" text="Available Seats" />
+                              <Button fx:id="SeatingOptions" mnemonicParsing="false" onAction="#SeatingOptions" style="-fx-background-color: ed8063;" text="Choose Seats" />
+                              <Label fx:id="seatsLabel" text="Available Seats" textFill="#ed8063" />
                            </children>
                         </HBox>
-                        <Button layoutX="26.0" layoutY="282.0" mnemonicParsing="false" onAction="#returnBookTripButtonClicked" text="Return" />
+                        <Button layoutX="26.0" layoutY="282.0" mnemonicParsing="false" onAction="#returnBookTripButtonClicked" style="-fx-background-color: ed8063;" text="Return" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="payment" prefHeight="372.0" prefWidth="347.0" visible="false">
                      <children>
                         <ListView fx:id="purchaseView" layoutX="14.0" layoutY="14.0" prefHeight="223.0" prefWidth="316.0" />
-                        <Label layoutX="14.0" layoutY="252.0" text="Check Total :" />
-                        <Label fx:id="checkTotal" layoutX="97.0" layoutY="252.0" text="TotalCheck" />
-                        <Button layoutX="14.0" layoutY="281.0" mnemonicParsing="false" onAction="#cashButtonClicked" prefWidth="83.0" text="Cash" />
-                        <Button layoutX="132.0" layoutY="281.0" mnemonicParsing="false" onAction="#creditButtonClicked" prefWidth="83.0" text="Credit Card" />
-                        <Button layoutX="247.0" layoutY="281.0" mnemonicParsing="false" onAction="#promoButtonClicked" text="Promo Code" />
-                        <Button layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#returnPaymentClicked" text="Return" />
+                        <Label layoutX="14.0" layoutY="252.0" text="Check Total :" textFill="#ed8063">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Label fx:id="checkTotal" layoutX="97.0" layoutY="252.0" text="TotalCheck" textFill="#ed8063">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <Button layoutX="14.0" layoutY="281.0" mnemonicParsing="false" onAction="#cashButtonClicked" prefWidth="83.0" style="-fx-background-color: ed8063;" text="Cash" />
+                        <Button layoutX="132.0" layoutY="281.0" mnemonicParsing="false" onAction="#creditButtonClicked" prefWidth="83.0" style="-fx-background-color: ed8063;" text="Credit Card" />
+                        <Button layoutX="247.0" layoutY="281.0" mnemonicParsing="false" onAction="#promoButtonClicked" style="-fx-background-color: ed8063;" text="Promo Code" />
+                        <Button layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#returnPaymentClicked" style="-fx-background-color: ed8063;" text="Return" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="myTripsPane" prefHeight="374.0" prefWidth="348.0" visible="false">
                      <children>
                         <ListView fx:id="myTrips" layoutX="16.0" layoutY="14.0" prefHeight="300.0" prefWidth="316.0" />
-                        <Button layoutX="16.0" layoutY="335.0" mnemonicParsing="false" onAction="#returnMyTrips" text="Return" />
+                        <Button layoutX="16.0" layoutY="335.0" mnemonicParsing="false" onAction="#returnMyTrips" style="-fx-background-color: ed8063;" text="Return" />
                         <Button layoutX="245.0" layoutY="335.0" mnemonicParsing="false" onAction="#showTripDetails" text="Ticket Details" visible="false" />
                      </children>
                   </AnchorPane>

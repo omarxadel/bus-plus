@@ -32,9 +32,9 @@
          <children>
             <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="364.0" prefWidth="150.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="WelcomeDriver" text="Hello Mr.">
+                  <Label fx:id="WelcomeDriver" prefHeight="26.0" prefWidth="115.0" text="Hello Mr.">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="15.0" />
                      </font></Label>
                   <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Profile" />
                   <MenuButton fx:id="TripsSchedule" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SelectTrip" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Trips" textAlignment="CENTER">

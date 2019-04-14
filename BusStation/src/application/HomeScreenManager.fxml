@@ -75,7 +75,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="addTripTitle" alignment="TOP_RIGHT" layoutY="1.0" prefHeight="373.0" prefWidth="196.0" visible="false" AnchorPane.topAnchor="1.0">
+            <VBox fx:id="addTripTitle" alignment="TOP_RIGHT" layoutX="-19.0" layoutY="21.0" prefHeight="373.0" prefWidth="196.0" visible="false" AnchorPane.topAnchor="21.0">
                <children>
                   <Label alignment="CENTER" text="Add Trip">
                      <font>
@@ -84,7 +84,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="editTitle" alignment="TOP_RIGHT" layoutY="2.0" prefHeight="372.0" prefWidth="196.0" visible="false">
+            <VBox fx:id="editTitle" alignment="TOP_RIGHT" layoutX="-10.0" layoutY="22.0" prefHeight="372.0" prefWidth="196.0" visible="false">
                <children>
                   <Label alignment="CENTER" text="Edit Trips">
                      <font>

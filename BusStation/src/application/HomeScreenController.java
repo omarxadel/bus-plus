@@ -107,6 +107,7 @@ public class HomeScreenController implements Initializable {
 	{
 		ProfFull.setVisible(true);
 		ProfTitle.setVisible(true);
+		searchAnc.setVisible(false);
 		SearchTabs.setVisible(false);
 		PassengerTabs.setVisible(false);
 		
@@ -120,6 +121,7 @@ public class HomeScreenController implements Initializable {
 
 	public void returnProfButtonClicked (ActionEvent e)
 	{   
+		searchAnc.setVisible(true);
 		SearchTabs.setVisible(true);
 		PassengerTabs.setVisible(true);
 		ProfFull.setVisible(false);
@@ -244,6 +246,7 @@ public class HomeScreenController implements Initializable {
 		String [] searchData = new String [4];
 		if(type.getValue() == null || start.getValue() == null || destination.getValue() == null || date.getValue() == null || start.getValue().equals(destination.getValue())) {
 			AlertBox.display("UNEXPECTED INPUTS", "Make sure you enter all the search fields correctly!", "OK");
+			return null;
 		}
 		else {
 			searchData[0] = type.getValue();
@@ -272,10 +275,10 @@ public class HomeScreenController implements Initializable {
 	public String [] showResults() {
 		
 		Trip [] T = queryTrips();
-		results = new String[50];
+		String [] results = new String[50];
 		int i = 0;
 		while(T[i] != null) {
-			results[i] = ("Trip type: " + T[0].type + "		Start: " + T[0].start + "		Destination: " + T[0].destination + "		Vehicle Type: " + T[i].seat.vtype + "		Free Seats: " + Integer.toString(T[0].seat.getFreeSeats())+ "		Date: " + T[0].date + "		Time: " + T[0].time +		" 	Price for one ticket: " + Float.toString(T[0].ticket));
+			results[i] = ("Trip type: " + T[i].type + "		Start: " + T[i].start + "		Destination: " + T[i].destination + "		Vehicle Type: " + T[i].seat.vtype + "		Free Seats: " + Integer.toString(T[i].seat.getFreeSeats())+ "		Date: " + T[i].date + "		Time: " + T[i].time +		" 	Price for one ticket: " + Float.toString(T[i].ticket));
 			i++;
 		}
 		return results;
@@ -294,6 +297,7 @@ public class HomeScreenController implements Initializable {
 	public void searchButtonClicked(ActionEvent e) {
 		searchTableInit();
 		searchAnc.setVisible(true);
+		searchView.setVisible(true);
 		searchResultPane.setVisible(true);
 		SearchTabs.setVisible(false);
 		PassengerTabs.setVisible(false);
@@ -312,7 +316,7 @@ public class HomeScreenController implements Initializable {
 		choiceReset();
 		SearchTabs.setVisible(true);
 		PassengerTabs.setVisible(true);
-		searchAnc.setVisible(false);
+		searchAnc.setVisible(true);
 		searchResultPane.setVisible(false);
 	}
 	
@@ -505,6 +509,7 @@ public class HomeScreenController implements Initializable {
 						unpaidTickets[index] = tmp;
 						i++;
 					}
+					upaid=unpaidTickets;
 			}			
 			else if(seatsChosen == null) {
 				int numSeats;
@@ -522,7 +527,6 @@ public class HomeScreenController implements Initializable {
 					return null;
 				}
 				while(numSeats != 0) {
-					System.out.println(numSeats);
 					Ticket tmp = reserve.makeReservation(reservedTrip, P.username, ticketSerialGenerator(), reservedTrip.seat.bookRandom(), "UNPAID");
 					totalCheck += tmp.price;
 					unpaidTickets[index] = tmp;

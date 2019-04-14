@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
@@ -28,16 +29,19 @@
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
                         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                           <children>                         
-                              <RadioButton fx:id="UserRadio" mnemonicParsing="false" text="User" textFill="#ed8063">
+                           <children> 
+                           <fx:define>
+                           	<ToggleGroup fx:id="toggleGroup"/>
+                           </fx:define>                        
+                              <RadioButton fx:id="UserRadio" toggleGroup="$toggleGroup" mnemonicParsing="false" text="User" textFill="#ed8063">
                                  <font>
                                     <Font name="Calibri Bold" size="12.0" />
                                  </font></RadioButton>
-                              <RadioButton fx:id="DriverRadio" mnemonicParsing="false" text="Driver" textFill="#ed8063">
+                              <RadioButton fx:id="DriverRadio" toggleGroup="$toggleGroup" mnemonicParsing="false" text="Driver" textFill="#ed8063">
                                  <font>
                                     <Font name="Calibri Bold" size="12.0" />
                                  </font></RadioButton>
-                              <RadioButton fx:id="AdminRadio" mnemonicParsing="false" text="Admin" textFill="#ed8063">
+                              <RadioButton fx:id="AdminRadio" toggleGroup="$toggleGroup" mnemonicParsing="false" text="Admin" textFill="#ed8063">
                                  <font>
                                     <Font name="Calibri Bold" size="12.0" />
                                  </font></RadioButton>
@@ -48,7 +52,13 @@
                         <Insets left="10.0" right="10.0" top="25.0" />
                      </padding>
                   </VBox>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303f52;" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303f52;">
+                     <children>
+                        <ImageView fitHeight="191.0" fitWidth="191.0" layoutX="46.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../B+.png" />
+                           </image></ImageView>
+                     </children></AnchorPane>
               </items>
             </SplitPane>
          </content>
@@ -88,7 +98,14 @@
                         <Insets left="10.0" right="10.0" top="25.0" />
                      </padding>
                   </VBox>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303f52;" SplitPane.resizableWithParent="false" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303f52;" SplitPane.resizableWithParent="false">
+                     <children>
+                        <ImageView fitHeight="357.0" fitWidth="357.0" layoutX="-37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../RegisterScreen.png" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
               </items>
             </SplitPane>
          </content>
