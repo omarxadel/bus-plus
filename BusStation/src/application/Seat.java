@@ -374,5 +374,10 @@ public class Seat {
 			return;
 		}
 	}
+
+	public void resetByName(String seat2) {
+		
+		
+	}
 	
 }

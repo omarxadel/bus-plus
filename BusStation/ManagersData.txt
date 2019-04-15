@@ -1,2 +1,5 @@
 Omar Adel omarxadel 12345 5544 Alexandria Egypt Manager Male
 Hoda Amr hodaamr 12345 5619 Alexandria Egypt Manager Female
+Triston Bedros tr_B 11111111 5001 Alexandria Egypt Manager Male
+Beranna Jonny berJonny66 11223344 5002 Alexandria Egypt Manager Male
+Jasper Harith jasperH 77777777 5003 Alexandria Egypt Manager Male

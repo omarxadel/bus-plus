@@ -135,7 +135,6 @@ public class HomeScreenController implements Initializable {
 	
 	public void SeatingOptions (ActionEvent e) throws IOException
 	{
-		SeatsDesign.Design(48);
 		seatingTxt.setText("");
 		SeatsDesign.display(reservedTrip, reservedTrip.seat.capacity);
 		seatsChosen = SeatsDesign.getSeatsChosen();		
@@ -417,7 +416,7 @@ public class HomeScreenController implements Initializable {
 					//AlertBox.display("SUCCESS", "Your reservation was added successfully! You may now view it from MyTrips tab!", "OK");
 			}			
 			else if(seatsChosen == null) {
-				int numSeats = 0;
+				int numSeats;
 			
 				try{
 					numSeats = Integer.parseInt(seatingTxt.getText());
@@ -432,18 +431,15 @@ public class HomeScreenController implements Initializable {
 					return null;
 				}
 				while(numSeats != 0) {
-					if(reservedTrip.seat.bookRandom() == null || reservedTrip.seat.bookRandom().equals(null)) {
-						AlertBox.display("EXCEPTION", "Sorry! All seats are booked!", "OK");
-					}
-					else {
+					System.out.println(numSeats);
 					Ticket tmp = reserve.makeReservation(reservedTrip, P.username, ticketSerialGenerator(), reservedTrip.seat.bookRandom(), "UNPAID");
 					totalCheck += tmp.price;
 					unpaidTickets[index] = tmp;
 					upaid = unpaidTickets;
 					index++;
 					numSeats --;
+					
 				}
-					}
 			}
 		}
 		
@@ -482,13 +478,15 @@ public class HomeScreenController implements Initializable {
 	public void clearUnpaidTicket() {
 		purchaseView.getItems().clear();
 		checkTotal.setText(null);
-		reservedTrip = null;
 		searchResultPane.setVisible(true);
 		booking.setVisible(false);
 		payment.setVisible(false);
 		totalCheck = 0;
+		reservedTrip = null;
+		upaid = null;
 		
 	}
+	
 	
 	public void book(int type) throws IOException {
 		Ticket [] unpaidTickets = upaid;
@@ -512,6 +510,12 @@ public class HomeScreenController implements Initializable {
 	
 	public void returnPaymentClicked(ActionEvent e) {
 		purchaseView.getItems().clear();
+		int i = 0;
+		while(upaid[i] != null) {
+			reservedTrip.seat.resetByName(upaid[i].seat);
+			i++;
+		}
+		
 		booking.setVisible(true);
 		payment.setVisible(false);
 	}
@@ -561,3 +565,4 @@ public class HomeScreenController implements Initializable {
 		choiceInit();
 	}
 }
+

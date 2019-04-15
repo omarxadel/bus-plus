@@ -13,8 +13,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Show Trips" />
-              <MenuItem mnemonicParsing="false" text="Log out" />
+              <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -132,9 +131,10 @@
             </AnchorPane>
             <AnchorPane fx:id="editProfile" prefHeight="368.0" prefWidth="449.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
+                  <Button layoutX="40.0" layoutY="329.0" mnemonicParsing="false" onAction="#returnFromEditProfile" text="Return" />
                   <HBox layoutX="66.0" layoutY="34.0" prefHeight="270.0" prefWidth="318.0" spacing="20.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="22.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="270.0" prefWidth="121.0" spacing="20.0">
                            <children>
                               <Label text="First name" />
                               <Label text="Last name" />
@@ -143,28 +143,24 @@
                               <Label text="Re-Enter Password" />
                               <Label text="City" />
                               <Label text="Country" />
+                              <Label />
                            </children>
                         </VBox>
-                        <VBox prefHeight="276.0" prefWidth="175.0" spacing="13.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="276.0" prefWidth="175.0" spacing="10.0">
                            <children>
-                              <TextField fx:id="FirstnameManager" promptText="Firstname" />
+                              <TextField fx:id="FirtnameManager" promptText="Firstname" />
                               <TextField fx:id="LastnameManager" promptText="Lastname" />
                               <TextField fx:id="UsernameManager" promptText="Username" />
                               <PasswordField fx:id="PasswordManager" promptText="Password" />
                               <PasswordField fx:id="RepassManager" promptText="Re-Enter Password" />
                               <TextField fx:id="CityManager" promptText="City" />
-                              <TextField fx:id="CountryManager" promptText="Country" />
+                              <TextField fx:id="CountryManager" promptText="County" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox layoutX="30.0" layoutY="313.0" prefHeight="41.0" prefWidth="369.0" spacing="60.0">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#returnFromEditProfile" text="Return" />
-                        <Button mnemonicParsing="false" onAction="#saveProfileEditClicked" text="Save Changes" />
-                        <Button mnemonicParsing="false" text="Delete Account" />
-                     </children>
-                  </HBox>
+                  <Button layoutX="180.0" layoutY="329.0" mnemonicParsing="false" text="Save Changes" />
+                  <Button layoutX="332.0" layoutY="329.0" mnemonicParsing="false" text="Delete Account" />
                </children>
             </AnchorPane>
          </children>

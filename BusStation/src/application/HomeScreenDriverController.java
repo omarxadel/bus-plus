@@ -5,25 +5,34 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class HomeScreenDriverController implements Initializable{
+	static boolean flag = false;
+	static Database d = new Database();
+	int userIndex;
 	Trip [] tripsView = new Trip[100];
 	Driver D;
 	Manager M[];
-	static Database d = new Database();
 	public Trip[] trip;
 	public VBox MainTabManager;
 	public VBox ProfTitle;
@@ -33,6 +42,9 @@ public class HomeScreenDriverController implements Initializable{
 	public AnchorPane trip1;
 	public AnchorPane trip2;
 	public AnchorPane trip3;
+	public AnchorPane editProfile;
+	public TextField FirstnameManager,LastnameManager,UsernameManager,CityManager,CountryManager;
+	public PasswordField PasswordManager, RepassManager;
 	public Label WelcomeDriver;
 	public Label Fname;
 	public Label Account;
@@ -49,6 +61,8 @@ public class HomeScreenDriverController implements Initializable{
 	public Button Tripscomments;
 	public Label credit;
 	public ListView<String> line1V;
+	@FXML
+	MenuBar myMenuBar;
 	
 	// --------------- Profile Controls ---------------\\
 	
@@ -82,7 +96,69 @@ public class HomeScreenDriverController implements Initializable{
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(MainScene);
 	}
-	
+	public void initEditProfile()
+	{
+		FirstnameManager.setText(D.firstname);
+		LastnameManager.setText(D.lastname);
+		PasswordManager.setText(D.getPassword());
+		RepassManager.setText(D.getPassword());
+		CityManager.setText(D.city);
+		CountryManager.setText(D.country);
+		
+	}
+	public void toEditprofileClicked(ActionEvent e) {
+		editProfile.setVisible(true);
+		ProfTitle.setVisible(false);
+		ProfFull.setVisible(false);
+	}
+	public void returnFromEditProfile(ActionEvent e) {
+		ProfTitle.setVisible(true);
+		ProfFull.setVisible(true);
+		editProfile.setVisible(false);
+	}
+	public static void displayDialogueBox(String title, String message, String buttonTxt, String buttonTxt2) {
+		Stage window = new Stage();
+		window.setTitle(title);
+		window.setMinWidth(300);
+		window.initModality(Modality.APPLICATION_MODAL);
+		HBox internalLayout = new HBox(10);
+		Button Button2 = new Button(buttonTxt);
+		Button Button1 = new Button(buttonTxt2);
+		internalLayout.getChildren().addAll(Button1, Button2);
+		internalLayout.setAlignment(Pos.CENTER);
+		Label error = new Label(message);
+		Button1.setOnAction(e->{
+			flag = false;
+			window.close();
+			});
+		
+		Button2.setOnAction(e-> {
+			flag = true;
+			window.close();
+		});
+		VBox layout = new VBox(10);
+		layout.getChildren().addAll(error, internalLayout);
+		layout.setAlignment(Pos.CENTER);
+		
+		Scene scene = new Scene(layout);
+		window.setScene(scene);
+		window.showAndWait();
+	}
+	public void saveProfileEditClicked(ActionEvent e) throws IOException {
+		displayDialogueBox("MESSAGE","Are you sure you want to update the saved data?","Yes","No");
+		if(flag) {
+			D.firstname = FirstnameManager.getText();
+		D.lastname = LastnameManager.getText();
+		D.username = UsernameManager.getText();
+		D.setPassword(PasswordManager.getText());
+		D.city = CityManager.getText();
+		D.country = CountryManager.getText();
+		d.D[userIndex] = D;
+		d.saveManagerData();
+		}
+		else return;
+		
+	}
 	// --------------- Trips Schedule Tab ---------------\\
 	
 	public void SelectTrip (ActionEvent e) throws IOException

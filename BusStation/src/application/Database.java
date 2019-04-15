@@ -24,7 +24,7 @@ public class Database {
 		getPassengerData();
 		getSeats();
 		getTripData();
-		getTicketData();
+		//getTicketData();
 	}
 	
 	public void getManagerData() {
