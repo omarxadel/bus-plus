@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -7,41 +8,71 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegisterationController">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="480.0" prefWidth="640.0" style="-fx-background-image: #303f52;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegisterationController">
   <items>
-      <VBox alignment="TOP_CENTER" spacing="10.0">
+      <VBox alignment="TOP_CENTER" spacing="10.0" style="-fx-background-color: #303f52;">
          <children>
-            <Label text="Complete your Registeration">
+            <Label text="Complete your Registeration" textFill="#ed8063">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-             					<Label text="Enter your Username:" />
+             					<Label text="Enter your Username:" textFill="#ed8063">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font></Label>
                               <TextField fx:id="RegUserC" promptText="Username" />
-                              <Label text="Enter your Password:" />
+                              <Label text="Enter your Password:" textFill="#ed8063">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font></Label>
                               <PasswordField fx:id="RegPassC" promptText="Password" />
-                              <Label text="Re-Enter your Password:" />
+                              <Label text="Re-Enter your Password:" textFill="#ed8063">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font></Label>
                               <PasswordField fx:id="ReregPass1" promptText="Re-Enter Password" />
-            <Label layoutX="101.0" layoutY="61.0" text="Enter your Firstname:" />
+            <Label layoutX="101.0" layoutY="61.0" text="Enter your Firstname:" textFill="#ed8063">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font></Label>
             <TextField fx:id="FnameReg" layoutX="15.0" layoutY="88.0" promptText="Firstname" />
-            <Label layoutX="101.0" layoutY="317.0" text="Enter your Lastname:" />
+            <Label layoutX="101.0" layoutY="317.0" text="Enter your Lastname:" textFill="#ed8063">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font></Label>
             <TextField fx:id="LnameReg" layoutX="15.0" layoutY="282.0" promptText="Lastname" />
-            <Label layoutX="153.0" layoutY="305.0" text="Enter your city:" />
+            <Label layoutX="153.0" layoutY="305.0" text="Enter your city:" textFill="#ed8063">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font></Label>
             <TextField fx:id="CityReg" layoutX="15.0" layoutY="332.0" promptText="City" />
-            <Label layoutX="169.0" layoutY="429.0" text="Enter your country:" />
+            <Label layoutX="169.0" layoutY="429.0" text="Enter your country:" textFill="#ed8063">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font></Label>
             <TextField fx:id="CountryReg" layoutX="15.0" layoutY="456.0" promptText="Country" />
-            <Label layoutX="103.0" layoutY="305.0" text="Choose your Gender" />
+            <Label layoutX="103.0" layoutY="305.0" text="Choose your Gender" textFill="#ed8063">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font></Label>
             <ChoiceBox fx:id="GenderSelectReg" prefWidth="150.0" />
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="125.0">
                <children>
-                  <Button fx:id="Return" mnemonicParsing="false" text="Return" />
-                                    <Button fx:id="SignUpMain" mnemonicParsing="false" onAction="#SignUpMainClicked" text="Sign Up" />
+                  <Button fx:id="Return" mnemonicParsing="false" onAction="#returnClicked" style="-fx-background-color: ed8063;" text="Return" textFill="WHITE" />
+                                    <Button fx:id="SignUpMain" mnemonicParsing="false" onAction="#SignUpMainClicked" style="-fx-background-color: ed8063;" text="Sign Up" textFill="WHITE" />
                </children>
             </HBox>
          </children>
          <padding>
             <Insets left="5.0" right="5.0" top="10.0" />
          </padding></VBox>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303f52;">
+         <children>
+            <ImageView fitHeight="379.0" fitWidth="379.0" layoutX="9.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Register.png" />
+               </image></ImageView>
+         </children></AnchorPane>
   </items>
 </SplitPane>

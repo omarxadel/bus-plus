@@ -64,7 +64,7 @@ public class MainMenuController implements Initializable{
 		else currentUser = -1;
 	}
 	
-	public void homeUserLoader(ActionEvent e,Passenger c) throws IOException {
+	public void homeUserLoader(ActionEvent e,Passenger c, int index) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("HomeScreen.fxml"));
 		Parent userHome = loader.load();
@@ -72,6 +72,7 @@ public class MainMenuController implements Initializable{
 		
 		HomeScreenController controller = loader.getController();
 		controller.getProfile(c);
+		controller.currentuserIndex = index;
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(userHomeS);
 	}
@@ -85,6 +86,7 @@ public class MainMenuController implements Initializable{
 		HomeScreenManagerController controller = loader.getController();
 		controller.getProfile(a);
 		controller.D = auth.getDrivers();
+		controller.currentuserInd = index;
 		controller.choiceInit();
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(MHome);
@@ -111,7 +113,6 @@ public class MainMenuController implements Initializable{
 		UserAuthentication();
 		clearFields();
 		if(currentUser == -1) {
-			System.out.println("CurrentUser = -1");
 			AlertBox.display("UNEXPECTED INPUTS!", "Please make sure you choose the user type\n and enter the correct username/passowrd!", "OK");
 		}
 		else if(AdminRadio.isSelected()) {
@@ -124,7 +125,7 @@ public class MainMenuController implements Initializable{
 		}
 		else if(UserRadio.isSelected()) {
 			P = auth.getPassenger(currentUser);
-			homeUserLoader(e, P);
+			homeUserLoader(e, P, currentUser);
 		}
 		
 	}

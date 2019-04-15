@@ -63,6 +63,7 @@ public class HomeScreenDriverController implements Initializable{
 	public ListView<String> line1V;
 	@FXML
 	MenuBar myMenuBar;
+	public MenuItem seeTrips, seeProf, seeEdit;
 	
 	// --------------- Profile Controls ---------------\\
 	
@@ -89,10 +90,10 @@ public class HomeScreenDriverController implements Initializable{
 		ProfFull.setVisible(false);
 		ProfTitle.setVisible(false);
 	}
+	
 	public void logOut(ActionEvent e) throws IOException {
 		Parent Main = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 		Scene MainScene = new Scene(Main);
-		
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(MainScene);
 	}
@@ -161,29 +162,26 @@ public class HomeScreenDriverController implements Initializable{
 	}
 	// --------------- Trips Schedule Tab ---------------\\
 	
+	public void menuTripsClicked(ActionEvent e) {
+		
+	}
+	
 	public void SelectTrip (ActionEvent e) throws IOException
 	{
 		Schedule.setVisible(true);
+		trip1.setVisible(true);
+		line1V.setVisible(true);
 		MainTabManager.setVisible(false);
-		
-		if(line1.getTypeSelector() != null)
-		{
-			trip1.setVisible(true);
-			line1V.setVisible(true);
-		}
-		if(line2.getTypeSelector() != null)
-		{
-			trip2.setVisible(true);
-		}
-		
+		ProfFull.setVisible(false);
+		ProfTitle.setVisible(false);
+
 	}
+	
 	public void BackMainTab (ActionEvent e) throws IOException
 	{
 		MainTabManager.setVisible(true);
 		trip1.setVisible(false);
 		line1V.setVisible(false);
-		trip2.setVisible(false);
-		trip3.setVisible(false);
 		Schedule.setVisible(false);
 		Back.setVisible(false);
 	}
@@ -227,7 +225,30 @@ public class HomeScreenDriverController implements Initializable{
 		}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		seeTrips.setOnAction(e->{
+			try {
+				SelectTrip(e);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		/*seeProf.setOnAction(e->{
+			try {
+				SelectTrip(e);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		seeEdit.setOnAction(e->{
+			try {
+				SelectTrip(e);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});*/
+	
 	}
 	}
-

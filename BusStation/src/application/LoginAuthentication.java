@@ -1,13 +1,12 @@
 package application;
 
 public class LoginAuthentication {
-	Database d = new Database();
+	static Database d = new Database();
 	
 	public int authenticateAdmin(String username, String password) {
 		int i = 0;
 			while(d.M[i]!=null) {
 				if(d.M[i].username.equals(username) && d.M[i].getPassword().equals(password)) {
-					System.out.println(i);
 					return i;
 				}
 				else { 
