@@ -3,7 +3,7 @@ package model;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.AlertBox;
+import view.AlertBox;
 import application.HomeScreenController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

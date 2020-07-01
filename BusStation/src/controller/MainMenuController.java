@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import authentication.LoginAuthentication;
 import model.Driver;
 import model.Manager;
 import model.Passenger;
@@ -14,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.Node;
+import view.AlertBox;
 
 
 public class MainMenuController implements Initializable{

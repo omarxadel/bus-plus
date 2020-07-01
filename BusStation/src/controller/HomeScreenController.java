@@ -20,6 +20,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
+import view.AlertBox;
+import view.PaymentWindow;
 
 public class HomeScreenController implements Initializable {
 

@@ -1,4 +1,4 @@
-package application;
+package authentication;
 
 import model.Database;
 import model.Driver;
