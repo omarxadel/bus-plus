@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Model.Database;
+import Model.Driver;
+import Model.Manager;
+import Model.Trip;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +34,7 @@ public class HomeScreenDriverController implements Initializable{
 	static boolean flag = false;
 	static Database d = new Database();
 	int userIndex;
-	Trip [] tripsView = new Trip[100];
+	Trip[] tripsView = new Trip[100];
 	Driver D;
 	Manager M[];
 	public Trip[] trip;

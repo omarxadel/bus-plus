@@ -3,6 +3,10 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Model.Driver;
+import Model.Manager;
+import Model.Passenger;
 import javafx.stage.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

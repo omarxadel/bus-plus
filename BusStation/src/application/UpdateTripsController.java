@@ -1,24 +1,20 @@
 package application;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
+import Model.Database;
+import Model.Driver;
+import Model.Seat;
+import Model.Trip;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class UpdateTripsController {
 	String start, dest, vehicle, vnum, drivername, date, time, ticketprice;
 	int ID, index;
 	Seat seat;
 	Trip T;
-	Driver [] D;
+	Model.Driver[] D;
 	Driver select;
 	Database d = new Database();
 	public Button Cancel;

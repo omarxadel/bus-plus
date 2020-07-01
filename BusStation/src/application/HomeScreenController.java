@@ -5,6 +5,8 @@ import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import Interface.PaymentMethod;
+import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -440,7 +442,7 @@ public class HomeScreenController implements Initializable {
 		}
 		else if(paymentMethod.equals("Credit")) {
 			pay = new CreditCard();
-			boolean flag = PaymentWindow.display("Credit Card", "Payment Information", "Card", "Return", "Pay "+totalCheck + " €", "Card Number");
+			boolean flag = PaymentWindow.display("Credit Card", "Payment Information", "Card", "Return", "Pay "+totalCheck + " ï¿½", "Card Number");
 			if(flag) {
 				String credit = PaymentWindow.code;
 				if(d.credit.validateCreditCard(credit)) {
@@ -551,7 +553,7 @@ public class HomeScreenController implements Initializable {
 			purchaseView.getItems().add(unpaidData);
 			i++;
 		}
-		checkTotal.setText(Float.toString(totalCheck) + " €");
+		checkTotal.setText(Float.toString(totalCheck) + " ï¿½");
 	}
 	
 	public void bookNowClicked(ActionEvent e) {
@@ -591,7 +593,7 @@ public class HomeScreenController implements Initializable {
 				d.addTicket(unpaidTickets[i].T, P.username, unpaidTickets[i].serial, unpaidTickets[i].seat , unpaidTickets[i].price, "Cash");
 			}
 			else if(type == 3) {
-				checkTotal.setText(Float.toString(totalCheck) + " €");
+				checkTotal.setText(Float.toString(totalCheck) + " ï¿½");
 				AlertBox.display("SUCCESS", "Your total check has been reduced by "+d.promo.promocodes.get(promocode[pIndex]) + " %", "Continue");
 				pIndex++;
 				return;

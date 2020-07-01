@@ -1,5 +1,10 @@
 package application;
 
+import Model.Database;
+import Model.Driver;
+import Model.Manager;
+import Model.Passenger;
+
 public class LoginAuthentication {
 	static Database d = new Database();
 	

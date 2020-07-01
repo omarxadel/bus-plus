@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreenDriverController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Show Trips" />
+              <MenuItem mnemonicParsing="false" text="Log out" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+          <Menu mnemonicParsing="false" text="View">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="My Profile" />
+                  <MenuItem fx:id="seeTrips" mnemonicParsing="false" onAction="#myTripsClicked" text="My Trips" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Edit Profile" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <AnchorPane>
+         <children>
+            <VBox fx:id="MainTabManager" alignment="TOP_CENTER" prefHeight="364.0" prefWidth="150.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="WelcomeDriver" text="Hello Mr." />
+                  <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" text="Profile" />
+                  <Button fx:id="StartTrip" mnemonicParsing="false" text="Start a new trip" />
+                  <Button fx:id="Tripscomments" mnemonicParsing="false" text="Trips comments" />
+                  <MenuButton fx:id="TripsSchedule" mnemonicParsing="false" onAction="#SelectTrip" text="Trips">
+                    <items>
+                      <MenuItem fx:id="line1" mnemonicParsing="false" onAction="#SelectTrip" text="My Trips" />
+                      <MenuItem fx:id="line2" mnemonicParsing="false" onAction="#SelectTrip" text="Trips History" />
+                    </items>
+                  </MenuButton>
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
+                  <Label fx:id="WelcomeDriver" prefHeight="26.0" prefWidth="115.0" text="Hello Mr.">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <Button fx:id="PassengerProfileButton" mnemonicParsing="false" onAction="#profileButtonClicked" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Profile" />
+                  <MenuButton fx:id="TripsSchedule" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SelectTrip" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Trips" textAlignment="CENTER">
+                    <items>
+                      <MenuItem fx:id="line1" mnemonicParsing="false" onAction="#SelectTrip" text="My Trips" />
+                    </items>
+                  </MenuButton>
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#logOut" prefWidth="100.0" style="-fx-background-color: ed8063;" text="Log Out" />
+               </children>
+            </VBox>
+            <VBox fx:id="ProfTitle" alignment="TOP_RIGHT" prefHeight="364.0" prefWidth="150.0" spacing="10.0" visible="false" AnchorPane.topAnchor="20.0">
+               <children>
+                  <Label alignment="CENTER" text="Your Profile">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="Schedule" alignment="TOP_RIGHT" layoutY="19.0" prefHeight="321.0" prefWidth="151.0" visible="false">
+               <children>
+                  <Label text="Trips Schedule">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="363.0" prefWidth="190.0" BorderPane.alignment="CENTER">
+         <children>
+
+
+            <AnchorPane fx:id="trip2" prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ListView prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="trip3" prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+
+                  <ListView prefHeight="368.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
+               </children>
+            </AnchorPane>
+            <Button fx:id="Back" layoutX="14.0" layoutY="342.0" mnemonicParsing="false" onAction="#BackMainTab" text="Ok" visible="false" />
+            <AnchorPane fx:id="ProfFull" layoutX="236.0" prefHeight="363.0" prefWidth="451.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox alignment="CENTER" layoutX="146.0" layoutY="14.0" prefHeight="260.0" prefWidth="159.0" spacing="2.0">
+                     <children>
+                        <Label fx:id="Account" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="39.0" text="Account Type" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="65.0" fitWidth="85.0" layoutX="203.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../user.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="Fname" alignment="CENTER" contentDisplay="CENTER" layoutX="192.0" layoutY="128.0" text="FULL NAME" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="Country" alignment="CENTER" contentDisplay="CENTER" layoutX="214.0" layoutY="150.0" prefHeight="17.0" prefWidth="164.0" text="Country" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ID" alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="167.0" text="ID" textAlignment="CENTER">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="credit" text="Credit : " />
+                     </children>
+                  </VBox>
+                  <Separator layoutX="14.0" layoutY="9.0" orientation="VERTICAL" prefHeight="346.0" prefWidth="0.0" />
+                  <Button fx:id="EditAccount" layoutX="327.0" layoutY="324.0" mnemonicParsing="false" onAction="#toEditprofileClicked" text="Edit Account Info." />
+                  <Button fx:id="profReturn" layoutX="30.0" layoutY="324.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" text="Return" />
+                  <Button fx:id="EditAccount" layoutX="327.0" layoutY="324.0" mnemonicParsing="false" onAction="#toEditprofileClicked" style="-fx-background-color: ed8063;" text="Edit Account Info." />
+                  <Button fx:id="profReturn" layoutX="30.0" layoutY="324.0" mnemonicParsing="false" onAction="#returnProfButtonClicked" style="-fx-background-color: ed8063;" text="Return" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="trip1" layoutY="7.0" prefHeight="361.0" prefWidth="449.0" visible="false">
+               <children>
+                  <ListView fx:id="line1V" layoutX="12.0" layoutY="14.0" prefHeight="317.0" prefWidth="419.0" />
+                  <Button fx:id="Back1" layoutX="18.0" layoutY="335.0" mnemonicParsing="false" onAction="#BackMainTab" text="Return" />
+                  <Button fx:id="Back1" layoutX="18.0" layoutY="335.0" mnemonicParsing="false" onAction="#BackMainTab" style="-fx-background-color: ed8063;" text="Return" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="editProfile" prefHeight="368.0" prefWidth="449.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox layoutX="66.0" layoutY="34.0" prefHeight="270.0" prefWidth="318.0" spacing="20.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="22.0">
+                           <children>
+                              <Label text="First name" />
+                              <Label text="Last name" />
+                              <Label text="Username" />
+                              <Label text="Password" />
+                              <Label text="Re-Enter Password" />
+                              <Label text="City" />
+                              <Label text="Country" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="276.0" prefWidth="175.0" spacing="13.0">
+                           <children>
+                              <TextField fx:id="FirstnameManager" promptText="Firstname" />
+                              <TextField fx:id="LastnameManager" promptText="Lastname" />
+                              <TextField fx:id="UsernameManager" promptText="Username" />
+                              <PasswordField fx:id="PasswordManager" promptText="Password" />
+                              <PasswordField fx:id="RepassManager" promptText="Re-Enter Password" />
+                              <TextField fx:id="CityManager" promptText="City" />
+                              <TextField fx:id="CountryManager" promptText="Country" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="30.0" layoutY="313.0" prefHeight="41.0" prefWidth="369.0" spacing="60.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#returnFromEditProfile" text="Return" />
+                        <Button mnemonicParsing="false" onAction="#saveProfileEditClicked" text="Save Changes" />
+                        <Button mnemonicParsing="false" text="Delete Account" />
+                        <Button mnemonicParsing="false" onAction="#returnFromEditProfile" style="-fx-background-color: ed8063;" text="Return" />
+                        <Button mnemonicParsing="false" onAction="#saveProfileEditClicked" style="-fx-background-color: ed8063;" text="Save Changes" />
+                        <Button mnemonicParsing="false" style="-fx-background-color: ed8063;" text="Delete Account" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Status Bar" />
+            <Label text="Label" />
+            <Label text="Status: Idle" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
