@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Model.Database;
-import Model.Driver;
-import Model.Manager;
-import Model.Trip;
+import model.Database;
+import model.Driver;
+import model.Manager;
+import model.Trip;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -2,7 +2,7 @@ package application;
 
 
 
-import Model.*;
+import model.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -34,7 +34,7 @@ public class HomeScreenManagerController implements Initializable {
 	static boolean flag = false;
 	int index, ID, currentuserInd;
 	Manager M;
-	Model.Driver D[];
+	model.Driver D[];
 	static Database d = new Database();
 	int userIndex;
 	String uStart, uDest, uCar, uCarnum, uDriver, uTime, uTicket;

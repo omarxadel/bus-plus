@@ -1,9 +1,9 @@
 package application;
 
-import Model.Database;
-import Model.Driver;
-import Model.Seat;
-import Model.Trip;
+import model.Database;
+import model.Driver;
+import model.Seat;
+import model.Trip;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -14,7 +14,7 @@ public class UpdateTripsController {
 	int ID, index;
 	Seat seat;
 	Trip T;
-	Model.Driver[] D;
+	model.Driver[] D;
 	Driver select;
 	Database d = new Database();
 	public Button Cancel;
