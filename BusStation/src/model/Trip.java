@@ -1,35 +1,99 @@
 package model;
 
 public class Trip {
-	int ID;
-	String type;
-	String start;
-	String destination;
-	String driverName;
-	String date;
-	String time;
-	float ticket;
-	Vehicle vehicle;
-	int vnum;
-	String vmodel;
-	Seat seat;
+	private int id;
+	private String type;
+	private String start;
+	private String dest;
+	private String driver;
+	private String date;
+	private String time;
+	private float price;
+	private int vehicle;
 	
 
-	public Trip(int ID, String type, String start, String dest, String vehicle, int vnum , String driver, String date, String time, float ticket, Seat seat){
-		
-		this.ID = ID;
+	public Trip(int id, String type, String start, String dest, String driver, int vehicle , String date, String time, float price){
+		this.id = id;
 		this.type = type;
 		this.start = start;
-		destination = dest;
-		this.vehicle = new Vehicle(vehicle);
-		vmodel = vehicle;
-		this.vnum = vnum;
-		this.vehicle.num = vnum;
-		driverName = driver;
-		this.ticket = ticket;
-		this.seat = seat;
+		this.dest = dest;
+		this.vehicle = vehicle;
+		this.driver = driver;
+		this.price = price;
 		this.date = date;
 		this.time = time;
 		}
+
+	public int getId() {
+		return id;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getStart() {
+		return start;
+	}
+
+	public void setStart(String start) {
+		this.start = start;
+	}
+
+	public String getDest() {
+		return dest;
+	}
+
+	public void setDest(String dest) {
+		this.dest = dest;
+	}
+
+	public String getDriver() {
+		return driver;
+	}
+
+	public void setDriver(String driver) {
+		this.driver = driver;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+	public int getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(int vehicle) {
+		this.vehicle = vehicle;
+	}
+}
 
