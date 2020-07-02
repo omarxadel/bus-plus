@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import model.Database;
 import model.Driver;
-import model.Manager;
+import model.Admin;
 import model.Trip;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,7 +36,7 @@ public class HomeScreenDriverController implements Initializable{
 	int userIndex;
 	Trip[] tripsView = new Trip[100];
 	Driver D;
-	Manager M[];
+	Admin M[];
 	public Trip[] trip;
 	public VBox MainTabManager;
 	public VBox ProfTitle;

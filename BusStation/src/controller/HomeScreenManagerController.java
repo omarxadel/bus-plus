@@ -34,7 +34,7 @@ public class HomeScreenManagerController implements Initializable {
 	
 	static boolean flag = false;
 	int index, ID, currentuserInd;
-	Manager M;
+	Admin M;
 	model.Driver D[];
 	static Database d = new Database();
 	int userIndex;
@@ -108,7 +108,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	
 // --------------- Profile Controls ---------------\\
 	
-	public void getProfile(Manager M) {
+	public void getProfile(Admin M) {
 		this.M=M;
 		if(M.gender.equals("Male")) {
 			labelHelloManager.setText("Hello Mister " + M.firstname);
@@ -862,7 +862,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 				else if (!PasswordAdd1.getText().equals(RepassAdd1.getText())) {
 						AlertBox.display("UNEXPECTED INPUTS!", "Please re-enter the password correctly", "OK");
 					}
-				else{ Manager M = new Manager(FirstnameAdd1.getText(), LastnameAdd1.getText(), UsernameAdd1.getText() ,PasswordAdd1.getText(), d.M[index].ID , CityAdd1.getText(), CountryAdd1.getText(), "Manager", GenderAdd1.getValue());
+				else{ Admin M = new Admin(FirstnameAdd1.getText(), LastnameAdd1.getText(), UsernameAdd1.getText() ,PasswordAdd1.getText(), d.M[index].ID , CityAdd1.getText(), CountryAdd1.getText(), "Manager", GenderAdd1.getValue());
 					d.M[index] = M;
 					d.saveManagerData();
 					managerTable.getItems().remove(index);

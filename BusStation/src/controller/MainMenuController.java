@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import authentication.LoginAuthentication;
 import model.Driver;
-import model.Manager;
+import model.Admin;
 import model.Passenger;
 import javafx.stage.*;
 import javafx.event.ActionEvent;
@@ -20,7 +20,7 @@ import view.AlertBox;
 
 public class MainMenuController implements Initializable{
 	int currentUser;
-	Manager M;
+	Admin M;
 	Driver D;
 	Passenger P;
 	LoginAuthentication auth;
@@ -83,7 +83,7 @@ public class MainMenuController implements Initializable{
 		window.setScene(userHomeS);
 	}
 	
-	public void homeAdminLoader(ActionEvent e, Manager a, int index) throws IOException {
+	public void homeAdminLoader(ActionEvent e, Admin a, int index) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("HomeScreenManager.fxml"));
 		Parent ManagerHome = loader.load();
