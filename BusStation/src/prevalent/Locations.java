@@ -2,7 +2,7 @@ package prevalent;
 
 public class Locations {
 	
-	String[] locations = {"Brussels" , "Zurich", "Munich", "Vienna", "Amsterdam"};
+	private String[] locations = {"Brussels" , "Zurich", "Munich", "Vienna", "Amsterdam"};
 	
 	public Locations() {
 		
