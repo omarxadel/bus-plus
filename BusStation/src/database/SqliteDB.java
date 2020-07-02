@@ -14,6 +14,7 @@ public class SqliteDB implements SqliteInterface {
     private static SqliteDB instance = new SqliteDB();
 
     private SqliteDB() {
+
         checkConnection();
     }
 
@@ -66,6 +67,54 @@ public class SqliteDB implements SqliteInterface {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    @Override
+    public void WriteUsers() {
+        String query="INSERT INTO User (username,firstname,lastname,password,city,country,id,type,credit)" ;
+        try {
+            this.stmt=c.createStatement();
+            stmt.executeQuery(query);
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public void WriteTrips() {
+        String query1="INSERT INTO Trips (id,dest,start,price,type,vehicle_num,driver_name,date,time)" ;
+        try {
+            this.stmt=c.createStatement();
+            stmt.executeQuery(query1);
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void AddLocation() {
+        String query2="INSERT INTO Location (name.position)" ;
+        try {
+            this.stmt=c.createStatement();
+            stmt.executeQuery(query2);
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void AddVehicles() {
+        String query3="INSERT INTO Vehicles (vehicle_num,type,model" ;
+        try {
+            this.stmt=c.createStatement();
+            stmt.executeQuery(query3);
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+
     }
 
     @Override
