@@ -22,6 +22,7 @@ public class LoginAuthentication {
 			return -1;
 		
 	}
+
 	public int authenticateDriver(String username, String password) {
 		int i = 0;
 		while(d.D[i]!=null) {
@@ -71,12 +72,15 @@ public class LoginAuthentication {
 		return d.M;
 	}
 	public Driver getDriver(int index) {
+
 		return d.D[index];
 	}
 	public Driver [] getDrivers() {
+
 		return d.D;
 	}
 	public Passenger getPassenger(int index) {
+
 		return d.P[index];
 	}
 
