@@ -11,6 +11,4 @@ public class Admin extends Users {
 		Admin.super.setCountry(country);
 		Admin.super.setGender(gender);
 	}
-	
-
 }
