@@ -3,13 +3,13 @@ package model;
 public class Passenger extends Users {
 	
 		public Passenger(String fname, String lname, String uname, String pw, int ID, String city, String country, String gender) {
-			Passenger.super.firstname = fname;
-			Passenger.super.lastname = lname;
-			Passenger.super.username = uname;
+			Passenger.super.setFirstname(fname);
+			Passenger.super.setLastname(lname);
+			Passenger.super.setUsername(uname);
 			Passenger.super.setPassword(pw);
-			Passenger.super.ID = ID;
-			Passenger.super.city = city;
-			Passenger.super.country = country;
-			Passenger.super.gender = gender;
+			Passenger.super.setID(ID);
+			Passenger.super.setCity(city);
+			Passenger.super.setCountry(country);
+			Passenger.super.setGender(gender);
 		}
 }
