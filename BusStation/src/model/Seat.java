@@ -79,6 +79,7 @@ public class Seat {
 	
 	public void cancelBooking(String seat) {
 		seats.replace(seat, false);
+		freeSeats++;
 	}
 	
 	public void resetSeats() {
