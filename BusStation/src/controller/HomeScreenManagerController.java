@@ -28,6 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import prevalent.Vehicle;
 import view.AlertBox;
 
 public class HomeScreenManagerController implements Initializable {

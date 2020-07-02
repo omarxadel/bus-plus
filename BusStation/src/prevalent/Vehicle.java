@@ -1,4 +1,6 @@
-package model;
+package prevalent;
+
+import model.Seat;
 
 public  class Vehicle {
 	String vtype;

@@ -1,4 +1,7 @@
 package model;
+import prevalent.Locations;
+import prevalent.Vehicle;
+
 import java.io.*;
 import java.util.*;
 

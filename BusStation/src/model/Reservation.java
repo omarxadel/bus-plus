@@ -1,5 +1,7 @@
 package model;
 
+import prevalent.Locations;
+
 public class Reservation {
 	static Locations locations = new Locations();
 	static Database d = new Database();
