@@ -10,6 +10,7 @@ public class Seat {
 
 
 	public Seat(int type){
+		seats = new HashMap<String, Boolean>();
 		switch(type){
 			case(1):
 				freeSeats = 12;
