@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 public class PromoCode implements PaymentMethod {
 	
-	HashMap <String, Float> promocodes = new HashMap<String, Float>();
-	float newPrice;
+	private HashMap <String, Float> promocodes = new HashMap<String, Float>();
+	private float newPrice;
 	
 	public PromoCode() {
 		promocodes.put("plusGet50", (float) 50);
@@ -18,6 +18,7 @@ public class PromoCode implements PaymentMethod {
 	
 	
 	public boolean validatePromoCode(String promo) {
+
 		return(promocodes.containsKey(promo));
 	}
 	
@@ -28,7 +29,19 @@ public class PromoCode implements PaymentMethod {
 	}
 	
 	public float getNewPrice() {
+
 		return newPrice;
 	}
-	
+
+	public void setNewPrice(float newPrice) {
+		this.newPrice = newPrice;
+	}
+
+	public HashMap<String, Float> getPromocodes() {
+		return promocodes;
+	}
+
+	public void setPromocodes(HashMap<String, Float> promocodes) {
+		this.promocodes = promocodes;
+	}
 }

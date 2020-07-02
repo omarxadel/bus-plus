@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 public class CreditCard implements PaymentMethod {
 
-	HashMap<String, Float> cards = new HashMap<String, Float>();
-	String selected;
+	private HashMap<String, Float> cards = new HashMap<String, Float>();
+	private String selected;
 	
 	public CreditCard() {
 		cards.put("4916758530208683", (float) 5000.0);
@@ -21,6 +21,7 @@ public class CreditCard implements PaymentMethod {
 			this.selected = selected;
 			return true;
 		}
+
 		else return false;
 	}
 	
@@ -35,4 +36,19 @@ public class CreditCard implements PaymentMethod {
 		return(cards.get(selected) > amount);
 	}
 
+	public HashMap<String, Float> getCards() {
+		return cards;
+	}
+
+	public void setCards(HashMap<String, Float> cards) {
+		this.cards = cards;
+	}
+
+	public String getSelected() {
+		return selected;
+	}
+
+	public void setSelected(String selected) {
+		this.selected = selected;
+	}
 }
