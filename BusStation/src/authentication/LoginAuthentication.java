@@ -2,7 +2,7 @@ package authentication;
 
 import model.Database;
 import model.Driver;
-import model.Manager;
+import model.Admin;
 import model.Passenger;
 
 public class LoginAuthentication {
@@ -65,10 +65,10 @@ public class LoginAuthentication {
 		}
 		return false;
 }
-	public Manager getManager(int index) {
+	public Admin getManager(int index) {
 		return d.M[index];
 	}
-	public Manager [] getManagers() {
+	public Admin[] getManagers() {
 		return d.M;
 	}
 	public Driver getDriver(int index) {

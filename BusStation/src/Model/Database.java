@@ -6,7 +6,7 @@ public class Database {
 	private Formatter x;
 	private FileWriter f, fr;
 	Scanner i, inp;
-	Manager[] M;
+	Admin[] M;
 	Driver [] D;
 	Passenger [] P;
 	Trip [] T;
@@ -64,7 +64,7 @@ public class Database {
 			e1.printStackTrace();
 		}
 		}
-		M = new  Manager [5];
+		M = new Admin[5];
 		int J = 0;
 		if(i != null) {
 		while(i.hasNext()) {
@@ -77,7 +77,7 @@ public class Database {
 			String country = i.next();
 			String job = i.next();
 			String gender = i.next();
-			M[J] = new Manager (fname, lname, uname, pword, ID, city, country, job, gender);
+			M[J] = new Admin(fname, lname, uname, pword, ID, city, country, job, gender);
 			J++;
 		}}
 		else {
@@ -309,7 +309,7 @@ public class Database {
 	
 	}
 	
-	public Manager addManagerData(String fname, String lname, String uname, String pw, String city, String country, String gender) throws IOException{
+	public Admin addManagerData(String fname, String lname, String uname, String pw, String city, String country, String gender) throws IOException{
 		try {
 			f = new FileWriter("ManagersData.txt", true);
 		} catch (IOException e) {
@@ -330,7 +330,7 @@ public class Database {
 		}
 	}
 	f.write("\r\n" + fname + " " + lname + " " + uname + " " + pw + " " + ID + " " + city + " " + country + " " + gender);
-	Manager m = new Manager(fname, lname, uname, pw, ID, city, country, gender, "Manager");
+	Admin m = new Admin(fname, lname, uname, pw, ID, city, country, gender, "Manager");
 	f.close();
 	getManagerData();
 	return m;
