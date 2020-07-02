@@ -1,6 +1,5 @@
 package application;
 
-import model.Database;
 import model.Driver;
 import model.Seat;
 import model.Trip;

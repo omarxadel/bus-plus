@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import model.Database;
 import model.Passenger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

@@ -2,35 +2,70 @@ package database;
 
 import Interface.SqliteInterface;
 
-import java.sql.Connection;
-import java.sql.Statement;
+import javax.xml.transform.Result;
+import java.sql.*;
 
 public class SqliteDB implements SqliteInterface {
-    Connection c = null;
-    Statement stmt = null;
+    private Connection c = null;
+    private Statement stmt = null;
+    private String loadStmt = "SELECT * FROM ";
 
+    // SINGLETON DESIGN PATTERN
+    private static SqliteDB instance = new SqliteDB();
 
-    public SqliteDB() {
+    private SqliteDB() {
+        checkConnection();
     }
 
-    private boolean checkConnection(){
-        //TODO: WRITE BODY OF FUNCTION
-        return false;
+    public static SqliteDB getInstance(){
+        return instance;
     }
 
+
+    // ESTABLISH CONNECTION WITH DB
+    private void checkConnection(){
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:BusStationDB.sqlite");
+            c.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    // LOAD DATA
     @Override
     public void loadUsers() {
-
+        try {
+            stmt = c.createStatement();
+            ResultSet resultSet = stmt.executeQuery(loadStmt + "User");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
     public void loadTrips() {
-
+        try {
+            stmt = c.createStatement();
+            ResultSet resultSetTrips = stmt.executeQuery(loadStmt + "Trips");
+            ResultSet resultSetSeats = stmt.executeQuery(loadStmt + "Seats");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
     public void loadPrevalent() {
-
+        try {
+            stmt = c.createStatement();
+            ResultSet resultSetLocation = stmt.executeQuery(loadStmt + "Location");
+            ResultSet resultSetVehicles = stmt.executeQuery(loadStmt + "Vehicles");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

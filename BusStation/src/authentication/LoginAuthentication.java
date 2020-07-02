@@ -1,6 +1,5 @@
 package authentication;
 
-import model.Database;
 import model.Driver;
 import model.Admin;
 import model.Passenger;
