@@ -1,16 +1,15 @@
 package model;
 
 public class Admin extends Users {
-	public Admin(String fname, String lname, String uname, String pw, int ID, String city, String country, String j, String gender) {
-		Admin.super.firstname = fname;
-		Admin.super.lastname = lname;
-		Admin.super.username = uname;
+	public Admin(String firstname, String lastname, String username, String pw, int ID, String city, String country, String gender) {
+		Admin.super.setFirstname(firstname);
+		Admin.super.setLastname(lastname);
+		Admin.super.setUsername(username);
 		Admin.super.setPassword(pw);
-		Admin.super.ID = ID;
-		Admin.super.city = city;
-		Admin.super.country = country;
-		Admin.super.job = j;
-		Admin.super.gender = gender;
+		Admin.super.setID(ID);
+		Admin.super.setCity(city);
+		Admin.super.setCountry(country);
+		Admin.super.setGender(gender);
 	}
 	
 
