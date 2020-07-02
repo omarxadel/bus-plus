@@ -10,7 +10,4 @@ public interface SqliteInterface {
     public void AddVehicles();
     public boolean authenticateLogin();
     public boolean confirmReservation();
-
-
-
 }
