@@ -31,7 +31,7 @@ public class Driver extends Users {
 		return trip;
 	}
 
-	public void setTrip(HashMap<Intege , Trip>){
+	public void setTrip(HashMap<Integer , Trip>){
 		this.trip=trip;
 	}
 	
