@@ -291,7 +291,7 @@ public class Database {
 			float price = i.nextFloat();
 			String payment = i.next();
 			while(T[iterator] != null) {
-				if(ID_trip == T[iterator].ID) {
+				if(ID_trip == T[iterator].id) {
 					thisTrip = T[iterator];
 					break;
 				}
@@ -382,7 +382,7 @@ public class Database {
 		}
 		int j=0;
 		while(T[j]!= null) {
-			if(T[j].ID == ID) {
+			if(T[j].id == ID) {
 				ID++;
 				j++;
 			}
@@ -458,9 +458,9 @@ public class Database {
 		}
 		Ticket newTicket = new Ticket (currentT, uname, serial, seat, price, payment);
 		if(inp.hasNext()) {
-			fr.write("\r\n" + currentT.ID + " " + uname + " " + serial + " " + seat + " " + price + " " + payment);
+			fr.write("\r\n" + currentT.id + " " + uname + " " + serial + " " + seat + " " + price + " " + payment);
 		}
-		else fr.write("" + currentT.ID + " " + uname + " " + serial + " " + seat + " " + price + " " + payment);
+		else fr.write("" + currentT.id + " " + uname + " " + serial + " " + seat + " " + price + " " + payment);
 			fr.close();
 		getTicketData();
 		return newTicket;
@@ -521,7 +521,7 @@ public class Database {
 			x = new Formatter("TripsData.txt");
 			e.printStackTrace();
 		}	
-		ID = Integer.toString(T[0].ID);
+		ID = Integer.toString(T[0].id);
 		type = T[0].type;
 		start = T[0].start;
 		dest = T[0].destination;
@@ -533,7 +533,7 @@ public class Database {
 		ticketprice = Float.toString(T[0].ticket);
 		fr.write(ID + " " + type + " " + start + " " + dest + " " + vehicle + " " + vnum + " " + drivername + " " + date + " " + time + " "+ ticketprice);
 		while(T[i] != null) {
-			ID = Integer.toString(T[i].ID);
+			ID = Integer.toString(T[i].id);
 			type = T[i].type;
 			start = T[i].start;
 			dest = T[i].destination;

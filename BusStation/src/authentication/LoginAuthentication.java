@@ -14,7 +14,7 @@ public class LoginAuthentication {
 				if(d.M[i].username.equals(username) && d.M[i].getPassword().equals(password)) {
 					return i;
 				}
-				else { 
+				else {
 					i++;
 					continue;
 				}

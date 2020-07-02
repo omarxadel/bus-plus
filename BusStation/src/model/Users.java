@@ -12,6 +12,8 @@ public abstract class Users {
 	private int ID;
 
 
+	// SETTERS AND GETTERS
+
 	public String getUsername() {
 		return username;
 	}
@@ -76,13 +78,8 @@ public abstract class Users {
 		this.ID = ID;
 	}
 
-	String getPassword() {
-
-		return password;
-	}
+	String getPassword() { return password;	}
 	
-	void setPassword(String password) {
+	void setPassword(String password) {	this.password=password;	}
 
-		this.password=password;
-	}
 }
