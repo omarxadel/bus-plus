@@ -1,25 +1,40 @@
 
 package controller;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
 import database.SqliteDB;
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.shape.Circle;
 import model.Users;
 import view.AlertBox;
+import animatefx.animation.*;
+
+import javax.swing.*;
 
 
 public class MainMenuController implements Initializable{
 	SqliteDB db = SqliteDB.getInstance();
-	public Pane register_pane, login_pane;
-	public TextField username_input_login, username_input_register;
-	public PasswordField password_input_login;
-	public Button login_btn, forgot_password_btn, create_account_btn, register_continue_btn;
+
+	@FXML
+	private Pane register_pane, login_pane;
+	@FXML
+	private TextField username_input_login, username_input_register;
+	@FXML
+	private PasswordField password_input_login;
+	@FXML
+	private Button login_btn, forgot_password_btn, create_account_btn, register_continue_btn;
+	@FXML
+	private Circle minimize_btn, exit_btn, resize_btn;
+	@FXML
+	private BorderPane main_menu_root;
 	
 	
 	// ------------------------- Initialize --------------------- \\
@@ -29,9 +44,32 @@ public class MainMenuController implements Initializable{
 		//TODO: Initialize Stuff
 	}
 
-	
-	
-	// ------------------------- LOGIN PANE COMMANDS --------------------- \\
+
+	// ------------------------- HANDLE BUTTON CLICKS --------------------- \\
+
+	@FXML
+	private void handleButtonAction(ActionEvent event){
+
+
+	}
+
+
+	@FXML
+	private void handleMouseClick(MouseEvent event){
+		if(event.getSource() == (exit_btn)){
+			System.exit(0);
+		}
+		if(event.getSource().equals(login_btn)){
+
+		}
+		if(event.getSource().equals(create_account_btn)){
+
+		}
+
+	}
+
+
+	// ------------------------- LOGIN PANE OPERATIONS --------------------- \\
 
 /*	public void homeUserLoader(ActionEvent e,Passenger c, int index) throws IOException {
 		FXMLLoader loader = new FXMLLoader();

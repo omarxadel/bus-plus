@@ -3,9 +3,10 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
+import animatefx.animation.*;
+import javafx.stage.StageStyle;
 
 
 public class Main extends Application {
@@ -17,6 +18,8 @@ public class Main extends Application {
 			Scene scene = new Scene(root,720,435);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.initStyle(StageStyle.TRANSPARENT);
+			new animatefx.animation.FadeIn(root).play();
 			primaryStage.show();
 			
 		} catch(Exception e) {
