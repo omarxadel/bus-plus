@@ -1,4 +1,5 @@
-package application;
+/*
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,11 +26,8 @@ import view.PaymentWindow;
 
 public class HomeScreenController implements Initializable {
 
-	String [] promocode = new String [5];
 	float totalCheck = 0;
 	static PaymentMethod pay;
-	Ticket new_Ticket;
-	Ticket [] unpaidTickets;
 	static Reservation reserve = new Reservation();
 	public AnchorPane editProfile;
 	Trip reservedTrip;
@@ -41,13 +39,6 @@ public class HomeScreenController implements Initializable {
 	Seat s;
 	Stage stage;
 	Scene scene;
-	public Trip[] trip;
-	//Driver D;
-	static Database d = new Database();
-	public AnchorPane Trip1, booking, myTripsPane, searchAnc;
-	public AnchorPane payment;
-	public AnchorPane Editacc;
-	public AnchorPane searchResultPane;
 	public Button PromoCodes;
 	public Button PassengerProfileButton;
 	public Button SeatingOptions;
@@ -736,3 +727,4 @@ public class HomeScreenController implements Initializable {
 	
 	
 }
+*/

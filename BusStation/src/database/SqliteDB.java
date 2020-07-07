@@ -1,6 +1,8 @@
 package database;
 
 import Interface.SqliteInterface;
+import model.Admin;
+import model.Users;
 
 import javax.xml.transform.Result;
 import java.sql.*;
@@ -9,6 +11,7 @@ public class SqliteDB implements SqliteInterface {
     private Connection c = null;
     private Statement stmt = null;
     private String loadStmt = "SELECT * FROM ";
+    private String loginQuery = "select * from User where username=? and password=?";
 
     // SINGLETON DESIGN PATTERN
     private static SqliteDB instance = new SqliteDB();
@@ -27,8 +30,7 @@ public class SqliteDB implements SqliteInterface {
     private void checkConnection(){
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:BusStationDB.sqlite");
-            c.close();
+            c = DriverManager.getConnection("jdbc:sqlite:BusStationDB.db");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -69,6 +71,8 @@ public class SqliteDB implements SqliteInterface {
         }
     }
 
+
+    // WRITE DATA
     @Override
     public void WriteUsers() {
         String query="INSERT INTO User (username,firstname,lastname,password,city,country,id,type,credit)" ;
@@ -117,9 +121,26 @@ public class SqliteDB implements SqliteInterface {
 
     }
 
+    //AUTHENTICATE
+
     @Override
-    public boolean authenticateLogin() {
-        return false;
+    public Users authenticateLogin(String username, String password) {
+        try {
+            PreparedStatement stmt = c.prepareStatement(loginQuery);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            ResultSet resultSet = stmt.executeQuery();
+            if (resultSet.next()){
+                if(resultSet.getInt("type") == 1){ //ADMIN
+                    Admin user = new Admin(resultSet.getString("firstname"), resultSet.getString("lastname"), username, password, resultSet.getInt("ID"), resultSet.getString("city"), resultSet.getString("country"), (resultSet.getInt("gender") == 1) ? "Male" : "Female");
+                    return user;
+                }
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
     @Override

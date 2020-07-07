@@ -1,3 +1,4 @@
+/*
 package application;
 
 import java.io.IOException;
@@ -236,7 +237,8 @@ public class HomeScreenDriverController implements Initializable{
 				e1.printStackTrace();
 			}
 		});
-		/*seeProf.setOnAction(e->{
+		*/
+/*seeProf.setOnAction(e->{
 			try {
 				SelectTrip(e);
 			} catch (IOException e1) {
@@ -251,7 +253,8 @@ public class HomeScreenDriverController implements Initializable{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		});*/
+		});*//*
+
 	
 	}
-	}
+	}*/

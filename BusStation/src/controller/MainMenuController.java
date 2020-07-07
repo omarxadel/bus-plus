@@ -1,76 +1,39 @@
 
-package application;
+package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import authentication.LoginAuthentication;
-import model.Driver;
-import model.Admin;
-import model.Passenger;
-import javafx.stage.*;
+
+import database.SqliteDB;
+import javafx.scene.layout.Pane;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.Node;
+import model.Users;
 import view.AlertBox;
 
 
 public class MainMenuController implements Initializable{
-	int currentUser;
-	Admin M;
-	Driver D;
-	Passenger P;
-	LoginAuthentication auth;
-	public RadioButton AdminRadio;
-	public RadioButton DriverRadio;
-	public RadioButton UserRadio;
-	public TextField LogUser;
-	public TextField RegUser;
-	public PasswordField RegPass;
-	public PasswordField RegPass1;
-	public PasswordField LogPass;
+	SqliteDB db = SqliteDB.getInstance();
+	public Pane register_pane, login_pane;
+	public TextField username_input_login, username_input_register;
+	public PasswordField password_input_login;
+	public Button login_btn, forgot_password_btn, create_account_btn, register_continue_btn;
 	
 	
-	// ------------------------- Initialize Database --------------------- \\
+	// ------------------------- Initialize --------------------- \\
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		auth = new LoginAuthentication();
-		
+		//TODO: Initialize Stuff
 	}
 
 	
 	
-	// ------------------------- LOGIN TAB COMMANDS --------------------- \\
-	
-	public void UserAuthentication() {
-		String username = LogUser.getText();
-		String password = LogPass.getText();
-		
-		if (username== null || password==null)
-		{
-			currentUser = -1;
-		}
-		else if(username.isEmpty() || password.isEmpty()) {
-			currentUser = -1;
-		}
-		
-		else if(AdminRadio.isSelected()) {
-			currentUser = auth.authenticateAdmin(username, password);
-		}
-		else if(DriverRadio.isSelected()) {
-			currentUser = auth.authenticateDriver(username, password);
-		}
-		else if(UserRadio.isSelected()) {
-			currentUser = auth.authenticatePassenger(username, password);
-		}
-		else currentUser = -1;
-	}
-	
-	public void homeUserLoader(ActionEvent e,Passenger c, int index) throws IOException {
+	// ------------------------- LOGIN PANE COMMANDS --------------------- \\
+
+/*	public void homeUserLoader(ActionEvent e,Passenger c, int index) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("HomeScreen.fxml"));
 		Parent userHome = loader.load();
@@ -81,9 +44,9 @@ public class MainMenuController implements Initializable{
 		controller.currentuserIndex = index;
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(userHomeS);
-	}
+	}*/
 	
-	public void homeAdminLoader(ActionEvent e, Admin a, int index) throws IOException {
+/*	public void homeAdminLoader(ActionEvent e, Admin a, int index) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("HomeScreenManager.fxml"));
 		Parent ManagerHome = loader.load();
@@ -108,37 +71,32 @@ public class MainMenuController implements Initializable{
 		controller.myTripsInit();
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(DHome);
-	}
+	}*/
 	
-	private void clearFields() {
-		LogUser.setText(null);
-		LogPass.setText(null);
+	private void clearFields(){
+		password_input_login.setText(null);
+		username_input_login.setText(null);
+		username_input_register.setText(null);
 	}
 	
 	public void loginButton(ActionEvent e) throws IOException {
-		UserAuthentication();
-		clearFields();
-		if(currentUser == -1) {
+		Users currentUser = db.authenticateLogin(username_input_login.getText(), password_input_login.getText());
+		if(currentUser != null) {
+			//TODO: LOGIN APPROVED ACTION
+		}
+		else{
 			AlertBox.display("UNEXPECTED INPUTS!", "Please make sure you choose the user type\n and enter the correct username/passowrd!", "OK");
 		}
-		else if(AdminRadio.isSelected()) {
-			M = auth.getManager(currentUser);
-			homeAdminLoader(e, M, currentUser);
-		}
-		else if(DriverRadio.isSelected()) {
-			D = auth.getDriver(currentUser);
-			homeDriverLoader(e, D);
-		}
-		else if(UserRadio.isSelected()) {
-			P = auth.getPassenger(currentUser);
-			homeUserLoader(e, P, currentUser);
-		}
-		
 	}
 	
-	// ------------------------- REGISTER TAB COMMANDS --------------------- \\	
-	
-	public void regLoader(ActionEvent e, String username, String password) throws IOException {
+	// ------------------------- REGISTER PANE COMMANDS --------------------- \\
+
+	public void registerScreenCall(){
+		register_pane.setVisible(true);
+		login_pane.setVisible(false);
+	}
+
+/*	public void regLoader(ActionEvent e, String username, String password) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Registeration.fxml"));
 		Parent Reg = loader.load();
@@ -148,10 +106,10 @@ public class MainMenuController implements Initializable{
 		controller.getData(username, password);
 		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
 		window.setScene(Regs);
-	}
+	}*/
 	
 	
-	private boolean fieldsEmpty() {
+	/*private boolean fieldsEmpty() {
 		if(RegUser.getText() == null || RegPass.getText() == null || RegPass1.getText() == null) return true;
 		else if(RegUser.getText().isEmpty() || RegPass.getText().isEmpty() || RegPass1.getText().isEmpty()) return true;
 		else return false;
@@ -188,6 +146,6 @@ public class MainMenuController implements Initializable{
 	private boolean userLen() {
 		return (RegUser.getText().length() > 3);
 	}
-
+*/
 
 }

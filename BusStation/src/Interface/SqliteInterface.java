@@ -1,5 +1,7 @@
 package Interface;
 
+import model.Users;
+
 public interface SqliteInterface {
     public void loadUsers();
     public void loadTrips();
@@ -8,6 +10,6 @@ public interface SqliteInterface {
     public void WriteTrips();
     public void AddLocation();
     public void AddVehicles();
-    public boolean authenticateLogin();
+    public Users authenticateLogin(String username, String password);
     public boolean confirmReservation();
 }

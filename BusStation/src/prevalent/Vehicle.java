@@ -1,3 +1,4 @@
+/*
 package prevalent;
 
 import model.Seat;
@@ -39,3 +40,4 @@ public  class Vehicle {
 		return capacity;
 	}
 }
+*/

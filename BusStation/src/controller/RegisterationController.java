@@ -1,3 +1,4 @@
+/*
 package application;
 
 import java.io.IOException;
@@ -89,3 +90,4 @@ public class RegisterationController implements Initializable {
 
 
 
+*/
