@@ -1,4 +1,3 @@
-/*
 package controller;
 
 import java.io.IOException;
@@ -7,6 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import Interface.PaymentMethod;
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Circle;
 import model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -26,64 +29,81 @@ import view.PaymentWindow;
 
 public class HomeScreenController implements Initializable {
 
-	float totalCheck = 0;
-	static PaymentMethod pay;
-	static Reservation reserve = new Reservation();
-	public AnchorPane editProfile;
-	Trip reservedTrip;
-	static boolean flag;
-	String [] seatsChosen;
-	//Manager M;
-	Passenger P;
-	int currentuserIndex;
-	Seat s;
-	Stage stage;
-	Scene scene;
-	public Button PromoCodes;
-	public Button PassengerProfileButton;
-	public Button SeatingOptions;
-	public Button Service;
-	public Button Settings;
-	public Button back;
-	//public Button EditAccount;
-	public TextField FirstnameManager,LastnameManager,UsernameManager,CityManager,CountryManager;
-	public PasswordField PasswordManager, RepassManager;
-	public ChoiceBox<String> GenderManager;
-	public Button ReturnProf;
-	public MenuItem OnewayOption;
-	public MenuItem Round;
-	public MenuItem line1;
-	public MenuItem line2;
-	public MenuItem line3;
-	public VBox PassengerTabs;
-	public Label WelcomeLabel;
-	public Label checkTotal;
-	public AnchorPane ProfFull;
-	public Label Fname;
-	public Label Country;
-	public Label ID;
-	public VBox ProfTitle;
-	public VBox SearchTabs;
-	public VBox LabelChoose;
-	public TextField seatingTxt;
-	public ChoiceBox<String> type;
-	public ChoiceBox<String> start;
-	public ChoiceBox<String> destination;
-	public DatePicker date;
-	public ListView<String> searchView;
-	public ListView<String> purchaseView, myTrips;
-	private Trip [] resultTrips;
-	private String [] results;
-	public Label startDestLabel, timeLabel, dateLabel, priceLabel, seatsLabel;
-	private Ticket[] upaid;
-	private Ticket[] resultTickets;
-	private String[] Ticketresults;
-	int instr;
-	private int pIndex;
-	
-	// --------------- Profile Controls ---------------\\
-	 
-	public void getProfile (Passenger P)
+	private Users user;
+	private double xOffset, yOffset;
+	private ToggleGroup menu;
+	private static final String WELCOME_MESSAGE = "Welcome Back ";
+
+	@FXML
+	private BorderPane root;
+	@FXML
+	private ToggleButton menu_home, menu_profile, menu_trips, menu_customer, menu_logout;
+	@FXML
+	private Label welcome_message;
+	@FXML
+	private Circle minimize_btn, exit_btn, resize_btn;
+
+	// --------------- INITIALIZE ---------------\\
+
+    public HomeScreenController(){
+        //TODO: Type constructor body
+	}
+
+	public void setUser(Users user){
+    	this.user = user;
+		// WELCOME MESSAGE
+		welcome_message.setText(WELCOME_MESSAGE + user.getFirstname() + "!");
+	}
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+		// MOVE THE WINDOW
+		root.setOnMousePressed(mouseEvent -> {
+			xOffset = root.getScene().getWindow().getX() - mouseEvent.getScreenX();
+			yOffset = root.getScene().getWindow().getY() - mouseEvent.getScreenY();
+		});
+
+		root.setOnMouseDragged(mouseEvent -> {
+			root.getScene().getWindow().setX(mouseEvent.getScreenX() + xOffset);
+			root.getScene().getWindow().setY(mouseEvent.getScreenY() + yOffset);
+		});
+
+		// SIDE-MENU INITIALIZE
+		menu = new ToggleGroup();
+		menu_home.setToggleGroup(menu);
+		menu_profile.setToggleGroup(menu);
+		menu_trips.setToggleGroup(menu);
+		menu_customer.setToggleGroup(menu);
+		menu_logout.setToggleGroup(menu);
+    }
+
+	// --------------- HANDLE MOUSE CLICKS ---------------\\
+
+	@FXML
+	private void handleMouseClick(MouseEvent event){
+		if(event.getSource() == (menu_logout)){
+			try {
+				logout(event);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		if(event.getSource() == (exit_btn)){
+			System.exit(0);
+		}
+	}
+
+	// --------------- MENU OPERATIONS ---------------\\
+
+	private void logout(MouseEvent e) throws IOException {
+		Parent Main = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
+		Scene MainScene = new Scene(Main);
+		Stage stage = (Stage) (((Node) e.getSource()).getScene().getWindow());
+		stage.setScene(MainScene);
+	}
+
+	/*public void getProfile (Passenger P)
 	{
 		this.P=P;
 		if(P.gender.equals("Male")) {
@@ -724,7 +744,6 @@ public class HomeScreenController implements Initializable {
 	}
 	
 	
-	
+	*/
 	
 }
-*/

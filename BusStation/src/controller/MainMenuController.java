@@ -6,6 +6,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import database.SqliteDB;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -13,15 +19,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import model.Users;
 import view.AlertBox;
 import animatefx.animation.*;
 
-import javax.swing.*;
 
 
 public class MainMenuController implements Initializable{
 	SqliteDB db = SqliteDB.getInstance();
+	private double xOffset, yOffset;
+	private Users user;
 
 	@FXML
 	private Pane register_pane, login_pane;
@@ -41,16 +49,33 @@ public class MainMenuController implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//TODO: Initialize Stuff
-	}
+		// MOVE THE WINDOW
+		main_menu_root.setOnMousePressed(mouseEvent -> {
+			xOffset = main_menu_root.getScene().getWindow().getX() - mouseEvent.getScreenX();
+			yOffset = main_menu_root.getScene().getWindow().getY() - mouseEvent.getScreenY();
+		});
+
+		main_menu_root.setOnMouseDragged(mouseEvent -> {
+			main_menu_root.getScene().getWindow().setX(mouseEvent.getScreenX() + xOffset);
+			main_menu_root.getScene().getWindow().setY(mouseEvent.getScreenY() + yOffset);
+		});	}
 
 
-	// ------------------------- HANDLE BUTTON CLICKS --------------------- \\
+	// ------------------------- HANDLE ACTION --------------------- \\
 
 	@FXML
 	private void handleButtonAction(ActionEvent event){
 
 
+	}
+
+	@FXML
+	private void handleKeyPressed(KeyEvent event){
+		if(event.getSource().equals(username_input_login) || event.getSource().equals(password_input_login)){
+			if(event.getCode() == KeyCode.ENTER){
+				login();
+			}
+		}
 	}
 
 
@@ -71,18 +96,33 @@ public class MainMenuController implements Initializable{
 
 	// ------------------------- LOGIN PANE OPERATIONS --------------------- \\
 
-/*	public void homeUserLoader(ActionEvent e,Passenger c, int index) throws IOException {
+	private void homeUserLoader(){
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("HomeScreen.fxml"));
-		Parent userHome = loader.load();
-		Scene userHomeS = new Scene(userHome);
-		
-		HomeScreenController controller = loader.getController();
-		controller.getProfile(c);
-		controller.currentuserIndex = index;
-		Stage window = (Stage)(((Node) e.getSource()).getScene().getWindow());
-		window.setScene(userHomeS);
-	}*/
+		loader.setLocation(getClass().getResource("../view/HomeScreen.fxml"));
+		Parent userHome = null;
+		try {
+			userHome = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(userHome != null) {
+			Scene userHomeS = new Scene(userHome);
+			HomeScreenController controller = loader.getController();
+			controller.setUser(user);
+			Stage stage = (Stage) (main_menu_root.getScene().getWindow());
+			stage.setScene(userHomeS);
+		}
+	}
+
+	private void login(){
+		user = db.authenticateLogin(username_input_login.getText(), password_input_login.getText());
+		if(user != null) {
+			homeUserLoader();
+		}
+		else{
+			AlertBox.display("UNEXPECTED INPUTS!", "Please make sure you choose the user type\n and enter the correct username/passowrd!", "OK");
+		}
+	}
 	
 /*	public void homeAdminLoader(ActionEvent e, Admin a, int index) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -118,13 +158,7 @@ public class MainMenuController implements Initializable{
 	}
 	
 	public void loginButton(ActionEvent e) throws IOException {
-		Users currentUser = db.authenticateLogin(username_input_login.getText(), password_input_login.getText());
-		if(currentUser != null) {
-			//TODO: LOGIN APPROVED ACTION
-		}
-		else{
-			AlertBox.display("UNEXPECTED INPUTS!", "Please make sure you choose the user type\n and enter the correct username/passowrd!", "OK");
-		}
+		login();
 	}
 	
 	// ------------------------- REGISTER PANE COMMANDS --------------------- \\
