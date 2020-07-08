@@ -75,6 +75,8 @@ public class HomeScreenController implements Initializable {
 		menu_trips.setToggleGroup(menu);
 		menu_customer.setToggleGroup(menu);
 		menu_logout.setToggleGroup(menu);
+
+		menu_home.setSelected(true); // SELECT DEFAULT MENU
     }
 
 	// --------------- HANDLE MOUSE CLICKS ---------------\\

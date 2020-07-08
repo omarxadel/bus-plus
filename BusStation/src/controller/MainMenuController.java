@@ -58,7 +58,8 @@ public class MainMenuController implements Initializable{
 		main_menu_root.setOnMouseDragged(mouseEvent -> {
 			main_menu_root.getScene().getWindow().setX(mouseEvent.getScreenX() + xOffset);
 			main_menu_root.getScene().getWindow().setY(mouseEvent.getScreenY() + yOffset);
-		});	}
+		});
+	}
 
 
 	// ------------------------- HANDLE ACTION --------------------- \\
