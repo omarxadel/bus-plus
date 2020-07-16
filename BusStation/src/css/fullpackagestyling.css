@@ -233,3 +233,81 @@
     .scroll-pane > .viewport {
        -fx-background-color: transparent;
     }
+
+
+    .trip-card
+    {
+        -fx-background-color: #FC6F63;
+        -fx-background-radius: 20px;
+        -fx-border-radius: 20px;
+/*
+        -fx-effect: dropshadow(gaussian ,#272727 , 12, 0, -2, 1);
+*/
+    }
+
+    .trip-card:hover
+    {
+        -fx-background-color: #FFB7A1;
+    }
+
+    .trip-card .city
+    {
+        -fx-text-fill: #FFFFFF;
+        -fx-font-family: Lato;
+        -fx-font-size: 30.0;
+    }
+
+
+    .trip-card .city:hover
+    {
+        -fx-text-fill: #FFFFFF;
+        -fx-font-family: Lato;
+        -fx-font-size: 30.0;
+    }
+
+
+    .trip-card .city:pressed
+    {
+        -fx-text-fill: #FFFFFF;
+        -fx-font-family: Lato;
+        -fx-font-size: 30.0;
+    }
+
+
+    .trip-card .city:selected
+    {
+        -fx-text-fill: #FFFFFF;
+        -fx-font-family: Lato;
+        -fx-font-size: 30.0;
+    }
+
+
+    .trip-card .info
+    {
+        -fx-text-fill: #FFFFFF;
+        -fx-font-family: Lato;
+        -fx-font-size: 10.0;
+    }
+
+    .trip-card .info:hover
+    {
+        -fx-text-fill: #FFFFFF;
+        -fx-font-family: Lato;
+        -fx-font-size: 10.0;
+    }
+
+
+    .trip-card .info:pressed
+    {
+        -fx-text-fill: #FFFFFF;
+        -fx-font-family: Lato;
+        -fx-font-size: 10.0;
+    }
+
+
+    .trip-card .info:selected
+    {
+        -fx-text-fill: #FFFFFF;
+        -fx-font-family: Lato;
+        -fx-font-size: 10.0;
+    }

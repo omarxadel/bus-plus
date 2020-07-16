@@ -3,7 +3,7 @@
 //import java.net.URL;
 //import java.util.ResourceBundle;
 //
-//import view.AlertBox;
+//import ui_components.AlertBox;
 //import application.HomeScreenController;
 //import javafx.event.ActionEvent;
 //import javafx.event.EventHandler;

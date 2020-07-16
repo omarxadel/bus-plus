@@ -17,7 +17,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import view.AlertBox;
+import ui_components.AlertBox;
 
 public class RegisterationController implements Initializable {
 	Database d;

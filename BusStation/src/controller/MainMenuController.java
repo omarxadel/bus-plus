@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 import database.SqliteDB;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -21,9 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import model.Users;
-import view.AlertBox;
-import animatefx.animation.*;
-
+import ui_components.AlertBox;
 
 
 public class MainMenuController implements Initializable{

@@ -2,22 +2,23 @@ package database;
 
 import Interface.SqliteInterface;
 import model.Admin;
+import model.Trip;
 import model.Users;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 
 public class SqliteDB implements SqliteInterface {
     private Connection c = null;
     private Statement stmt = null;
     private String loadStmt = "SELECT * FROM ";
+    private String sizeStmt = "SELECT COUNT(*) FROM ";
     private String loginQuery = "select * from User where username=? and password=?";
+    private int tripsAmount = 0;
 
     // SINGLETON DESIGN PATTERN
     private static SqliteDB instance = new SqliteDB();
 
     private SqliteDB() {
-
         checkConnection();
     }
 
@@ -50,14 +51,31 @@ public class SqliteDB implements SqliteInterface {
     }
 
     @Override
-    public void loadTrips() {
+    public Trip[] loadTrips() {
+        Trip[] trips = null;
         try {
             stmt = c.createStatement();
-            ResultSet resultSetTrips = stmt.executeQuery(loadStmt + "Trips");
+            ResultSet tableSize = stmt.executeQuery(sizeStmt + "Trips");
+            ResultSet resultSetTrips = stmt.executeQuery("SELECT * FROM Trips");
+            loadSeats();
+            tripsAmount = tableSize.getInt(1);
+            tripsAmount++;
+/*
             ResultSet resultSetSeats = stmt.executeQuery(loadStmt + "Seats");
+*/
+            trips = new Trip[tripsAmount];
+            int i = 0;
+            while(resultSetTrips.next()){
+                trips[i] = new Trip(resultSetTrips.getInt("id"), resultSetTrips.getInt("type") == 0? "One Way" : "Round Trip", resultSetTrips.getString("start"), resultSetTrips.getString("dest"), resultSetTrips.getString("driver_name"), resultSetTrips.getInt("vehicle_num"), resultSetTrips.getString("date"), resultSetTrips.getString("time"), resultSetTrips.getFloat("price"));
+                i++;
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return trips;
+    }
+
+    private void loadSeats() {
     }
 
     @Override
@@ -146,5 +164,11 @@ public class SqliteDB implements SqliteInterface {
     @Override
     public boolean confirmReservation() {
         return false;
+    }
+
+    @Override
+    public int getTripsAmount() {
+        loadTrips();
+        return tripsAmount;
     }
 }

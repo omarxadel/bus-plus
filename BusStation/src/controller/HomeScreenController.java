@@ -2,30 +2,24 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import Interface.PaymentMethod;
+import database.SqliteDB;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import model.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
-import view.AlertBox;
-import view.PaymentWindow;
+import ui_components.AlertBox;
 
 public class HomeScreenController implements Initializable {
 
@@ -33,6 +27,7 @@ public class HomeScreenController implements Initializable {
 	private double xOffset, yOffset;
 	private ToggleGroup menu;
 	private static final String WELCOME_MESSAGE = "Welcome Back ";
+	private SqliteDB db = SqliteDB.getInstance();
 
 	@FXML
 	private BorderPane root;
@@ -42,6 +37,8 @@ public class HomeScreenController implements Initializable {
 	private Label welcome_message;
 	@FXML
 	private Circle minimize_btn, exit_btn, resize_btn;
+	@FXML
+	private GridPane card_view_holder;
 
 	// --------------- INITIALIZE ---------------\\
 
@@ -77,7 +74,38 @@ public class HomeScreenController implements Initializable {
 		menu_logout.setToggleGroup(menu);
 
 		menu_home.setSelected(true); // SELECT DEFAULT MENU
+
+		// Get Trip Data
+		populateCardViewHandler();
     }
+
+	private void populateCardViewHandler() {
+    	Node[] cards = new Node[db.getTripsAmount()];
+    	Trip[] trips = db.loadTrips();
+/*
+		Node[] cards = new Node[20];
+*/
+		if(trips == null)
+			AlertBox.display("ERROR", "NO TRIPS FOUND", "OK");
+    	for (int i = 0 ; i < cards.length ; i ++){
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("../ui_components/TripDetails.fxml"));
+				cards[i] = loader.load();
+
+				TripDetailsController controller = loader.getController();
+
+				controller.setLabels(trips[i].getStart(), trips[i].getDest(), trips[i].getDate(), trips[i].getTime());
+
+				if(i%2 == 0)
+					card_view_holder.addRow(i/2, cards[i]);
+				else
+					card_view_holder.addColumn(1, cards[i]);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 	// --------------- HANDLE MOUSE CLICKS ---------------\\
 

@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import org.controlsfx.control.textfield.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
 
-<BorderPane fx:id="root" prefHeight="435.0" prefWidth="720.0" styleClass="linear-grad" stylesheets="@../css/fullpackagestyling.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeScreenController">
+<BorderPane fx:id="root" prefHeight="500.0" prefWidth="800.0" styleClass="linear-grad" stylesheets="@../css/fullpackagestyling.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeScreenController">
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -20,6 +28,14 @@
                         <Font name="Raleway Light" size="23.0" />
                      </font>
                   </Label>
+                  <ScrollPane pannable="true" fx:id="card_viewhandler" layoutX="25.0" layoutY="117.0" prefHeight="585.0" prefWidth="745.0" style="-fx-background-color: transparent;">
+                     <content>
+                        <GridPane fx:id="card_view_holder" alignment="CENTER" hgap="20.0" vgap="20.0">
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </GridPane>
+                     </content></ScrollPane>
                   <CustomTextField fx:id="fieldSearch" layoutX="23.0" layoutY="65.0" prefHeight="35.0" prefWidth="399.0" promptText="Where do you want to go?" styleClass="searchField">
                      <left>
                         <Label styleClass="searchBoxLabel">
@@ -29,7 +45,6 @@
                         </Label>
                      </left>
                   </CustomTextField>
-                  <ScrollPane layoutX="25.0" layoutY="117.0" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: transparent;" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -38,7 +53,7 @@
          </children></StackPane>
    </center>
    <left>
-      <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="435.0" prefWidth="175.0" spacing="5.0" style="-fx-background-color: #272727;" stylesheets="@../css/fullpackagestyling.css" BorderPane.alignment="CENTER">
+      <VBox fx:id="PassengerTabs" alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="435.0" prefWidth="175.0" spacing="20.0" style="-fx-background-color: #272727;" stylesheets="@../css/fullpackagestyling.css" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="32.0" prefWidth="334.0" spacing="5.0" style="-fx-background-color: transparent;">
                <children>
@@ -54,7 +69,7 @@
                   <Image url="@../../res/logo/logo2.png" />
                </image>
                <VBox.margin>
-                  <Insets bottom="20.0" top="20.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin></ImageView>
             <ToggleButton fx:id="menu_home" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="menu-button" stylesheets="@../css/fullpackagestyling.css" text="Home">
                <graphic>
