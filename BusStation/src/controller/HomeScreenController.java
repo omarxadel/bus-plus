@@ -8,8 +8,8 @@ import database.SqliteDB;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import model.*;
 import javafx.fxml.FXMLLoader;
@@ -25,20 +25,28 @@ public class HomeScreenController implements Initializable {
 
 	private Users user;
 	private double xOffset, yOffset;
-	private ToggleGroup menu;
+	private ToggleGroup menu, gender;
 	private static final String WELCOME_MESSAGE = "Welcome Back ";
 	private SqliteDB db = SqliteDB.getInstance();
+	Node[] cards;
+	Trip[] trips;
 
 	@FXML
 	private BorderPane root;
 	@FXML
 	private ToggleButton menu_home, menu_profile, menu_trips, menu_customer, menu_logout;
 	@FXML
-	private Label welcome_message;
+	private Label welcome_message, usernameProfile;
 	@FXML
 	private Circle minimize_btn, exit_btn, resize_btn;
 	@FXML
 	private GridPane card_view_holder;
+	@FXML
+	private TextField fieldSearch, fnameProfile, countryProfile, lnameProfile, cityProfile;
+	@FXML
+	private RadioButton femaleRadio, maleRadio;
+	@FXML
+	private Pane homeScreen, profileScreen;
 
 	// --------------- INITIALIZE ---------------\\
 
@@ -50,6 +58,7 @@ public class HomeScreenController implements Initializable {
     	this.user = user;
 		// WELCOME MESSAGE
 		welcome_message.setText(WELCOME_MESSAGE + user.getFirstname() + "!");
+		initializeProfile();
 	}
 
     @Override
@@ -77,11 +86,39 @@ public class HomeScreenController implements Initializable {
 
 		// Get Trip Data
 		populateCardViewHandler();
+
+		// SEARCH LISTENER
+		fieldSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+			card_view_holder.getChildren().removeAll(cards);
+			for (int i = 0; i < trips.length; i++) {
+				if ((trips[i].getStart().toLowerCase().contains(newValue.toLowerCase()) || trips[i].getDest().toLowerCase().contains(newValue.toLowerCase()) || trips[i].getType().toLowerCase().contains(newValue.toLowerCase()) || trips[i].getDate().toLowerCase().contains(newValue.toLowerCase()) || trips[i].getTime().toLowerCase().contains(newValue.toLowerCase()))) {
+					try {
+						FXMLLoader loader = new FXMLLoader();
+						loader.setLocation(getClass().getResource("../ui_components/TripDetails.fxml"));
+						cards[i] = loader.load();
+
+						TripDetailsController controller = loader.getController();
+
+						controller.setLabels(trips[i].getStart(), trips[i].getDest(), trips[i].getDate(), trips[i].getTime());
+
+						if(i%2 == 0)
+							card_view_holder.addRow(i/2, cards[i]);
+						else
+							card_view_holder.addColumn(1, cards[i]);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+
+		homeScreen.setVisible(true);
+		profileScreen.setVisible(false);
     }
 
 	private void populateCardViewHandler() {
-    	Node[] cards = new Node[db.getTripsAmount()];
-    	Trip[] trips = db.loadTrips();
+    	cards = new Node[db.getTripsAmount()];
+    	trips = db.loadTrips();
 /*
 		Node[] cards = new Node[20];
 */
@@ -107,10 +144,43 @@ public class HomeScreenController implements Initializable {
 		}
 	}
 
+	private void initializeProfile() {
+		// SET DATA
+		usernameProfile.setText(user.getUsername());
+		fnameProfile.setText(user.getFirstname());
+		lnameProfile.setText(user.getLastname());
+		cityProfile.setText(user.getCity());
+		countryProfile.setText(user.getCountry());
+
+		gender = new ToggleGroup();
+		maleRadio.setToggleGroup(gender);
+		femaleRadio.setToggleGroup(gender);
+
+		if(user.getGender().toLowerCase().contains("male")) {
+			maleRadio.setSelected(true);
+			femaleRadio.setSelected(false);
+		}
+		else{
+			maleRadio.setSelected(false);
+			femaleRadio.setSelected(true);
+		}
+	}
+
 	// --------------- HANDLE MOUSE CLICKS ---------------\\
 
 	@FXML
 	private void handleMouseClick(MouseEvent event){
+
+    	if(event.getSource() == (menu_home)){
+    		homeScreen.setVisible(true);
+    		profileScreen.setVisible(false);
+		}
+
+    	if(event.getSource() == (menu_profile)){
+    		homeScreen.setVisible(false);
+    		profileScreen.setVisible(true);
+		}
+
 		if(event.getSource() == (menu_logout)){
 			try {
 				logout(event);
@@ -133,22 +203,11 @@ public class HomeScreenController implements Initializable {
 		stage.setScene(MainScene);
 	}
 
-	/*public void getProfile (Passenger P)
-	{
-		this.P=P;
-		if(P.gender.equals("Male")) {
-			WelcomeLabel.setText("Hello Mr. " + P.firstname);
-		}
-		else {
-			WelcomeLabel.setText("Hello Mrs. " + P.firstname);
-		}
-		Fname.setText("" + P.firstname + " " + P.lastname);
-		Country.setText("" + P.city +", "+ P.country);
-		ID.setText("" + P.ID);
-		
+	private void getProfile (){
+    	//TODO: LOAD PROFILE TO USER
 	}
 	
-	public void profileButtonClicked (ActionEvent e)
+	/*public void profileButtonClicked (ActionEvent e)
 	{
 		ProfFull.setVisible(true);
 		ProfTitle.setVisible(true);
