@@ -49,7 +49,7 @@
         -fx-background-radius: 20;
     }
 
-    .button3
+   /* .button3
     {
         -fx-background-color: linear-gradient(to top left, #35ACF1, #F6B46F);
         -fx-background-radius: 12;
@@ -77,6 +77,20 @@
         -fx-border-radius: 12;
         -fx-border-insets: -5;
         -fx-border-color: linear-gradient(to top left, #35ACF1, #F6B46F);
+    }*/
+
+    .button3
+    {
+        -fx-background-color: #FC6F63;
+        -fx-alignment: center;
+
+    }
+
+    .button3-unavailable
+    {
+        -fx-background-color: #4B4B4B;
+        -fx-alignment: center;
+
     }
 
     .button4
@@ -321,5 +335,5 @@
     .profile-form
     {
         -fx-padding: 5 10 5 10;
-        -fx-alignment: left-center;
+
     }

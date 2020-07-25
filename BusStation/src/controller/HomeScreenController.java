@@ -94,12 +94,12 @@ public class HomeScreenController implements Initializable {
 				if ((trips[i].getStart().toLowerCase().contains(newValue.toLowerCase()) || trips[i].getDest().toLowerCase().contains(newValue.toLowerCase()) || trips[i].getType().toLowerCase().contains(newValue.toLowerCase()) || trips[i].getDate().toLowerCase().contains(newValue.toLowerCase()) || trips[i].getTime().toLowerCase().contains(newValue.toLowerCase()))) {
 					try {
 						FXMLLoader loader = new FXMLLoader();
-						loader.setLocation(getClass().getResource("../ui_components/TripDetails.fxml"));
+						loader.setLocation(getClass().getResource("../ui_components/TripCard.fxml"));
 						cards[i] = loader.load();
 
-						TripDetailsController controller = loader.getController();
+						TripCardController controller = loader.getController();
 
-						controller.setLabels(trips[i].getStart(), trips[i].getDest(), trips[i].getDate(), trips[i].getTime());
+						controller.setLabels(trips[i].getStart(), trips[i].getDest(), trips[i].getDate(), trips[i].getTime(), Double.toString(trips[i].getPrice()));
 
 						if(i%2 == 0)
 							card_view_holder.addRow(i/2, cards[i]);
@@ -127,12 +127,12 @@ public class HomeScreenController implements Initializable {
     	for (int i = 0 ; i < cards.length ; i ++){
 			try {
 				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(getClass().getResource("../ui_components/TripDetails.fxml"));
+				loader.setLocation(getClass().getResource("../ui_components/TripCard.fxml"));
 				cards[i] = loader.load();
 
-				TripDetailsController controller = loader.getController();
+				TripCardController controller = loader.getController();
 
-				controller.setLabels(trips[i].getStart(), trips[i].getDest(), trips[i].getDate(), trips[i].getTime());
+				controller.setLabels(trips[i].getStart(), trips[i].getDest(), trips[i].getDate(), trips[i].getTime(), Double.toString(trips[i].getPrice()));
 
 				if(i%2 == 0)
 					card_view_holder.addRow(i/2, cards[i]);

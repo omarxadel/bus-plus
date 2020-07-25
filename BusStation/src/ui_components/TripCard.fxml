@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="root" alignment="CENTER_LEFT" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMouseClick" prefHeight="150.0" prefWidth="250.0" styleClass="trip-card" stylesheets="@../css/fullpackagestyling.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TripCardController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="48.000006103515624" minHeight="10.0" prefHeight="34.199985885620116" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="48.000006103515624" minHeight="10.0" prefHeight="34.199985885620116" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="86.79999580383301" minHeight="10.0" prefHeight="66.19999999999999" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="66.99999084472657" minHeight="10.0" prefHeight="17.399981689453128" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="66.99999084472657" minHeight="10.0" prefHeight="33.40001831054688" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="66.99999084472657" minHeight="10.0" prefHeight="33.40001831054688" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label styleClass="info" stylesheets="@../css/fullpackagestyling.css" text="From" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="20.0" top="5.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label styleClass="info" stylesheets="@../css/fullpackagestyling.css" text="To" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets top="5.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="city1_lbl" styleClass="city" stylesheets="@../css/fullpackagestyling.css" text="City1" GridPane.rowIndex="2">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="city2_lbl" styleClass="city" stylesheets="@../css/fullpackagestyling.css" text="City2" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="date_lbl" styleClass="info" stylesheets="@../css/fullpackagestyling.css" text="Date" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="time_lbl" styleClass="info" stylesheets="@../css/fullpackagestyling.css" text="Time" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+   </children>
+</GridPane>
