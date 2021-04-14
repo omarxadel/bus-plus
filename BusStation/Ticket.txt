@@ -1,9 +1,0 @@
-105000 omaradel1 225000 A2 10.0 Cash
-105000 omaradel1 225001 A3 10.0 Cash
-105000 omaradel1 225002 A4 10.0 CreditCard
-105000 omaradel1 225003 A5 10.0 CreditCard
-105000 omaradel1 225004 A4 10.0 Cash
-105000 omaradel1 225005 A5 10.0 Cash
-105000 omaradel1 225006 A6 10.0 Cash
-105000 omaradel1 225007 B1 10.0 Cash
-105000 hodaamr 225008 A2 10.0 Cash
